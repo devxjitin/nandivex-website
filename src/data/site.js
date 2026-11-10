@@ -1,6 +1,6 @@
 export const site = {
   name: 'NandiVex Technologies',
-  tagline: 'AI agents, Android apps and web software',
+  tagline: 'AI agents, Android, desktop and web software',
   email: 'contact@nandivex.com',
   phone: '+91 74080 68618',
   phoneHref: 'tel:+917408068618',

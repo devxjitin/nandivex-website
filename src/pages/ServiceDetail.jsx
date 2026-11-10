@@ -66,6 +66,24 @@ export default function ServiceDetail() {
         </Section>
       )}
 
+      {s.toolkit?.length > 0 && (
+        <Section eyebrow="Our toolkit" title="Open-source tools we have built for this.">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {s.toolkit.map((t) => (
+              <li key={t.name}>
+                <a href={t.href} target="_blank" rel="noopener noreferrer" className="card-hover group flex h-full flex-col !p-5">
+                  <span className="font-mono text-sm font-semibold text-accent-dark">{t.name}</span>
+                  <span className="mt-2 flex-1 text-sm leading-relaxed text-muted">{t.text}</span>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+                    View on GitHub <Icon name="arrow" className="h-4 w-4 -rotate-45 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
       <Section eyebrow="Tools" title="Technologies we use">
         <ul className="flex flex-wrap gap-2">
           {s.technologies.map((t) => <li key={t} className="chip !font-mono">{t}</li>)}

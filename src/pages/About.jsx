@@ -7,12 +7,12 @@ import { Avatar, LogoStrip, StatRow } from '../components/blocks.jsx';
 import Icon from '../components/Icons.jsx';
 
 export default function About() {
-  useMeta('About', 'NandiVex Technologies is an engineering team that builds AI voice agents, Android apps and web software.');
+  useMeta('About', 'NandiVex Technologies is an engineering team that builds AI voice agents, Android apps, desktop tools and web software.');
   const stack = [...new Set(jitin.skills.flatMap(([, items]) => items))];
   return (
     <>
       <PageHeader eyebrow="About" title="An engineering team that ships AI assistants and the software around them.">
-        NandiVex Technologies designs and builds voice and chat agents, Android apps and web software.
+        NandiVex Technologies designs and builds voice and chat agents, Android apps, Windows desktop tools and web software.
         You work directly with the engineers who design and build your product.
       </PageHeader>
 
