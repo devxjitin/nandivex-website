@@ -4,7 +4,7 @@ import Icon from './Icons.jsx';
 
 export function useMeta(title, description) {
   useEffect(() => {
-    document.title = title ? `${title} | NandiVex Technologies` : 'NandiVex Technologies | Web, Infrastructure & Security';
+    document.title = title ? `${title} | NandiVex Technologies` : 'NandiVex Technologies | AI Agents, Android Apps & Web Software';
     if (description) {
       let m = document.querySelector('meta[name="description"]');
       if (!m) {
@@ -50,7 +50,7 @@ export function Section({ id, eyebrow, title, children, className = '', tone = '
 export function CTA({
   title = 'Let us talk about your project.',
   text = 'Tell us what you are building or fixing. An engineer will reply within two working days.',
-  label = 'Start a conversation',
+  label = 'Book a call',
 }) {
   return (
     <section className="bg-white py-16 sm:py-20">

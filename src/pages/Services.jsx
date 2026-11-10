@@ -1,40 +1,26 @@
-import { Link } from 'react-router-dom';
 import services from '../data/services.json';
+import { process } from '../data/site.js';
 import { CTA, PageHeader, Section, useMeta } from '../components/ui.jsx';
-import Icon from '../components/Icons.jsx';
-
-const blurbs = {
-  Build: 'Software your customers and staff use every day.',
-  Scale: 'Infrastructure that stays up as you grow.',
-  Secure: 'Testing and hardening before attackers find the gaps.',
-};
+import { ScrollTimeline } from '../components/motion.jsx';
+import { ServiceCard } from '../components/blocks.jsx';
 
 export default function Services() {
-  useMeta('Services', 'Web development, AI agents, Android software, cloud, IT infrastructure, cybersecurity and DevOps from NandiVex Technologies.');
+  useMeta('Services', 'AI voice and chat agents, Android apps, and web and custom software from NandiVex Technologies.');
+  const [lead, ...rest] = services;
   return (
     <>
-      <PageHeader eyebrow="Services" title="What we do.">
-        From customer-facing web apps to server operations and authorised security testing,
-        we cover the full engineering lifecycle.
+      <PageHeader eyebrow="Services" title="Three things, done end to end.">
+        AI agents are our main work. We also build the Android apps and web software around them, then deploy and look after it all.
       </PageHeader>
-      {['Build', 'Scale', 'Secure'].map((cat, n) => (
-        <Section key={cat} eyebrow={cat} title={blurbs[cat]} tone={n % 2 === 0 ? 'white' : 'soft'}>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.filter((s) => s.category === cat).map((s) => (
-              <Link key={s.slug} to={`/services/${s.slug}`} className="card-hover group flex flex-col">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-tint text-accent transition-colors group-hover:bg-accent group-hover:text-white">
-                  <Icon name={s.slug} />
-                </span>
-                <h3 className="mt-5 text-xl">{s.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{s.description}</p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
-                  Details <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </Section>
-      ))}
+      <Section>
+        <div className="grid gap-5 md:grid-cols-2">
+          <ServiceCard s={lead} big />
+          {rest.map((s) => <ServiceCard key={s.slug} s={s} />)}
+        </div>
+      </Section>
+      <Section eyebrow="How we work" title="The same five steps on every project." tone="soft">
+        <ScrollTimeline steps={process} />
+      </Section>
       <CTA />
     </>
   );

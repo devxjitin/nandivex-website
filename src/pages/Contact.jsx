@@ -6,7 +6,7 @@ import { PageHeader, useMeta } from '../components/ui.jsx';
 const field = 'w-full border border-line bg-white px-4 py-3 text-[15px] outline-none focus:border-accent';
 
 export default function Contact() {
-  useMeta('Contact', 'Talk to NandiVex Technologies about a web, infrastructure or security project.');
+  useMeta('Contact', 'Talk to NandiVex Technologies about an AI agent, Android app or web project.');
   const [sent, setSent] = useState(false);
 
   function submit(e) {
@@ -26,7 +26,7 @@ export default function Contact() {
 
   return (
     <>
-      <PageHeader eyebrow="Contact" title="Tell us what you need.">
+      <PageHeader eyebrow="Contact" title="Book a call. Tell us what you need.">
         Send a few lines about your project or problem. We reply within two working days.
       </PageHeader>
       <section className="border-b border-line">
@@ -51,7 +51,7 @@ export default function Contact() {
                 <span className="label">Interested in</span>
                 <select name="service" className={`${field} mt-2`} defaultValue="Not sure yet">
                   <option>Not sure yet</option>
-                  {services.map((s) => <option key={s.slug}>{s.title}</option>)}
+                  {services.map((s) => <option key={s.slug} value={s.title}>{s.title}</option>)}
                 </select>
               </label>
             </div>

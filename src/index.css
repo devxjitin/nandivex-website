@@ -69,3 +69,18 @@ html.is-scrolling body { pointer-events: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .page-in, .marquee, .marquee-rev, [class*="animate-"] { animation: none !important; }
 }
+
+/* ---------- Voice wave, FAQ, hero glow ---------- */
+.wave-bar { height: 100%; transform-origin: center; transform: scaleY(.15); animation: wave ease-in-out infinite alternate; }
+@keyframes wave { to { transform: scaleY(1); } }
+.faq[open] > p { animation: pagein .35s ease-out both; }
+.faq summary::-webkit-details-marker { display: none; }
+.glow { background: radial-gradient(closest-side, rgba(24,183,255,.35), transparent); filter: blur(10px); }
+.text-grad { background: linear-gradient(90deg, #18B7FF, #7DD3FF 50%, #fff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.menu-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s cubic-bezier(.22,1,.36,1); }
+.menu-panel.open { grid-template-rows: 1fr; }
+.menu-panel > div { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) {
+  .wave-bar { animation: none; transform: scaleY(.5); }
+  .menu-panel { transition: none; }
+}

@@ -2,17 +2,25 @@
   {
     "id": "ai-agents",
     "slug": "ai-agents",
-    "title": "AI Agents",
-    "subtitle": "Assistants that listen, reason and take action",
-    "description": "Voice and chat agents that use your tools and your documents to get real work done, with approvals and logs so you stay in control.",
-    "icon": "Bot",
-    "category": "Build",
+    "title": "AI Voice & Chat Agents",
+    "short": "Voice and chat assistants",
+    "subtitle": "Assistants that listen, reason and get real work done",
+    "description": "Voice and chat agents that use your tools and your documents to finish tasks, with approvals and logs so you stay in control. This is our main work: we have shipped three voice assistants for Nirman Labs.",
+    "icon": "ai-agents",
+    "featured": true,
+    "tags": ["Voice", "RAG", "Tool calling", "MCP"],
+    "useCases": [
+      "A voice assistant for students, customers or reception desks",
+      "A chat assistant that answers from your own documents",
+      "An agent that books, files, searches and updates your systems",
+      "An internal helper that saves staff hours every week"
+    ],
     "features": [
-      "Voice assistants with real-time speech (Gemini Live, Whisper)",
+      "Real-time voice you can interrupt (Gemini Live, Whisper)",
       "Chat assistants with streaming answers and file attachments",
       "Answers from your own documents (RAG) instead of guesses",
       "Tool-using agents that call your APIs and MCP connectors",
-      "Computer-use and workflow automation agents",
+      "Multi-language support, including Hindi and English",
       "Memory and personalisation across sessions"
     ],
     "deliverables": [
@@ -20,584 +28,96 @@
       "Test questions and quality checks to measure answers",
       "Human approval for risky actions, plus run logs",
       "Cost and usage tracking per user or team",
-      "Documentation and source handover"
+      "Documentation and full source handover"
     ],
-    "technologies": [
-      "Python",
-      "Gemini",
-      "OpenAI-compatible LLMs",
-      "RAG",
-      "MCP",
-      "Whisper",
-      "Ollama",
-      "FastAPI",
-      "Autourgos"
-    ],
+    "technologies": ["Python", "Gemini", "OpenAI-compatible LLMs", "RAG", "MCP", "Whisper", "Ollama", "FastAPI", "Autourgos"],
     "process": [
-      {
-        "step": "01",
-        "name": "Define the task",
-        "detail": "Pick one job the agent should do and how success is measured."
-      },
-      {
-        "step": "02",
-        "name": "Connect tools and data",
-        "detail": "Wire up the APIs, documents and permissions the agent needs."
-      },
-      {
-        "step": "03",
-        "name": "Build and evaluate",
-        "detail": "Iterate against real examples until answers are reliable."
-      },
-      {
-        "step": "04",
-        "name": "Pilot with guardrails",
-        "detail": "Roll out to a small group with approvals and monitoring."
-      },
-      {
-        "step": "05",
-        "name": "Launch and improve",
-        "detail": "Go live, watch usage and cost, and keep refining."
-      }
-    ]
+      { "step": "01", "name": "Define the task", "detail": "Pick one job the agent should do and how success is measured." },
+      { "step": "02", "name": "Connect tools and data", "detail": "Wire up the APIs, documents and permissions the agent needs." },
+      { "step": "03", "name": "Build and evaluate", "detail": "Iterate against real examples until answers are reliable." },
+      { "step": "04", "name": "Pilot with guardrails", "detail": "Roll out to a small group with approvals and monitoring." },
+      { "step": "05", "name": "Launch and improve", "detail": "Go live, watch usage and cost, and keep refining." }
+    ],
+    "relatedWork": ["nirman-labs-voice-assistants", "ultron", "autourgos", "drishti"]
   },
   {
-    "id": "android-software",
-    "slug": "android-software",
-    "title": "Android Software",
-    "subtitle": "Native Android apps that feel fast and work offline",
+    "id": "android-apps",
+    "slug": "android-apps",
+    "title": "Android Apps",
+    "short": "Native Android software",
+    "subtitle": "Native apps that feel fast and keep working offline",
     "description": "Native Kotlin apps for assistants, kiosks and business tools, built with Jetpack Compose and shipped with a proper release pipeline.",
-    "icon": "Smartphone",
-    "category": "Build",
+    "icon": "android-apps",
+    "tags": ["Kotlin", "Jetpack Compose", "Offline", "OTA updates"],
+    "useCases": [
+      "A voice assistant that lives on the phone",
+      "A kiosk or reception-desk app",
+      "A field-staff or business tool that works without signal",
+      "A product you want to sell on subscription"
+    ],
     "features": [
       "Native apps in Kotlin and Jetpack Compose",
       "Voice and chat assistants that run on the phone",
-      "Kiosk and reception-desk apps",
       "Offline-first design with on-device search and storage",
       "Over-the-air updates with checksum verification",
+      "Licensing and subscription keys",
       "Play Store submission and signed release builds"
     ],
     "deliverables": [
       "Signed release builds ready to install or publish",
       "Full source code and build documentation",
       "CI pipeline that builds and signs every release",
-      "Crash and usage reporting",
+      "Testing on real devices before each release",
       "Support for Android 8 and newer"
     ],
-    "technologies": [
-      "Kotlin",
-      "Jetpack Compose",
-      "Hilt",
-      "ObjectBox",
-      "Gemini",
-      "AWS Lambda",
-      "GitHub Actions"
-    ],
+    "technologies": ["Kotlin", "Jetpack Compose", "Hilt", "ObjectBox", "Gemini", "AWS Lambda", "GitHub Actions"],
     "process": [
-      {
-        "step": "01",
-        "name": "Scope and flows",
-        "detail": "Map screens, offline needs and device targets."
-      },
-      {
-        "step": "02",
-        "name": "Design",
-        "detail": "Compose-ready interface design with real device testing."
-      },
-      {
-        "step": "03",
-        "name": "Build",
-        "detail": "Native Kotlin with clean architecture and automated tests."
-      },
-      {
-        "step": "04",
-        "name": "Release pipeline",
-        "detail": "Signed builds from CI and an update channel."
-      },
-      {
-        "step": "05",
-        "name": "Launch and support",
-        "detail": "Store submission, monitoring and ongoing updates."
-      }
-    ]
+      { "step": "01", "name": "Scope and flows", "detail": "Map screens, offline needs and device targets." },
+      { "step": "02", "name": "Design", "detail": "Compose-ready interface design with real device testing." },
+      { "step": "03", "name": "Build", "detail": "Native Kotlin with clean architecture and automated tests." },
+      { "step": "04", "name": "Release pipeline", "detail": "Signed builds from CI and an update channel." },
+      { "step": "05", "name": "Launch and support", "detail": "Store submission, monitoring and ongoing updates." }
+    ],
+    "relatedWork": ["ultron", "drishti"]
   },
   {
-    "id": "web-development",
-    "slug": "web-development",
-    "title": "Web Development",
-    "subtitle": "High-Performance Web Experiences Built to Scale",
-    "description": "High-performance websites and web applications designed for modern businesses with lightning speed, responsive interfaces, and bank-grade security.",
-    "icon": "Globe",
-    "category": "Build",
+    "id": "web-software",
+    "slug": "web-software",
+    "title": "Web & Custom Software",
+    "short": "Websites, dashboards, backends",
+    "subtitle": "Websites, dashboards and backends, deployed and looked after",
+    "description": "Fast websites, web apps and the backends behind your assistants and apps. We also deploy them to the cloud and keep them running, so you have one team to call.",
+    "icon": "web-software",
+    "tags": ["React", "FastAPI", "PostgreSQL", "AWS"],
+    "useCases": [
+      "A company website that explains what you do and brings in leads",
+      "An admin dashboard or customer portal",
+      "The backend and APIs behind an AI agent or mobile app",
+      "A platform for assignments, grading or internal workflows"
+    ],
     "features": [
-      "Corporate & Business Websites",
-      "Web Applications & Admin Dashboards",
-      "SaaS Platforms & Customer Portals",
-      "E-Commerce & Payment Gateways",
-      "REST & GraphQL API Integration",
-      "Third-Party Software Integrations"
+      "Business websites and landing pages",
+      "Web apps and admin dashboards",
+      "APIs and integrations with the tools you already use",
+      "Database design and role-based access",
+      "Cloud deployment on AWS with CI/CD",
+      "Monitoring, backups and ongoing maintenance"
     ],
     "deliverables": [
-      "Modular Component Architecture",
-      "Blazing Fast Page Load Times (<1.2s)",
-      "SEO & Core Web Vitals Optimization",
-      "Cross-Browser & Device Compatibility",
-      "Robust Authorization & Role Management"
+      "A responsive, fast site or app",
+      "Clean, documented code in your repository",
+      "Automated deployment from every merge",
+      "Backups and monitoring set up",
+      "Handover or ongoing support, your choice"
     ],
-    "technologies": [
-      "React.js",
-      "JavaScript",
-      "Node.js",
-      "Express",
-      "Tailwind CSS",
-      "MongoDB",
-      "MySQL",
-      "REST APIs"
-    ],
+    "technologies": ["React", "Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Docker", "AWS", "GitHub Actions"],
     "process": [
-      {
-        "step": "01",
-        "name": "Requirements & Wireframing",
-        "detail": "Translating business goals into high-fidelity UX prototypes."
-      },
-      {
-        "step": "02",
-        "name": "Frontend Architecture",
-        "detail": "Building responsive, component-driven client applications."
-      },
-      {
-        "step": "03",
-        "name": "API & Backend Integration",
-        "detail": "Connecting secure databases, auth services, and business APIs."
-      },
-      {
-        "step": "04",
-        "name": "Performance & Security Audit",
-        "detail": "Speed tuning, vulnerability sweeps, and SSL configuration."
-      },
-      {
-        "step": "05",
-        "name": "Production Deployment",
-        "detail": "Automated deployment to edge networks and cloud servers."
-      }
-    ]
-  },
-  {
-    "id": "software-development",
-    "slug": "software-development",
-    "title": "Custom Software Development",
-    "subtitle": "Tailored Enterprise Systems & Business Engines",
-    "description": "Custom business applications, dashboards, enterprise resource planning (ERP), and workflow automation systems built for high resilience.",
-    "icon": "Code2",
-    "category": "Build",
-    "features": [
-      "Custom Enterprise Software",
-      "ERP & CRM Platforms",
-      "Executive Analytics Dashboards",
-      "Internal Business Workflow Automation",
-      "Microservice & API Architecture",
-      "Legacy System Migration"
+      { "step": "01", "name": "Requirements", "detail": "Turn your goals into screens, data and a short plan." },
+      { "step": "02", "name": "Design", "detail": "Clear interface design you approve before we build." },
+      { "step": "03", "name": "Build", "detail": "Component-driven front end and a tested backend." },
+      { "step": "04", "name": "Deploy", "detail": "Automated releases to the cloud with a rollback path." },
+      { "step": "05", "name": "Support", "detail": "Monitoring, patching and improvements after launch." }
     ],
-    "deliverables": [
-      "Clean Decoupled Architecture",
-      "Comprehensive API Documentation",
-      "Data Integrity & Automated Backups",
-      "Role-Based Access Control (RBAC)",
-      "Scalable Database Schema Design"
-    ],
-    "technologies": [
-      "Node.js",
-      "Express.js",
-      "React.js",
-      "PostgreSQL",
-      "MySQL",
-      "Redis",
-      "Docker"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Domain Analysis",
-        "detail": "Mapping data structures, workflows, and operational bottlenecks."
-      },
-      {
-        "step": "02",
-        "name": "Architecture Blueprint",
-        "detail": "Designing scalable database models and decoupled services."
-      },
-      {
-        "step": "03",
-        "name": "Agile Development",
-        "detail": "Sprint-based iterative delivery with continuous stakeholder demos."
-      },
-      {
-        "step": "04",
-        "name": "Integration Testing",
-        "detail": "Comprehensive unit, integration, and load tests."
-      },
-      {
-        "step": "05",
-        "name": "Deployment & Training",
-        "detail": "Smooth transition, data migration, and technical documentation."
-      }
-    ]
-  },
-  {
-    "id": "cloud-services",
-    "slug": "cloud-services",
-    "title": "Cloud Services & Migration",
-    "subtitle": "Elastic Cloud Environments Built for High Availability",
-    "description": "Architect, migrate, and maintain cloud infrastructure on AWS and hybrid environments with automated elasticity and cost controls.",
-    "icon": "Cloud",
-    "category": "Scale",
-    "features": [
-      "AWS Cloud Architecture",
-      "Legacy to Cloud Migration",
-      "Serverless Compute Architectures",
-      "Multi-Region Redundancy",
-      "Cloud Cost Optimization",
-      "Cloud Security Posture Management"
-    ],
-    "deliverables": [
-      "99.99% Availability Architecture",
-      "Automated Elastic Auto-Scaling",
-      "Infrastructure-as-Code (Terraform)",
-      "Zero-Downtime Migration Playbooks",
-      "Granular Identity & Access Governance"
-    ],
-    "technologies": [
-      "AWS",
-      "EC2",
-      "S3",
-      "RDS",
-      "Lambda",
-      "Cloudflare",
-      "Linux"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Cloud Readiness Audit",
-        "detail": "Evaluating application dependencies and compute sizing."
-      },
-      {
-        "step": "02",
-        "name": "Target Architecture Plan",
-        "detail": "Designing VPCs, subnets, gateways, and failover topologies."
-      },
-      {
-        "step": "03",
-        "name": "Staged Data Migration",
-        "detail": "Replicating databases and asset storage with zero data loss."
-      },
-      {
-        "step": "04",
-        "name": "Cutover & DNS Routing",
-        "detail": "Traffic redirection with instant rollback safety nets."
-      },
-      {
-        "step": "05",
-        "name": "Continuous Cloud Ops",
-        "detail": "Monitoring resource utilization and continuous cost tuning."
-      }
-    ]
-  },
-  {
-    "id": "it-infrastructure",
-    "slug": "it-infrastructure",
-    "title": "IT Infrastructure Management",
-    "subtitle": "Reliable Infrastructure. Maximum Availability.",
-    "description": "Enterprise server management, high-performance Linux administration, corporate networking, and disaster recovery architectures.",
-    "icon": "Server",
-    "category": "Scale",
-    "features": [
-      "24/7 Server Administration",
-      "Linux & Windows Server Management",
-      "Corporate Network & VPN Engineering",
-      "Database High Availability & Clustering",
-      "Backup & Disaster Recovery (DR)",
-      "24/7 Infrastructure Monitoring & Telemetry"
-    ],
-    "deliverables": [
-      "High Availability Clustering",
-      "Automated Off-site Encrypted Backups",
-      "Hardware Health Monitoring & Alerts",
-      "Sub-15 Minute Incident Response SLA",
-      "Hardware & Bandwidth Optimization"
-    ],
-    "technologies": [
-      "Linux (Ubuntu/CentOS/RHEL)",
-      "Nginx",
-      "Apache",
-      "MySQL",
-      "PostgreSQL",
-      "Docker",
-      "Prometheus",
-      "Grafana"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Infrastructure Audit",
-        "detail": "Assessing server loads, single points of failure, and latency."
-      },
-      {
-        "step": "02",
-        "name": "Hardening & Standardization",
-        "detail": "Applying operating system patches, kernel tweaks, and firewalls."
-      },
-      {
-        "step": "03",
-        "name": "Monitoring Deployment",
-        "detail": "Instrumenting server telemetry, log aggregation, and alerts."
-      },
-      {
-        "step": "04",
-        "name": "Backup Strategy Implementation",
-        "detail": "Automating scheduled snapshots and recovery drills."
-      },
-      {
-        "step": "05",
-        "name": "Active Maintenance",
-        "detail": "Ongoing patch management, storage balancing, and optimization."
-      }
-    ]
-  },
-  {
-    "id": "cybersecurity",
-    "slug": "cybersecurity",
-    "title": "Cybersecurity Services",
-    "subtitle": "Protect What Powers Your Business",
-    "description": "Proactive, defensive cybersecurity services including authorized vulnerability assessments, penetration testing, and risk mitigations.",
-    "icon": "ShieldCheck",
-    "category": "Secure",
-    "features": [
-      "Vulnerability Assessment & Penetration Testing (VAPT)",
-      "Web Application Security (OWASP Top 10)",
-      "API Security & Authorization Audits",
-      "Network Penetration Testing",
-      "Cloud Security Assessment",
-      "Defensive Security Consulting"
-    ],
-    "deliverables": [
-      "Executive & Technical Risk Reports",
-      "Vulnerability Severity Matrix (CVSS)",
-      "Actionable Remediation Guidance",
-      "Post-Remediation Verification & Retesting",
-      "Defensive Security Posture Certification"
-    ],
-    "technologies": [
-      "OWASP Framework",
-      "Nmap",
-      "Wireshark",
-      "Burp Suite",
-      "SSL/TLS Hardening",
-      "JWT/OAuth2",
-      "ModSecurity"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Discovery & Scoping",
-        "detail": "Defining rules of engagement, authorized target IP ranges and URLs."
-      },
-      {
-        "step": "02",
-        "name": "Vulnerability Scanning",
-        "detail": "Automated scanning for known exploits, misconfigurations, and outdated libs."
-      },
-      {
-        "step": "03",
-        "name": "Authorized Testing",
-        "detail": "Manual validation to eliminate false positives and test complex logic."
-      },
-      {
-        "step": "04",
-        "name": "Risk Analysis & Reporting",
-        "detail": "Classifying vulnerabilities by business impact and CVSS score."
-      },
-      {
-        "step": "05",
-        "name": "Remediation Support & Retest",
-        "detail": "Assisting development teams with fixes and verifying closure."
-      }
-    ]
-  },
-  {
-    "id": "network-security",
-    "slug": "network-security",
-    "title": "Network Security & Architecture",
-    "subtitle": "Defend Your Corporate Perimeter & Internal Networks",
-    "description": "Robust firewall implementation, intrusion prevention systems, secure VPN tunnels, and zero-trust network access (ZTNA).",
-    "icon": "Network",
-    "category": "Secure",
-    "features": [
-      "Next-Gen Firewall Configuration",
-      "Intrusion Detection & Prevention (IDS/IPS)",
-      "Corporate Site-to-Site & Client VPNs",
-      "Network Segmentation & VLANs",
-      "Zero-Trust Network Access (ZTNA)",
-      "DDoS Mitigation & Rate Limiting"
-    ],
-    "deliverables": [
-      "Segmented Network Architecture",
-      "Hardened Perimeter Gateways",
-      "Encrypted Inter-Office Communications",
-      "Real-time Traffic Anomaly Alerts",
-      "Compliance Network Documentation"
-    ],
-    "technologies": [
-      "iptables",
-      "OpenVPN",
-      "WireGuard",
-      "Cloudflare Magic Transit",
-      "Suricata",
-      "pfSense"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Topology Mapping",
-        "detail": "Visualizing all network ingress points, routers, and gateways."
-      },
-      {
-        "step": "02",
-        "name": "Policy Design",
-        "detail": "Establishing strict principle-of-least-privilege firewall rules."
-      },
-      {
-        "step": "03",
-        "name": "IDS/IPS Deployment",
-        "detail": "Setting up deep packet inspection for threat prevention."
-      },
-      {
-        "step": "04",
-        "name": "Traffic Stress Testing",
-        "detail": "Simulating heavy throughput and boundary conditions."
-      },
-      {
-        "step": "05",
-        "name": "Continuous Monitoring",
-        "detail": "Real-time logging of dropped packets and unauthorized attempts."
-      }
-    ]
-  },
-  {
-    "id": "security-audit",
-    "slug": "security-audit",
-    "title": "Security & Compliance Audits",
-    "subtitle": "Comprehensive Technical & Architectural Evaluation",
-    "description": "Rigorous technical audits of source code, server baselines, IAM permissions, and regulatory compliance postures.",
-    "icon": "FileCheck2",
-    "category": "Secure",
-    "features": [
-      "Static & Dynamic Code Security Review",
-      "Cloud IAM & Permission Audits",
-      "Database Encryption & Storage Review",
-      "Security Policy & Governance Review",
-      "Third-party Vendor Risk Assessment",
-      "Regulatory Gap Analysis"
-    ],
-    "deliverables": [
-      "Comprehensive Audit Dossier",
-      "Risk Heatmap & Impact Prioritization",
-      "Code-level Fix Recommendations",
-      "Executive Summary for Stakeholders",
-      "Verification Re-Audit Statement"
-    ],
-    "technologies": [
-      "SonarQube",
-      "GitLeaks",
-      "Trivy",
-      "AWS IAM Access Analyzer",
-      "OWASP ASVS"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Audit Preparation",
-        "detail": "Collecting repository access, architectural schematics, and policies."
-      },
-      {
-        "step": "02",
-        "name": "Deep Code & Config Scan",
-        "detail": "Automated analysis for hardcoded secrets and logic flaws."
-      },
-      {
-        "step": "03",
-        "name": "Manual Expert Review",
-        "detail": "Architect-level evaluation of authentication and data flows."
-      },
-      {
-        "step": "04",
-        "name": "Audit Report Generation",
-        "detail": "Detailed findings categorized by severity and impact."
-      },
-      {
-        "step": "05",
-        "name": "Closing Conference",
-        "detail": "Walkthrough with CTO/engineering leads on remediation actions."
-      }
-    ]
-  },
-  {
-    "id": "devops",
-    "slug": "devops",
-    "title": "DevOps & CI/CD Automation",
-    "subtitle": "Accelerate Delivery with Resilient, Automated Pipelines",
-    "description": "Streamlined continuous integration, continuous delivery (CI/CD), containerization with Docker, and automated infrastructure as code.",
-    "icon": "Terminal",
-    "category": "Scale",
-    "features": [
-      "Automated CI/CD Pipelines",
-      "Docker Containerization & Microservices",
-      "Infrastructure as Code (Terraform)",
-      "Zero-Downtime Deployments",
-      "Centralized Log Aggregation",
-      "Release Management & Rollbacks"
-    ],
-    "deliverables": [
-      "Fully Automated Build & Test Pipelines",
-      "Standardized Dockerized Environments",
-      "Automated Semantic Versioning & Tags",
-      "One-Click Rollback Safeguards",
-      "Infrastructure Reproducibility"
-    ],
-    "technologies": [
-      "GitHub Actions",
-      "Docker",
-      "Docker Compose",
-      "Terraform",
-      "Ansible",
-      "Nginx",
-      "Linux"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Build Workflow Review",
-        "detail": "Analyzing developer workflows and manual deployment friction."
-      },
-      {
-        "step": "02",
-        "name": "Containerization",
-        "detail": "Writing optimized, multi-stage Dockerfiles with minimal attack surfaces."
-      },
-      {
-        "step": "03",
-        "name": "Pipeline Construction",
-        "detail": "Configuring automated testing, linting, security scans, and build steps."
-      },
-      {
-        "step": "04",
-        "name": "Automated Staging & Prod",
-        "detail": "Hooking webhooks for automated staging previews and production gates."
-      },
-      {
-        "step": "05",
-        "name": "Telemetry & SRE Handover",
-        "detail": "Integrating alerts for failed builds and monitoring cluster metrics."
-      }
-    ]
+    "relatedWork": ["campusgrade", "autourgos"]
   }
 ]

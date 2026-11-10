@@ -14,8 +14,8 @@ export default function TeamMember() {
   return (
     <>
       <Section>
-        <Link to="/team" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
-          <Icon name="arrow" className="h-4 w-4 rotate-180" /> All team
+        <Link to="/about#team" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+          <Icon name="arrow" className="h-4 w-4 rotate-180" /> Back to team
         </Link>
         <div className="grid gap-10 lg:grid-cols-[320px_1fr] lg:items-start">
           <img src={m.photo} alt={m.name} className="aspect-[4/5] w-full max-w-sm rounded-3xl object-cover shadow-card" />

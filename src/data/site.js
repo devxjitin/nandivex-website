@@ -1,35 +1,41 @@
 export const site = {
   name: 'NandiVex Technologies',
+  tagline: 'AI agents, Android apps and web software',
   email: 'contact@nandivex.com',
   location: 'India',
   url: 'https://nandivex.in',
 };
 
+/* Header links. Add one here and it shows in the header and mobile menu. */
 export const nav = [
-  { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
-  { to: '/industries', label: 'Industries' },
-  { to: '/projects', label: 'Work' },
+  { to: '/work', label: 'Work' },
   { to: '/products', label: 'Products' },
   { to: '/about', label: 'About' },
-  { to: '/team', label: 'Team' },
   { to: '/careers', label: 'Careers' },
 ];
 
 export const process = [
-  { name: 'Discovery', detail: 'Business goals, users, data and compliance constraints.' },
-  { name: 'Architecture', detail: 'System design, database models, threat model and roadmap.' },
-  { name: 'Design', detail: 'Interface design, design system and responsive wireframes.' },
-  { name: 'Development', detail: 'Clean, modular code that follows security best practice.' },
-  { name: 'Testing', detail: 'Functional, load and cross-browser testing plus vulnerability scans.' },
-  { name: 'Release & care', detail: 'Zero-downtime releases, monitoring, backups and tuning.' },
+  { name: 'Discovery call', detail: 'We learn the goal, the users and what success looks like. You get a written plan and estimate.' },
+  { name: 'Design', detail: 'Screens, voice flows and data model you approve before we build.' },
+  { name: 'Build', detail: 'Short sprints with a working demo every week or two, so nothing surprises you.' },
+  { name: 'Test and launch', detail: 'Real-device and real-user testing, then a signed, deployed release.' },
+  { name: 'Support', detail: 'Monitoring, fixes and improvements after launch, on a plan that suits you.' },
 ];
 
 export const principles = [
-  ['Security from the start', 'Threat modelling and secure defaults are part of every build, not a post-launch patch.'],
-  ['Built to grow', 'Modular systems that take more load without a rewrite.'],
-  ['Current tooling', 'Modern frameworks, containers and cloud-native services, chosen for the job.'],
-  ['Plain communication', 'Clear updates, sprint demos and direct access to the engineers.'],
-  ['Fast by default', 'Quick page loads, quick APIs, queries that are profiled and tuned.'],
-  ['Dependable after launch', 'Support terms, monitoring, patching and maintenance.'],
+  ['Proof over promises', 'We show shipped work you can open and try, not slideware.'],
+  ['One accountable team', 'Design, AI, app, backend and deployment under one roof, so nothing falls between vendors.'],
+  ['You own it', 'Full source, documentation and access are handed over. No lock-in.'],
+  ['Plain communication', 'Regular demos and direct access to the people building it.'],
+  ['Built to grow', 'Modular systems that take more users and features without a rewrite.'],
+  ['Dependable after launch', 'Monitoring, patching and support, so it keeps working.'],
+];
+
+/* Real numbers only. Shown on the home page. */
+export const stats = [
+  { value: 3, suffix: '', label: 'Voice assistants shipped for Nirman Labs' },
+  { value: 13, suffix: '', label: 'Languages supported by ULTRON' },
+  { value: 80, suffix: '+', label: 'Phone and cloud tools in ULTRON' },
+  { value: 17, suffix: '', label: 'Open-source packages on PyPI' },
 ];

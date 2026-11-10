@@ -3,7 +3,7 @@ import { site } from '../data/site.js';
 import { PageHeader, Section, useMeta } from '../components/ui.jsx';
 
 export default function Careers() {
-  useMeta('Careers', 'Open engineering roles at NandiVex Technologies: frontend, backend, full stack, DevOps and security.');
+  useMeta('Careers', 'Open roles at NandiVex Technologies: AI, Android and web engineering.');
   const { culturePillars, benefits, hiringProcess, openRoles } = careers;
 
   return (

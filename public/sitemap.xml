@@ -1,33 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nandivex.in/</loc></url>
+  <url><loc>https://nandivex.in/services</loc></url>
+  <url><loc>https://nandivex.in/services/ai-agents</loc></url>
+  <url><loc>https://nandivex.in/services/android-apps</loc></url>
+  <url><loc>https://nandivex.in/services/web-software</loc></url>
+  <url><loc>https://nandivex.in/work</loc></url>
+  <url><loc>https://nandivex.in/work/nirman-labs-voice-assistants</loc></url>
+  <url><loc>https://nandivex.in/work/ultron</loc></url>
+  <url><loc>https://nandivex.in/work/drishti</loc></url>
+  <url><loc>https://nandivex.in/work/autourgos</loc></url>
+  <url><loc>https://nandivex.in/work/campusgrade</loc></url>
+  <url><loc>https://nandivex.in/products</loc></url>
   <url><loc>https://nandivex.in/about</loc></url>
-  <url><loc>https://nandivex.in/team</loc></url>
   <url><loc>https://nandivex.in/team/jitin-kumar-sengar</loc></url>
   <url><loc>https://nandivex.in/team/sonia</loc></url>
-  <url><loc>https://nandivex.in/services</loc></url>
-  <url><loc>https://nandivex.in/industries</loc></url>
-  <url><loc>https://nandivex.in/projects</loc></url>
-  <url><loc>https://nandivex.in/products</loc></url>
   <url><loc>https://nandivex.in/careers</loc></url>
   <url><loc>https://nandivex.in/contact</loc></url>
   <url><loc>https://nandivex.in/privacy-policy</loc></url>
   <url><loc>https://nandivex.in/terms-and-conditions</loc></url>
-  <url><loc>https://nandivex.in/services/ai-agents</loc></url>
-  <url><loc>https://nandivex.in/services/android-software</loc></url>
-  <url><loc>https://nandivex.in/services/web-development</loc></url>
-  <url><loc>https://nandivex.in/services/software-development</loc></url>
-  <url><loc>https://nandivex.in/services/cloud-services</loc></url>
-  <url><loc>https://nandivex.in/services/it-infrastructure</loc></url>
-  <url><loc>https://nandivex.in/services/cybersecurity</loc></url>
-  <url><loc>https://nandivex.in/services/network-security</loc></url>
-  <url><loc>https://nandivex.in/services/security-audit</loc></url>
-  <url><loc>https://nandivex.in/services/devops</loc></url>
-  <url><loc>https://nandivex.in/project/loan-management-platform</loc></url>
-  <url><loc>https://nandivex.in/project/transport-management-system</loc></url>
-  <url><loc>https://nandivex.in/project/legal-services-portal</loc></url>
-  <url><loc>https://nandivex.in/project/hotel-management-platform</loc></url>
-  <url><loc>https://nandivex.in/project/enterprise-business-erp</loc></url>
-  <url><loc>https://nandivex.in/project/cloud-infrastructure-modernization</loc></url>
-  <url><loc>https://nandivex.in/project/defensive-vapt-security-overhaul</loc></url>
 </urlset>

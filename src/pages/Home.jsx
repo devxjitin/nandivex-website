@@ -1,287 +1,137 @@
-import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import services from '../data/services.json';
-import projects from '../data/projects.json';
-import industries from '../data/industries.json';
-import tech from '../data/techStack.json';
-import { process, principles } from '../data/site.js';
-import { ultron, jitin } from '../data/team.js';
+import { work } from '../data/work.js';
+import { clients } from '../data/clients.js';
+import { faq } from '../data/faq.js';
+import { process, stats } from '../data/site.js';
+import { ultron, team } from '../data/team.js';
 import { CTA, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
-import { CountUp, RotatingWord, ScrollTimeline } from '../components/motion.jsx';
+import { RotatingWord, ScrollTimeline } from '../components/motion.jsx';
+import { FAQ, LogoStrip, PhoneMock, ServiceCard, StatRow, VoiceWave, WorkCard } from '../components/blocks.jsx';
 
-const groups = [
-  { name: 'Build', line: 'AI agents, Android apps, websites and custom software.' },
-  { name: 'Scale', line: 'Cloud, servers, networks and automated delivery.' },
-  { name: 'Secure', line: 'Penetration testing, audits and hardening.' },
-];
-
-const stats = [
-  { prefix: '', value: 99.99, decimals: 2, suffix: '%', label: 'Availability after a cloud migration' },
-  { prefix: '', value: 45, decimals: 0, suffix: ' min', label: 'Loan processing, down from 5 days' },
-  { prefix: '', value: 2, decimals: 0, suffix: ' days', label: 'Month-end close, down from 14' },
-  { prefix: '−', value: 32, decimals: 0, suffix: '%', label: 'Infrastructure running cost' },
-];
-
-/* Orbit nodes: ring index, start angle (deg), icon. Rings have a radius (% of the box) and a speed (deg/s). */
-const orbit = [
-  { ring: 0, deg: 20, icon: 'cloud-services' },
-  { ring: 0, deg: 200, icon: 'cybersecurity' },
-  { ring: 1, deg: 110, icon: 'it-infrastructure' },
-  { ring: 1, deg: 290, icon: 'software-development' },
-  { ring: 2, deg: 60, icon: 'android-software' },
-  { ring: 2, deg: 180, icon: 'ai-agents' },
-  { ring: 2, deg: 300, icon: 'web-development' },
-];
-const rings = [
-  { radius: 26, speed: 13 },
-  { radius: 38, speed: -8 },
-  { radius: 49, speed: 5 },
-];
-
-function HeroOrbit() {
-  const nodes = useRef([]);
-
-  useEffect(() => {
-    const box = nodes.current[0]?.parentElement;
-    let size = box ? box.offsetWidth : 0;
-    const onResize = () => { size = box ? box.offsetWidth : size; };
-    window.addEventListener('resize', onResize);
-    const place = (t) => {
-      orbit.forEach((o, i) => {
-        const el = nodes.current[i];
-        if (!el) return;
-        const r = rings[o.ring];
-        const a = ((o.deg + r.speed * t) * Math.PI) / 180;
-        el.style.transform = `translate(-50%, -50%) translate(${(r.radius * Math.cos(a) * size) / 100}px, ${(r.radius * Math.sin(a) * size) / 100}px)`;
-      });
-    };
-    place(0);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => window.removeEventListener('resize', onResize);
-    let raf;
-    const t0 = performance.now();
-    const loop = (now) => {
-      place((now - t0) / 1000);
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize); };
-  }, []);
-
+function Hero() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[460px]" aria-hidden="true">
-      {rings.map((r) => (
-        <span
-          key={r.radius}
-          className="absolute rounded-full border border-dashed border-white/20"
-          style={{ left: `${50 - r.radius}%`, top: `${50 - r.radius}%`, width: `${r.radius * 2}%`, height: `${r.radius * 2}%` }}
-        />
-      ))}
-      <span className="absolute inset-0 m-auto h-[20%] w-[20%] rounded-full border border-cyan/40" style={{ animation: 'pulse-ring 3.2s ease-out infinite' }} />
-      <div className="absolute inset-0 m-auto flex h-[24%] w-[24%] items-center justify-center">
-        <img src="/logo.png" alt="" className="h-full w-full rounded-3xl shadow-lift" style={{ animation: 'floaty 5s ease-in-out infinite' }} />
-      </div>
-      {orbit.map((o, i) => (
-        <span
-          key={o.icon}
-          ref={(el) => { nodes.current[i] = el; }}
-          className="absolute left-1/2 top-1/2 flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-night text-cyan shadow-card"
-        >
-          <Icon name={o.icon} className="h-5 w-5" />
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function Marquee({ items, reverse = false, pill = false }) {
-  const row = [...items, ...items];
-  return (
-    <div className="marquee-wrap fade-edges overflow-hidden">
-      <div className={`flex w-max gap-3 ${reverse ? 'marquee-rev' : 'marquee'}`}>
-        {row.map((t, i) => (
-          <span key={t + i} className={pill ? 'chip !px-5 !py-2.5 !text-sm' : 'whitespace-nowrap px-4 font-display text-xl font-bold text-ink/30 sm:text-2xl'}>
-            {t}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ServiceTabs() {
-  const [tab, setTab] = useState('Build');
-  const list = services.filter((s) => s.category === tab);
-  return (
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.6fr] [&>*]:min-w-0">
-      <div role="tablist" aria-label="Service areas" className="flex gap-3 lg:flex-col">
-        {groups.map((g, i) => {
-          const on = tab === g.name;
-          return (
-            <button
-              key={g.name}
-              role="tab"
-              aria-selected={on}
-              onClick={() => setTab(g.name)}
-              className={`min-w-0 flex-1 rounded-2xl border p-3 text-left sm:p-5 transition-all duration-300 lg:flex-none ${on ? 'border-accent bg-accent text-white shadow-lift' : 'border-line bg-white hover:border-accent/40'}`}
-            >
-              <span className={`font-display text-xs font-bold ${on ? 'text-white/70' : 'text-accent'}`}>0{i + 1}</span>
-              <span className="mt-1 block font-display text-xl font-extrabold sm:text-3xl">{g.name}</span>
-              <span className={`mt-2 hidden text-sm leading-snug sm:block ${on ? 'text-white/80' : 'text-muted'}`}>{g.line}</span>
-            </button>
-          );
-        })}
-      </div>
-      <ul key={tab} role="tabpanel" className="space-y-3">
-        {list.map((s, i) => (
-          <li key={s.slug} className="animate-[pagein_.5s_ease-out_both]" style={{ animationDelay: `${i * 80}ms` }}>
-            <Link to={`/services/${s.slug}`} className="card-hover group flex items-center gap-5 !p-5">
-              <span className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-tint text-accent transition-colors group-hover:bg-accent group-hover:text-white">
-                <Icon name={s.slug} />
-              </span>
-              <span className="flex-1">
-                <span className="block font-display text-lg font-bold">{s.title}</span>
-                <span className="mt-0.5 block text-sm leading-snug text-muted">{s.subtitle}</span>
-              </span>
-              <Icon name="arrow" className="h-5 w-5 flex-none text-muted transition-all group-hover:translate-x-1 group-hover:text-accent" />
+    <section data-hero className="relative overflow-hidden bg-night text-white">
+      <div className="grid-bg absolute inset-0" aria-hidden="true" />
+      <div className="glow absolute -left-40 top-10 h-[420px] w-[420px]" aria-hidden="true" />
+      <div className="glow absolute -right-32 bottom-0 h-[480px] w-[480px] opacity-70" aria-hidden="true" />
+      <div className="wrap relative grid gap-14 py-16 sm:py-24 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+        <div className="animate-[pagein_.8s_ease-out_both]">
+          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/80">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan" /> AI agents · Android apps · Web software
+          </p>
+          <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-[4.1rem]">
+            AI assistants that{' '}
+            <RotatingWord words={['talk.', 'listen.', 'act.']} className="text-grad" />
+            <span className="mt-1 block">Built and shipped for real businesses.</span>
+          </h1>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
+            NandiVex designs and builds voice and chat agents, native Android apps and the web software behind them.
+            We have shipped three voice assistants for Nirman Labs, and we run our own product, ULTRON.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link to="/contact" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
+              Book a call <Icon name="arrow" className="h-4 w-4" />
             </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function WorkCarousel() {
-  const ref = useRef(null);
-  const by = (d) => ref.current?.scrollBy({ left: d * 440, behavior: 'smooth' });
-  return (
-    <>
-      <div className="mb-6 flex gap-2">
-        <button onClick={() => by(-1)} aria-label="Previous" className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white hover:border-accent hover:text-accent"><Icon name="arrow" className="h-5 w-5 rotate-180" /></button>
-        <button onClick={() => by(1)} aria-label="Next" className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white hover:border-accent hover:text-accent"><Icon name="arrow" className="h-5 w-5" /></button>
+            <Link to="/work" className="btn border-white/25 text-white hover:border-white hover:bg-white/10">See our work</Link>
+          </div>
+        </div>
+        <div className="animate-[pagein_1s_ease-out_.2s_both]">
+          <div className="relative mx-auto max-w-sm">
+            <div className="absolute inset-x-6 top-1/2 -z-0 h-40 -translate-y-1/2 rounded-full bg-accent/30 blur-3xl" aria-hidden="true" />
+            <PhoneMock shots={ultron.shots} className="relative" />
+            <span className="absolute -left-1 top-12 hidden animate-[floaty_5s_ease-in-out_infinite] items-center gap-2 rounded-2xl border border-white/15 bg-night/80 px-3.5 py-2 text-xs font-semibold shadow-card backdrop-blur sm:flex">
+              <Icon name="mic" className="h-4 w-4 text-cyan" /> Voice in 13 languages
+            </span>
+            <span className="absolute -right-1 top-1/2 hidden animate-[floaty_6s_ease-in-out_.8s_infinite] items-center gap-2 rounded-2xl border border-white/15 bg-night/80 px-3.5 py-2 text-xs font-semibold shadow-card backdrop-blur sm:flex">
+              <Icon name="ai-agents" className="h-4 w-4 text-cyan" /> 80+ tools
+            </span>
+            <VoiceWave className="relative mt-8" />
+          </div>
+        </div>
       </div>
-      <div ref={ref} data-lenis-prevent className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8">
-        {projects.map((p) => (
-          <Link key={p.slug} to={`/project/${p.slug}`} className="card-hover group flex w-[82%] flex-none snap-start flex-col overflow-hidden !p-0 sm:w-[420px]">
-            <div className="overflow-hidden">
-              <img src={p.image} alt="" loading="lazy" className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            </div>
-            <div className="flex flex-1 flex-col p-6">
-              <p className="label">{p.industry}</p>
-              <h3 className="mt-3 text-xl leading-snug">{p.title}</h3>
-              <p className="mt-auto pt-5 text-sm font-semibold leading-snug text-accent-dark">{p.results[0]}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </>
+    </section>
   );
 }
 
 export default function Home() {
   useMeta();
-  const skillNames = jitin.skills.flatMap(([, items]) => items);
-  const stack = [...new Set([...skillNames, ...Object.values(tech).flat().map((t) => t.name)])];
+  const featured = work.find((w) => w.featured) || work[0];
+  const others = work.filter((w) => w.slug !== featured.slug).slice(0, 3);
+  const [lead, ...rest] = services;
 
   return (
     <>
-      {/* Hero */}
-      <section data-hero className="relative overflow-hidden bg-night text-white">
-        <div className="grid-bg absolute inset-0" aria-hidden="true" />
-        <div className="wrap relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_1fr] lg:items-center">
-          <div className="animate-[pagein_.8s_ease-out_both]">
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/80">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan" /> Web · Infrastructure · Security
-            </p>
-            <h1 className="text-5xl leading-[1.04] sm:text-6xl lg:text-[4.25rem]">
-              <span className="block">We <RotatingWord words={['build', 'run', 'secure']} className="text-cyan" /></span>
-              the software behind your business.
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
-              An engineering team for AI agents, Android software and web products, plus the cloud and server infrastructure
-              and security testing. We take work from first sketch to production, and stay on to keep it healthy.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link to="/contact" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
-                Start a project <Icon name="arrow" className="h-4 w-4" />
-              </Link>
-              <Link to="/projects" className="btn border-white/25 text-white hover:border-white hover:bg-white/10">See our work</Link>
-            </div>
-          </div>
-          <div className="animate-[pagein_1s_ease-out_.2s_both]"><HeroOrbit /></div>
-        </div>
-      </section>
+      <Hero />
 
-      {/* Tech marquee */}
+      {/* Trusted by */}
       <section data-hero className="border-b border-line bg-white py-8">
-        <Marquee items={stack} />
+        <div className="wrap"><LogoStrip clients={clients} /></div>
       </section>
 
-      {/* Stats */}
+      {/* Proof */}
       <section className="bg-white">
         <div className="wrap py-16">
-          <p className="label mb-8">Results from our case studies</p>
-          <dl className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <dt className="font-display text-4xl font-extrabold tracking-tight text-accent sm:text-5xl">
-                  <CountUp {...s} />
-                </dt>
-                <dd className="mt-2 text-sm text-muted">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
+          <p className="label mb-8">What we have shipped</p>
+          <StatRow stats={stats} />
         </div>
       </section>
 
-      {/* What we provide */}
-      <Section eyebrow="What we provide" title="AI agents and Android software, built end to end.">
+      {/* Services */}
+      <Section eyebrow="What we do" title="One team for the assistant, the app and the software behind it." tone="soft">
         <div className="grid gap-5 md:grid-cols-2">
-          {[
-            { slug: 'ai-agents', title: 'AI Agents', text: 'Voice and chat assistants that use your tools and documents to finish real tasks, with approvals and logs so you stay in control.', tags: ['Voice', 'RAG', 'Tool calling', 'MCP'] },
-            { slug: 'android-software', title: 'Android Software', text: 'Native Kotlin apps for assistants, kiosks and business tools, with offline support, over-the-air updates and a release pipeline.', tags: ['Kotlin', 'Jetpack Compose', 'On-device search', 'OTA updates'] },
-          ].map((c) => (
-            <Link key={c.slug} to={`/services/${c.slug}`} className="card-hover group flex flex-col !p-8">
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-white">
-                <Icon name={c.slug} className="h-7 w-7" />
-              </span>
-              <h3 className="mt-6 text-3xl">{c.title}</h3>
-              <p className="mt-3 flex-1 leading-relaxed text-muted">{c.text}</p>
-              <ul className="mt-5 flex flex-wrap gap-2">
-                {c.tags.map((t) => <li key={t} className="chip">{t}</li>)}
-              </ul>
-              <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
-                Learn more <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </Link>
-          ))}
+          <ServiceCard s={lead} big />
+          {rest.map((s) => <ServiceCard key={s.slug} s={s} />)}
         </div>
       </Section>
 
-      {/* Services */}
-      <Section eyebrow="Services" title="Pick an area. See what we do." tone="soft">
-        <ServiceTabs />
+      {/* Featured case study */}
+      <section className="bg-white">
+        <div className="wrap py-16 sm:py-24">
+          <div className="grid gap-10 overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-tint to-white p-8 shadow-card sm:p-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+            <div>
+              <p className="label">Case study</p>
+              <img src={featured.clientLogo} alt={featured.client} className="mt-5 h-14 w-auto rounded-xl bg-[#16181d] shadow-card" />
+              <h2 className="mt-6 text-3xl sm:text-4xl">{featured.title}</h2>
+              <p className="mt-4 leading-relaxed text-muted">{featured.summary}</p>
+              <Link to={`/work/${featured.slug}`} className="btn-solid mt-8">Read the case study <Icon name="arrow" className="h-4 w-4" /></Link>
+            </div>
+            <div className="space-y-4">
+              {[['The need', featured.challenge], ['What we built', featured.built[0]], ['The result', featured.outcome[0]]].map(([k, v], n) => (
+                <div key={k} className="flex gap-4 rounded-2xl border border-line bg-white p-5">
+                  <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-accent font-display text-sm font-extrabold text-white">{n + 1}</span>
+                  <div>
+                    <p className="font-display font-bold">{k}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">{v}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* More work */}
+      <Section eyebrow="More work" title="Products and open source we build ourselves." tone="soft">
+        <div className="grid gap-5 md:grid-cols-3">
+          {others.map((w) => <WorkCard key={w.slug} w={w} />)}
+        </div>
+        <Link to="/work" className="btn-line mt-8">All work <Icon name="arrow" className="h-4 w-4" /></Link>
       </Section>
 
-      {/* Work */}
-      <Section eyebrow="Selected work" title="Problems we solved, with the numbers.">
-        <WorkCarousel />
-        <Link to="/projects" className="btn-line mt-8">All case studies <Icon name="arrow" className="h-4 w-4" /></Link>
-      </Section>
-
-      {/* In-house product */}
+      {/* Our product */}
       <section className="bg-night text-white">
         <div className="wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
             <p className="label !text-cyan">Our own product</p>
-            <h2 className="mt-3 text-4xl sm:text-5xl">ULTRON, an AI assistant for Android.</h2>
+            <h2 className="mt-3 text-4xl sm:text-5xl">ULTRON, a voice assistant for Android.</h2>
             <p className="mt-5 max-w-xl leading-relaxed text-white/70">{ultron.summary}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/products#ultron" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
                 See plans and pricing <Icon name="arrow" className="h-4 w-4" />
               </Link>
-              <Link to="/team" className="btn border-white/25 text-white hover:bg-white/10">Meet the team</Link>
+              <Link to="/work/ultron" className="btn border-white/25 text-white hover:bg-white/10">How we built it</Link>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
@@ -293,35 +143,34 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <Section eyebrow="How we work" title="Six stages, from first call to handover." tone="soft">
+      <Section eyebrow="How we work" title="Five steps, from first call to support.">
         <ScrollTimeline steps={process} />
       </Section>
 
-      {/* Principles */}
-      <Section eyebrow="Principles" title="What you can expect from us.">
-        <dl className="grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-          {principles.map(([t, d]) => (
-            <div key={t} className="flex gap-4">
-              <span className="mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-accent text-white"><Icon name="check" className="h-3.5 w-3.5" /></span>
-              <div>
-                <dt className="font-display font-bold">{t}</dt>
-                <dd className="mt-1.5 text-sm leading-relaxed text-muted">{d}</dd>
-              </div>
-            </div>
+      {/* Team */}
+      <Section eyebrow="The team" title="A small team. You talk to the people building it." tone="soft">
+        <ul className="grid gap-5 sm:grid-cols-2">
+          {team.map((m) => (
+            <li key={m.slug}>
+              <Link to={`/team/${m.slug}`} className="card-hover group flex items-center gap-5 !p-4">
+                <img src={m.photo} alt={m.name} loading="lazy" width="96" height="96" className="h-24 w-24 flex-none rounded-2xl object-cover" />
+                <span className="min-w-0">
+                  <span className="label block">{m.role}</span>
+                  <span className="mt-1 block font-display text-xl font-bold">{m.name}</span>
+                  <span className="mt-1 block text-sm leading-snug text-muted">{m.short}</span>
+                </span>
+              </Link>
+            </li>
           ))}
-        </dl>
+        </ul>
       </Section>
 
-      {/* Industries */}
-      <section data-hero className="overflow-hidden bg-soft py-16">
-        <div className="wrap mb-8">
-          <p className="label mb-3">Industries</p>
-          <h2 className="max-w-2xl text-3xl sm:text-4xl">Experience across regulated and high-traffic sectors.</h2>
-        </div>
-        <Marquee items={industries.map((i) => i.title)} pill reverse />
-      </section>
+      {/* FAQ */}
+      <Section eyebrow="Questions" title="Before you get in touch.">
+        <FAQ items={faq} />
+      </Section>
 
-      <CTA />
+      <CTA title="Have an assistant, app or product in mind?" text="Book a short call. We will tell you what it takes and send a written plan." label="Book a call" />
     </>
   );
 }
