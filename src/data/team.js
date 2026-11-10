@@ -88,11 +88,11 @@ jitin.projects = otherProjects;
 export const sonia = {
   slug: 'sonia',
   name: 'Sonia Dahiya',
-  role: 'Designer',
+  role: 'Designer and Junior AI Developer',
   photo: '/team/sonia.jpeg',
-  short: 'Designs our logos, brand and product visuals. Co-builder of ULTRON.',
+  short: 'Designs our logos, brand and product visuals, and builds AI features as a junior developer. Co-builder of ULTRON.',
   bio: [
-    'I design the look of what we build: logos, brand and product visuals, so that the work is clear and recognisable at a glance.',
+    'I design the look of what we build: logos, brand and product visuals, so that the work is clear and recognisable at a glance. I also work as a junior AI developer, building small AI projects in Python.',
     'On ULTRON I work alongside Jitin as co-builder. I help shape how it looks and behaves, and I test every release on a real phone before it ships.',
   ],
   links: [
@@ -107,7 +107,7 @@ export const sonia = {
   skills: [
     ['Design', ['Logo design', 'Brand identity', 'UI design', 'Visual design']],
     ['Product', ['Product strategy', 'Content direction', 'Documentation', 'Release testing']],
-    ['Build', ['Python', 'Jupyter']],
+    ['AI development', ['Python', 'Jupyter', 'Translation and text-to-speech', 'Health data analysis']],
   ],
   projects: [
     {
