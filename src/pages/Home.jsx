@@ -286,7 +286,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-3 gap-3">
             {ultron.shots.slice(0, 3).map(([src, alt], i) => (
-              <img key={src} src={src} alt={alt} loading="lazy" className={`w-full rounded-2xl border border-white/10 bg-black/30 object-contain shadow-card ${i === 1 ? 'translate-y-6' : ''}`} />
+              <img key={src} src={src} alt={alt} loading="lazy" width="540" height="1200" className={`aspect-[9/20] w-full rounded-2xl border border-white/10 bg-black/30 object-contain shadow-card ${i === 1 ? 'translate-y-6' : ''}`} />
             ))}
           </div>
         </div>

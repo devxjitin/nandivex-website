@@ -6,6 +6,22 @@ const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefe
 export function useSmoothScroll() {
   // Lenis is disabled: its inertia loop fought the native scroll (page jittered up/down).
   // Native scrolling is used instead; Layout falls back to window.scrollTo when ref.current is null.
+  // While scrolling, html gets .is-scrolling so hover effects don't fire as cards pass under the cursor.
+  useEffect(() => {
+    const root = document.documentElement;
+    let t;
+    const onScroll = () => {
+      if (!root.classList.contains('is-scrolling')) root.classList.add('is-scrolling');
+      clearTimeout(t);
+      t = setTimeout(() => root.classList.remove('is-scrolling'), 150);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('scroll', onScroll);
+      root.classList.remove('is-scrolling');
+    };
+  }, []);
   return useRef(null);
 }
 
