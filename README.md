@@ -1,4 +1,4 @@
-# Nandivex Website
+# NandiVex Technologies website
 
 Source for https://nandivex.in: React 18, Vite 5, React Router 6, Tailwind CSS 3.
 

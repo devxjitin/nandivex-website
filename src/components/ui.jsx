@@ -4,7 +4,7 @@ import Icon from './Icons.jsx';
 
 export function useMeta(title, description) {
   useEffect(() => {
-    document.title = title ? `${title} | NANDIVEX` : 'NANDIVEX | Web, Infrastructure & Security';
+    document.title = title ? `${title} | NandiVex Technologies` : 'NandiVex Technologies | Web, Infrastructure & Security';
     if (description) {
       let m = document.querySelector('meta[name="description"]');
       if (!m) {

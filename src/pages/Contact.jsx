@@ -6,7 +6,7 @@ import { PageHeader, useMeta } from '../components/ui.jsx';
 const field = 'w-full border border-line bg-white px-4 py-3 text-[15px] outline-none focus:border-accent';
 
 export default function Contact() {
-  useMeta('Contact', 'Talk to NANDIVEX about a web, infrastructure or security project.');
+  useMeta('Contact', 'Talk to NandiVex Technologies about a web, infrastructure or security project.');
   const [sent, setSent] = useState(false);
 
   function submit(e) {

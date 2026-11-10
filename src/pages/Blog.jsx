@@ -3,7 +3,7 @@ import posts from '../data/blog.json';
 import { CTA, PageHeader, useMeta } from '../components/ui.jsx';
 
 export default function Blog() {
-  useMeta('Journal', 'Engineering notes from NANDIVEX on cloud, security, DevOps and web performance.');
+  useMeta('Journal', 'Engineering notes from NandiVex Technologies on cloud, security, DevOps and web performance.');
   return (
     <>
       <PageHeader eyebrow="Journal" title="Engineering notes.">

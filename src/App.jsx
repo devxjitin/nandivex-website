@@ -12,6 +12,7 @@ import BlogPost from './pages/BlogPost.jsx';
 import Careers from './pages/Careers.jsx';
 import Contact from './pages/Contact.jsx';
 import { Privacy, Terms } from './pages/Legal.jsx';
+import Team from './pages/Team.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="project/:slug" element={<ProjectDetail />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<BlogPost />} />
+        <Route path="team" element={<Team />} />
         <Route path="careers" element={<Careers />} />
         <Route path="contact" element={<Contact />} />
         <Route path="privacy-policy" element={<Privacy />} />

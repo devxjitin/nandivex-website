@@ -10,7 +10,7 @@ const blurbs = {
 };
 
 export default function Services() {
-  useMeta('Services', 'Web development, mobile apps, cloud, IT infrastructure, cybersecurity and DevOps from NANDIVEX.');
+  useMeta('Services', 'Web development, mobile apps, cloud, IT infrastructure, cybersecurity and DevOps from NandiVex Technologies.');
   return (
     <>
       <PageHeader eyebrow="Services" title="What we do.">

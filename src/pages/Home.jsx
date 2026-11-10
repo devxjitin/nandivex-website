@@ -5,6 +5,7 @@ import projects from '../data/projects.json';
 import industries from '../data/industries.json';
 import tech from '../data/techStack.json';
 import { process, principles } from '../data/site.js';
+import { ultron } from '../data/team.js';
 import { CTA, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 import { CountUp, RotatingWord, ScrollTimeline } from '../components/motion.jsx';
@@ -240,6 +241,28 @@ export default function Home() {
         <WorkCarousel />
         <Link to="/projects" className="btn-line mt-8">All case studies <Icon name="arrow" className="h-4 w-4" /></Link>
       </Section>
+
+      {/* In-house product */}
+      <section className="bg-night text-white">
+        <div className="wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <p className="label !text-cyan">Our own product</p>
+            <h2 className="mt-3 text-4xl sm:text-5xl">ULTRON, an AI assistant for Android.</h2>
+            <p className="mt-5 max-w-xl leading-relaxed text-white/70">{ultron.summary}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/team#ultron" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
+                See ULTRON <Icon name="arrow" className="h-4 w-4" />
+              </Link>
+              <Link to="/team" className="btn border-white/25 text-white hover:bg-white/10">Meet the team</Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            {ultron.shots.slice(0, 3).map(([src, alt], i) => (
+              <img key={src} src={src} alt={alt} loading="lazy" className={`w-full rounded-2xl border border-white/10 bg-black/30 object-contain shadow-card ${i === 1 ? 'translate-y-6' : ''}`} />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Process */}
       <Section eyebrow="How we work" title="Six stages, from first call to handover." tone="soft">

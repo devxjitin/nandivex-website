@@ -12,11 +12,11 @@ const labels = {
 };
 
 export default function About() {
-  useMeta('About', 'NANDIVEX is an engineering company for web software, IT infrastructure and cybersecurity.');
+  useMeta('About', 'NandiVex Technologies is an engineering company for web software, IT infrastructure and cybersecurity.');
   return (
     <>
       <PageHeader eyebrow="About" title="An engineering team that treats security as part of the build.">
-        NANDIVEX delivers web systems, resilient infrastructure and security testing for growing
+        NandiVex Technologies delivers web systems, resilient infrastructure and security testing for growing
         businesses and enterprises.
       </PageHeader>
 

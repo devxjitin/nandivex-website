@@ -1,5 +1,5 @@
 export const site = {
-  name: 'NANDIVEX',
+  name: 'NandiVex Technologies',
   email: 'contact@nandivex.com',
   location: 'India',
   url: 'https://nandivex.in',
@@ -12,6 +12,7 @@ export const nav = [
   { to: '/projects', label: 'Work' },
   { to: '/blog', label: 'Journal' },
   { to: '/about', label: 'About' },
+  { to: '/team', label: 'Team' },
   { to: '/careers', label: 'Careers' },
 ];
 

@@ -6,9 +6,9 @@ import { useAutoReveal, useSmoothScroll } from './motion.jsx';
 
 function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2.5" aria-label="NANDIVEX home">
+    <Link to="/" className="flex items-center gap-2.5" aria-label="NandiVex Technologies home">
       <img src="/logo.png" alt="" className="h-9 w-9 rounded-lg" />
-      <span className="font-sans text-[15px] font-semibold tracking-[0.12em]">NANDIVEX</span>
+      <span className="leading-none"><span className="block font-display text-[17px] font-extrabold tracking-tight">NandiVex</span><span className="mt-1 block text-[8.5px] font-semibold uppercase tracking-[0.3em] text-muted">Technologies</span></span>
     </Link>
   );
 }
@@ -56,14 +56,14 @@ function Header() {
 }
 
 function Footer() {
-  const company = [['/about', 'About'], ['/industries', 'Industries'], ['/projects', 'Work'], ['/blog', 'Journal'], ['/careers', 'Careers'], ['/contact', 'Contact']];
+  const company = [['/about', 'About'], ['/team', 'Team'], ['/industries', 'Industries'], ['/projects', 'Work'], ['/blog', 'Journal'], ['/careers', 'Careers'], ['/contact', 'Contact']];
   return (
     <footer className="bg-night text-paper">
       <div className="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2.5">
             <img src="/logo.png" alt="" className="h-9 w-9 rounded-lg" />
-            <span className="font-semibold tracking-[0.12em]">NANDIVEX</span>
+            <span className="leading-none"><span className="block font-display text-[17px] font-extrabold tracking-tight">NandiVex</span><span className="mt-1 block text-[8.5px] font-semibold uppercase tracking-[0.3em] text-paper/60">Technologies</span></span>
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-paper/60">
             Web and mobile software, IT infrastructure and security for growing businesses.
@@ -98,7 +98,7 @@ function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="wrap flex flex-col justify-between gap-2 py-6 text-xs text-paper/50 sm:flex-row">
-          <span>© {new Date().getFullYear()} NANDIVEX. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} NandiVex Technologies. All rights reserved.</span>
           <span>{site.location}</span>
         </div>
       </div>
@@ -107,13 +107,18 @@ function Footer() {
 }
 
 export default function Layout() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const lenis = useSmoothScroll();
   useAutoReveal(pathname);
   useEffect(() => {
-    if (lenis.current) lenis.current.scrollTo(0, { immediate: true });
+    const target = hash ? document.getElementById(hash.slice(1)) : null;
+    if (target) {
+      const top = target.getBoundingClientRect().top + window.scrollY - 64;
+      if (lenis.current) lenis.current.scrollTo(top, { immediate: true });
+      else window.scrollTo(0, top);
+    } else if (lenis.current) lenis.current.scrollTo(0, { immediate: true });
     else window.scrollTo(0, 0);
-  }, [pathname, lenis]);
+  }, [pathname, hash, lenis]);
   return (
     <div className="flex min-h-screen flex-col">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:text-white">Skip to content</a>

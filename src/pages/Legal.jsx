@@ -27,7 +27,7 @@ export function Privacy() {
   return (
     <Doc
       title="Privacy policy"
-      intro="How NANDIVEX handles information you share with us."
+      intro="How NandiVex Technologies handles information you share with us."
       sections={[
         ['What we collect', 'Only what you send us: the name, email, company and message you enter in our contact form or email to us.'],
         ['How we use it', 'To reply to your enquiry, prepare proposals and provide services you request. We do not sell your information.'],
@@ -43,7 +43,7 @@ export function Terms() {
   return (
     <Doc
       title="Terms and conditions"
-      intro="The terms for using this website and engaging NANDIVEX."
+      intro="The terms for using this website and engaging NandiVex Technologies."
       sections={[
         ['Website use', 'The content on this site is for general information. You may not copy, scrape or misuse it.'],
         ['Services', 'Services are delivered under a written proposal or agreement that sets out scope, timeline, fees and responsibilities.'],

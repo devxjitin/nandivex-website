@@ -4,7 +4,7 @@ import { CTA, PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 
 export default function Projects() {
-  useMeta('Work', 'Case studies from NANDIVEX across fintech, logistics, legal, hospitality, ERP, cloud and security.');
+  useMeta('Work', 'Case studies from NandiVex Technologies across fintech, logistics, legal, hospitality, ERP, cloud and security.');
   return (
     <>
       <PageHeader eyebrow="Work" title="Case studies.">
