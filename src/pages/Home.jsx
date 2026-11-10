@@ -19,7 +19,7 @@ function Hero() {
       <div className="wrap relative grid gap-14 py-16 sm:py-24 lg:grid-cols-[1.2fr_1fr] lg:items-center">
         <div className="animate-[pagein_.8s_ease-out_both]">
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/80">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan" /> AI agents · Android apps · Web software
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan" /> AI agents · Android · Desktop · Web
           </p>
           <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-[4.1rem]">
             AI assistants that{' '}
@@ -27,7 +27,7 @@ function Hero() {
             <span className="mt-1 block">Built and shipped for real businesses.</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
-            NandiVex designs and builds voice and chat agents, native Android apps and the web software behind them.
+            NandiVex designs and builds voice and chat agents, native Android and Windows apps, and the web software behind them.
             We shipped Nira, a voice assistant, for Nirman Labs, and we run our own product, ULTRON.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -81,7 +81,7 @@ export default function Home() {
       {/* Services */}
       <Section eyebrow="What we do" title="One team for the assistant, the app and the software behind it." tone="soft">
         <div className="grid gap-5 md:grid-cols-2">
-          <ServiceCard s={lead} big />
+          <ServiceCard s={lead} big span={rest.length} />
           {rest.map((s) => <ServiceCard key={s.slug} s={s} />)}
         </div>
       </Section>

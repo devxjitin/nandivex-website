@@ -92,11 +92,13 @@ export function LogoStrip({ clients }) {
   );
 }
 
-export function ServiceCard({ s, big = false }) {
+const rowSpan = { 1: '', 2: 'md:row-span-2', 3: 'md:row-span-3', 4: 'md:row-span-4' };
+
+export function ServiceCard({ s, big = false, span = 2 }) {
   return (
     <Link
       to={`/services/${s.slug}`}
-      className={`card-hover group relative flex flex-col overflow-hidden !p-8 ${big ? 'md:row-span-2 !border-accent/30 bg-gradient-to-br from-white to-tint' : ''}`}
+      className={`card-hover group relative flex flex-col overflow-hidden !p-8 ${big ? `${rowSpan[span] || ''} !border-accent/30 bg-gradient-to-br from-white to-tint` : ''}`}
     >
       {big && <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Main focus</span>}
       <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-white transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">

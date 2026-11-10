@@ -38,7 +38,7 @@
       { "step": "04", "name": "Pilot with guardrails", "detail": "Roll out to a small group with approvals and monitoring." },
       { "step": "05", "name": "Launch and improve", "detail": "Go live, watch usage and cost, and keep refining." }
     ],
-    "relatedWork": ["nira", "ultron", "autourgos"]
+    "relatedWork": ["nira", "ultron", "ultron-windows", "autourgos"]
   },
   {
     "id": "android-apps",
@@ -119,5 +119,56 @@
       { "step": "05", "name": "Support", "detail": "Monitoring, patching and improvements after launch." }
     ],
     "relatedWork": ["ecomatch", "url-shortener", "campusgrade"]
+  }
+  ,{
+    "id": "desktop-apps",
+    "slug": "desktop-apps",
+    "title": "Desktop Apps & Automation",
+    "short": "Windows apps, tools and automation",
+    "subtitle": "Windows apps that listen, see the screen and get work done",
+    "description": "Windows desktop software and tools: voice assistants that control the computer, background utilities with hotkeys, and automation that works through the screen like a person would.",
+    "icon": "desktop-apps",
+    "tags": ["Windows", "Python", "Voice", "Automation"],
+    "useCases": [
+      "A voice assistant that works your computer for you",
+      "A background tool that runs on a hotkey and fills in work automatically",
+      "Hands-free control with a webcam or a microphone",
+      "An internal Windows tool that replaces repetitive manual work"
+    ],
+    "features": [
+      "Windows desktop apps in Python, with Tkinter or Qt interfaces",
+      "Voice input and output, online (Gemini Live, Whisper) or offline (Windows speech)",
+      "Screen and webcam vision, so the app can see what you see",
+      "Computer-use automation: mouse, keyboard, windows and point-and-click by description",
+      "Global hotkeys, tray and background operation",
+      "Installers, code signing and automatic updates"
+    ],
+    "deliverables": [
+      "A signed Windows build or installer, ready to run",
+      "Full source code and build documentation",
+      "Safety guardrails: emergency stop, confirmations and logs",
+      "Setup and troubleshooting guide for your team",
+      "Support for Windows 10 and 11"
+    ],
+    "technologies": ["Python", "Tkinter", "Qt", "PyInstaller", "Gemini Live", "Whisper", "OpenCV", "MediaPipe", "Windows SAPI", "Autourgos"],
+    "process": [
+      { "step": "01", "name": "Scope the workflow", "detail": "Pick the task the app should handle and where it must run." },
+      { "step": "02", "name": "Prototype", "detail": "A working version on your own screen and data within the first sprint." },
+      { "step": "03", "name": "Build and harden", "detail": "Reliable automation with guardrails, error handling and logs." },
+      { "step": "04", "name": "Package", "detail": "Signed installer and update channel for your machines." },
+      { "step": "05", "name": "Support", "detail": "Fixes and new features as your workflow changes." }
+    ],
+    "toolkit": [
+      { "name": "autourgos-cua-mouse-click-tool", "text": "Left and right clicks at a given pixel position.", "href": "https://github.com/devxjitin/autourgos-cua-mouse-click-tool" },
+      { "name": "autourgos-cua-scroll-tool", "text": "Horizontal and vertical scrolling with adjustable sensitivity.", "href": "https://github.com/devxjitin/autourgos-cua-scroll-tool" },
+      { "name": "autourgos-cua-coordinate-tool", "text": "Vision-based finder that locates UI elements on screen.", "href": "https://github.com/devxjitin/autourgos-cua-coordinate-tool" },
+      { "name": "autourgos-cua-screenshot-understanding-tool", "text": "Captures the screen and answers a question about it.", "href": "https://github.com/devxjitin/autourgos-cua-screenshot-understanding-tool" },
+      { "name": "autourgos-whisperstt", "text": "Local speech recognition with faster Whisper.", "href": "https://github.com/devxjitin/autourgos-whisperstt" },
+      { "name": "autourgos-windowstt", "text": "Offline Windows speech recognition using the built-in engine.", "href": "https://github.com/devxjitin/autourgos-windowstt" },
+      { "name": "autourgos-micinput", "text": "Provider-independent microphone capture.", "href": "https://github.com/devxjitin/autourgos-micinput" },
+      { "name": "autourgos-textinput", "text": "Global hotkey text input popup.", "href": "https://github.com/devxjitin/autourgos-textinput" },
+      { "name": "autourgos-textoutput", "text": "Popup for showing Markdown and plain text output.", "href": "https://github.com/devxjitin/autourgos-textoutput" }
+    ],
+    "relatedWork": ["ultron-windows", "aircursor", "autourgos"]
   }
 ]
