@@ -44,10 +44,10 @@ export const ultron = {
   stack: ['Kotlin', 'Jetpack Compose', 'Gemini Live', 'MCP', 'RAG', 'ObjectBox', 'AWS Lambda'],
   facts: [['Android 8+', 'Platform'], ['Voice + chat', 'Input'], ['Gemini + MCP', 'Engine']],
   shots: [
-    ['/products/ultron-home.png', 'ULTRON home screen'],
-    ['/products/ultron-voice.png', 'ULTRON live voice mode'],
-    ['/products/ultron-connectors.png', 'ULTRON connectors'],
-    ['/products/ultron-settings.png', 'ULTRON settings'],
+    ['/products/ultron-home.webp', 'ULTRON home screen'],
+    ['/products/ultron-voice.webp', 'ULTRON live voice mode'],
+    ['/products/ultron-skills.webp', 'ULTRON skills screen'],
+    ['/products/ultron-connectors.webp', 'ULTRON connectors'],
   ],
 
   siteUrl: 'https://ultron.devxjitin.dev',
