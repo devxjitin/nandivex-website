@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Icon from './Icons.jsx';
 
 export function useMeta(title, description) {
   useEffect(() => {
@@ -18,23 +19,25 @@ export function useMeta(title, description) {
 
 export function PageHeader({ eyebrow, title, children }) {
   return (
-    <section className="border-b border-line">
-      <div className="wrap py-16 sm:py-24">
-        {eyebrow && <p className="label mb-5">{eyebrow}</p>}
-        <h1 className="max-w-4xl text-5xl leading-[1.05] sm:text-6xl">{title}</h1>
-        {children && <div className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{children}</div>}
+    <section className="relative overflow-hidden bg-night text-white">
+      <div className="grid-bg absolute inset-0" aria-hidden="true" />
+      <div className="wrap relative py-16 sm:py-24">
+        {eyebrow && <p className="label mb-5 !text-cyan">{eyebrow}</p>}
+        <h1 className="max-w-4xl text-4xl leading-[1.08] sm:text-6xl">{title}</h1>
+        {children && <div className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">{children}</div>}
       </div>
     </section>
   );
 }
 
-export function Section({ eyebrow, title, children, className = '' }) {
+export function Section({ eyebrow, title, children, className = '', tone = 'white' }) {
+  const bg = tone === 'soft' ? 'bg-soft' : 'bg-white';
   return (
-    <section className={`border-b border-line ${className}`}>
-      <div className="wrap py-16 sm:py-20">
+    <section className={`${bg} ${className}`}>
+      <div className="wrap py-16 sm:py-24">
         {(eyebrow || title) && (
-          <div className="mb-10 grid gap-3 md:grid-cols-[1fr_2fr]">
-            {eyebrow && <p className="label pt-2">{eyebrow}</p>}
+          <div className="mb-12 max-w-2xl">
+            {eyebrow && <p className="label mb-3">{eyebrow}</p>}
             {title && <h2 className="text-3xl sm:text-4xl">{title}</h2>}
           </div>
         )}
@@ -50,14 +53,21 @@ export function CTA({
   label = 'Start a conversation',
 }) {
   return (
-    <section className="bg-night text-paper">
-      <div className="wrap grid gap-8 py-20 md:grid-cols-[2fr_1fr] md:items-end">
-        <div>
-          <h2 className="text-4xl leading-tight sm:text-5xl">{title}</h2>
-          <p className="mt-5 max-w-xl text-paper/70">{text}</p>
-        </div>
-        <div className="md:text-right">
-          <Link to="/contact" className="btn border-paper bg-paper text-ink hover:border-accent hover:bg-accent hover:text-white">{label}</Link>
+    <section className="bg-white py-16 sm:py-20">
+      <div className="wrap">
+        <div className="relative overflow-hidden rounded-3xl bg-accent px-8 py-14 text-white sm:px-14">
+          <div className="grid-bg absolute inset-0 opacity-60" aria-hidden="true" />
+          <div className="relative grid gap-8 md:grid-cols-[2fr_1fr] md:items-center">
+            <div>
+              <h2 className="text-3xl leading-tight sm:text-4xl">{title}</h2>
+              <p className="mt-4 max-w-xl text-white/80">{text}</p>
+            </div>
+            <div className="md:text-right">
+              <Link to="/contact" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-night hover:text-white">
+                {label} <Icon name="arrow" className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -66,9 +76,14 @@ export function CTA({
 
 export function List({ items, className = '' }) {
   return (
-    <ul className={`divide-y divide-line border-y border-line ${className}`}>
+    <ul className={`space-y-3 ${className}`}>
       {items.map((t) => (
-        <li key={t} className="py-3 text-[15px] leading-snug">{t}</li>
+        <li key={t} className="flex gap-3 text-[15px] leading-snug">
+          <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-tint text-accent">
+            <Icon name="check" className="h-3 w-3" />
+          </span>
+          {t}
+        </li>
       ))}
     </ul>
   );

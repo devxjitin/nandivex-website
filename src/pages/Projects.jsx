@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import projects from '../data/projects.json';
-import { CTA, PageHeader, useMeta } from '../components/ui.jsx';
+import { CTA, PageHeader, Section, useMeta } from '../components/ui.jsx';
+import Icon from '../components/Icons.jsx';
 
 export default function Projects() {
   useMeta('Work', 'Case studies from NANDIVEX across fintech, logistics, legal, hospitality, ERP, cloud and security.');
@@ -9,26 +10,23 @@ export default function Projects() {
       <PageHeader eyebrow="Work" title="Case studies.">
         Production systems we designed and shipped, with the problem, the approach and the measured result.
       </PageHeader>
-      <section className="border-b border-line">
-        <div className="wrap">
-          {projects.map((p, n) => (
-            <Link key={p.slug} to={`/project/${p.slug}`} className="group grid gap-5 border-b border-line py-10 last:border-0 md:grid-cols-[4rem_1fr_1.2fr]">
-              <span className="font-mono text-xs text-accent">{String(n + 1).padStart(2, '0')}</span>
-              <div>
-                <p className="label">{p.industry}</p>
-                <h2 className="mt-2 text-3xl group-hover:text-accent">{p.title}</h2>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">{p.shortDescription}</p>
-              </div>
-              <div>
-                <ul className="space-y-2 border-l-2 border-accent pl-4 text-sm leading-relaxed">
-                  {p.results.slice(0, 2).map((r) => <li key={r}>{r}</li>)}
-                </ul>
-                <p className="mt-4 text-sm text-accent">Read the case study →</p>
-              </div>
+      <Section tone="soft">
+        <div className="grid gap-6 md:grid-cols-2">
+          {projects.map((p) => (
+            <Link key={p.slug} to={`/project/${p.slug}`} className="card-hover group flex flex-col !p-8">
+              <p className="label">{p.industry}</p>
+              <h2 className="mt-3 text-2xl leading-snug group-hover:text-accent">{p.title}</h2>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.shortDescription}</p>
+              <ul className="mt-6 space-y-2 rounded-xl bg-tint p-4 text-sm font-semibold leading-snug text-accent-dark">
+                {p.results.slice(0, 2).map((r) => <li key={r}>{r}</li>)}
+              </ul>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+                Read the case study <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
             </Link>
           ))}
         </div>
-      </section>
+      </Section>
       <CTA title="Want results like these?" />
     </>
   );

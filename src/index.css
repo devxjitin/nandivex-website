@@ -6,23 +6,34 @@
   html { scroll-behavior: smooth; }
   body { @apply bg-paper text-ink font-sans antialiased; }
   ::selection { @apply bg-accent text-white; }
-  h1, h2, h3 { @apply font-display font-normal tracking-tight; }
+  h1, h2, h3 { @apply font-display font-extrabold tracking-tight; }
+  h1 { letter-spacing: -0.03em; }
+  h2 { letter-spacing: -0.025em; }
 }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
-  .label { @apply font-mono text-[11px] uppercase tracking-[0.14em] text-muted; }
-  .btn { @apply inline-flex items-center gap-2 border px-5 py-3 text-sm font-medium transition-colors; }
-  .btn-solid { @apply btn border-accent bg-accent text-white hover:bg-ink hover:border-ink; }
-  .btn-line { @apply btn border-ink text-ink hover:bg-ink hover:text-paper; }
+  .label { @apply font-display text-xs font-bold uppercase tracking-[0.14em] text-accent; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition-all duration-200; }
+  .btn-solid { @apply btn border-accent bg-accent text-white shadow-lift hover:-translate-y-0.5 hover:bg-accent-dark hover:border-accent-dark; }
+  .btn-line { @apply btn border-line bg-white text-ink hover:border-accent hover:text-accent; }
   .rule { @apply border-t border-line; }
-  .prose-body p { @apply mb-5 leading-relaxed text-ink/90; }
-  .prose-body h3 { @apply mt-10 mb-3 text-2xl; }
-  .prose-body h4 { @apply mt-6 mb-2 text-lg font-sans font-semibold; }
-  .prose-body ul, .prose-body ol { @apply mb-5 space-y-2 pl-5; }
-  .prose-body ul { @apply list-disc; }
-  .prose-body ol { @apply list-decimal; }
-  .prose-body code { @apply bg-ink/5 px-1 py-0.5 font-mono text-[0.9em]; }
-  .prose-body pre { @apply mb-6 overflow-x-auto bg-night p-4 text-sm text-paper; }
-  .prose-body pre code { @apply bg-transparent p-0; }
+  .card { @apply rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-200; }
+  .card-hover { @apply card hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift; }
+  .chip { @apply rounded-full border border-line bg-white px-3.5 py-1.5 text-xs font-medium text-ink; }
+  .prose-body p { @apply mb-5 text-[17px] leading-[1.75] text-ink/85; }
+  .prose-body h3 { @apply mt-12 mb-3 text-2xl; }
+  .prose-body h4 { @apply mt-6 mb-2 text-lg font-bold; }
+  .prose-body ul, .prose-body ol { @apply mb-6 space-y-2 pl-6 text-[17px] leading-relaxed; }
+  .prose-body ul { @apply list-disc marker:text-accent; }
+  .prose-body ol { @apply list-decimal marker:text-accent; }
+  .prose-body code { @apply rounded bg-tint px-1.5 py-0.5 font-mono text-[0.88em] text-accent-dark; }
+  .prose-body pre { @apply mb-6 overflow-x-auto rounded-2xl bg-night p-5 text-sm text-white/90; }
+  .prose-body pre code { @apply bg-transparent p-0 text-inherit; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
 }
