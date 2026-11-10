@@ -32,8 +32,9 @@ Content lives in `src/data/*.json`, so copy changes do not need component edits.
 
 ## Deploy
 
-It is a single-page app, so the 404 fallback above handles deep links.
-GitHub Pages is used: `.github/workflows/deploy.yml` builds and deploys on every push to `main`, copies `index.html` to `404.html` as the SPA fallback, and `public/CNAME` sets the custom domain `nandivex.in`.
+Hosted on GitHub Pages. `.github/workflows/deploy.yml` builds and deploys on every push to `main`.
+It is a single-page app, so the workflow copies `index.html` to `404.html` so deep links work.
+`public/CNAME` sets the custom domain `nandivex.in`.
 
 ## To do before launch
 
