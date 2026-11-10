@@ -21,9 +21,9 @@ npm run preview   # serve the production build
 │   ├── main.jsx
 │   ├── App.jsx          # routes
 │   ├── index.css        # Tailwind + design tokens
-│   ├── components/      # Layout (header/footer), Markdown renderer, ui helpers
+│   ├── components/      # Layout (header/footer), ui helpers
 │   ├── pages/           # one file per route
-│   └── data/            # all site content (services, projects, blog, careers ...)
+│   └── data/            # all site content (services, projects, careers ...)
 ├── docs/site-extract.md # notes from the original site
 └── legacy/              # compiled build of the previous site, for reference only
 ```

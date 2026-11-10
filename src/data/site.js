@@ -11,7 +11,6 @@ export const nav = [
   { to: '/industries', label: 'Industries' },
   { to: '/projects', label: 'Work' },
   { to: '/products', label: 'Products' },
-  { to: '/blog', label: 'Journal' },
   { to: '/about', label: 'About' },
   { to: '/team', label: 'Team' },
   { to: '/careers', label: 'Careers' },

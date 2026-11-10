@@ -7,8 +7,6 @@ import ServiceDetail from './pages/ServiceDetail.jsx';
 import Industries from './pages/Industries.jsx';
 import Projects from './pages/Projects.jsx';
 import ProjectDetail from './pages/ProjectDetail.jsx';
-import Blog from './pages/Blog.jsx';
-import BlogPost from './pages/BlogPost.jsx';
 import Careers from './pages/Careers.jsx';
 import Contact from './pages/Contact.jsx';
 import { Privacy, Terms } from './pages/Legal.jsx';
@@ -28,8 +26,6 @@ export default function App() {
         <Route path="industries" element={<Industries />} />
         <Route path="projects" element={<Projects />} />
         <Route path="project/:slug" element={<ProjectDetail />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="blog/:slug" element={<BlogPost />} />
         <Route path="products" element={<Products />} />
         <Route path="team" element={<Team />} />
         <Route path="team/:slug" element={<TeamMember />} />

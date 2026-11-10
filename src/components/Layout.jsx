@@ -56,7 +56,7 @@ function Header() {
 }
 
 function Footer() {
-  const company = [['/about', 'About'], ['/team', 'Team'], ['/industries', 'Industries'], ['/projects', 'Work'], ['/blog', 'Journal'], ['/careers', 'Careers'], ['/contact', 'Contact']];
+  const company = [['/about', 'About'], ['/team', 'Team'], ['/industries', 'Industries'], ['/projects', 'Work'], ['/careers', 'Careers'], ['/contact', 'Contact']];
   return (
     <footer className="bg-night text-paper">
       <div className="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
