@@ -148,7 +148,7 @@ export default function Home() {
       </Section>
 
       {/* Team */}
-      <Section eyebrow="The team" title="A small team. You talk to the people building it." tone="soft">
+      <Section eyebrow="Our engineering team" title="Meet the engineers behind your product." tone="soft">
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m) => (
             <li key={m.slug}>
