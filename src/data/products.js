@@ -13,7 +13,7 @@ export const products = [
       'Phone control: flashlight, alarms, opening apps',
       'Accessibility-based control of other apps, once you allow it',
       '19 connectors and 80+ tools',
-      'Memory of up to 150 notes and searchable chat history',
+      'Memory of up to 150 notes about you',
       'Searchable document knowledge base stored on the phone',
       'Skills written in Markdown, and four personalities',
       'YouTube downloads saved to your phone',
