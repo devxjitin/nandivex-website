@@ -107,16 +107,9 @@ export const sonia = {
   skills: [
     ['Design', ['Logo design', 'Brand identity', 'UI design', 'Visual design']],
     ['Product', ['Product strategy', 'Content direction', 'Documentation', 'Release testing']],
-    ['Build', ['Python', 'Streamlit', 'YOLO11', 'Jupyter']],
+    ['Build', ['Python', 'Jupyter']],
   ],
   projects: [
-    {
-      name: 'VisionBox',
-      tag: 'Computer vision',
-      text: 'A beginner-friendly app that detects animals and the pose they are in from an image, using a YOLO11 model fine-tuned on an animals dataset, served through a Streamlit web app.',
-      stack: ['Python', 'YOLO11', 'Streamlit'],
-      links: [{ label: 'Source', href: 'https://github.com/dahiyasonia/VisionBox' }],
-    },
     {
       name: 'Multi-Language Translator',
       tag: 'Language AI',
