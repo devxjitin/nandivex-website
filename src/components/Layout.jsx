@@ -66,7 +66,7 @@ function Footer() {
             <span className="leading-none"><span className="block font-display text-[17px] font-extrabold tracking-tight">NandiVex</span><span className="mt-1 block text-[8.5px] font-semibold uppercase tracking-[0.3em] text-paper/60">Technologies</span></span>
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-paper/60">
-            Web and mobile software, IT infrastructure and security for growing businesses.
+            Web and Android software, IT infrastructure and security for growing businesses.
           </p>
           <a href={`mailto:${site.email}`} className="mt-5 inline-block text-sm underline underline-offset-4 hover:text-white">
             {site.email}

@@ -43,18 +43,21 @@ function HeroOrbit() {
   const nodes = useRef([]);
 
   useEffect(() => {
+    const box = nodes.current[0]?.parentElement;
+    let size = box ? box.offsetWidth : 0;
+    const onResize = () => { size = box ? box.offsetWidth : size; };
+    window.addEventListener('resize', onResize);
     const place = (t) => {
       orbit.forEach((o, i) => {
         const el = nodes.current[i];
         if (!el) return;
         const r = rings[o.ring];
         const a = ((o.deg + r.speed * t) * Math.PI) / 180;
-        el.style.left = `${50 + r.radius * Math.cos(a)}%`;
-        el.style.top = `${50 + r.radius * Math.sin(a)}%`;
+        el.style.transform = `translate(-50%, -50%) translate(${(r.radius * Math.cos(a) * size) / 100}px, ${(r.radius * Math.sin(a) * size) / 100}px)`;
       });
     };
     place(0);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => window.removeEventListener('resize', onResize);
     let raf;
     const t0 = performance.now();
     const loop = (now) => {
@@ -62,7 +65,7 @@ function HeroOrbit() {
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize); };
   }, []);
 
   return (
@@ -82,7 +85,7 @@ function HeroOrbit() {
         <span
           key={o.icon}
           ref={(el) => { nodes.current[i] = el; }}
-          className="absolute flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border border-white/15 bg-night text-cyan shadow-card"
+          className="absolute left-1/2 top-1/2 flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-night text-cyan shadow-card"
         >
           <Icon name={o.icon} className="h-5 w-5" />
         </span>

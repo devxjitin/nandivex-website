@@ -1,28 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import Lenis from 'lenis';
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /** Smooth (inertia) scrolling for the whole site. Returns the Lenis instance ref. */
 export function useSmoothScroll() {
-  const ref = useRef(null);
-  useEffect(() => {
-    if (reduced()) return undefined;
-    const lenis = new Lenis({ duration: 1.1, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true });
-    ref.current = lenis;
-    let raf;
-    const loop = (time) => {
-      lenis.raf(time);
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-    return () => {
-      cancelAnimationFrame(raf);
-      lenis.destroy();
-      ref.current = null;
-    };
-  }, []);
-  return ref;
+  // Lenis is disabled: its inertia loop fought the native scroll (page jittered up/down).
+  // Native scrolling is used instead; Layout falls back to window.scrollTo when ref.current is null.
+  return useRef(null);
 }
 
 /**
