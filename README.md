@@ -16,7 +16,7 @@ npm run preview   # serve the production build
 ```
 .
 ├── index.html
-├── public/              # favicon, logo.svg, robots.txt, sitemap.xml, _redirects
+├── public/              # favicon, logo.svg, robots.txt, sitemap.xml, CNAME
 ├── src/
 │   ├── main.jsx
 │   ├── App.jsx          # routes
@@ -32,8 +32,8 @@ Content lives in `src/data/*.json`, so copy changes do not need component edits.
 
 ## Deploy
 
-It is a single-page app, so the host must rewrite all paths to `index.html`.
-`public/_redirects` (Netlify) and `vercel.json` (Vercel) are included.
+It is a single-page app, so the 404 fallback above handles deep links.
+GitHub Pages is used: `.github/workflows/deploy.yml` builds and deploys on every push to `main`, copies `index.html` to `404.html` as the SPA fallback, and `public/CNAME` sets the custom domain `nandivex.in`.
 
 ## To do before launch
 
