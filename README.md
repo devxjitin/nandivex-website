@@ -1,29 +1,45 @@
 # Nandivex Website
 
-Existing production build of https://nandivex.in (React + Vite SPA, compiled output), kept as the main site.
+Source for https://nandivex.in: React 18, Vite 5, React Router 6, Tailwind CSS 3.
+
+## Commands
+
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # output in dist/
+npm run preview   # serve the production build
+```
 
 ## Structure
 
 ```
 .
-├── index.html        # SPA entry
-├── assets/           # Compiled JS/CSS bundles (hashed)
-├── favicon.png
-├── robots.txt
-├── sitemap.xml
-└── docs/
-    └── site-extract.md   # Content, sitemap, brand and redesign notes
+├── index.html
+├── public/              # favicon, logo.svg, robots.txt, sitemap.xml, _redirects
+├── src/
+│   ├── main.jsx
+│   ├── App.jsx          # routes
+│   ├── index.css        # Tailwind + design tokens
+│   ├── components/      # Layout (header/footer), Markdown renderer, ui helpers
+│   ├── pages/           # one file per route
+│   └── data/            # all site content (services, projects, blog, careers ...)
+├── docs/site-extract.md # notes from the original site
+└── legacy/              # compiled build of the previous site, for reference only
 ```
 
-## Run locally
+Content lives in `src/data/*.json`, so copy changes do not need component edits.
 
-SPA routes need an index.html fallback:
+## Deploy
 
-```bash
-npx serve -s .
-```
+It is a single-page app, so the host must rewrite all paths to `index.html`.
+`public/_redirects` (Netlify) and `vercel.json` (Vercel) are included.
 
-## Known issues
+## To do before launch
 
-- Logo `/src/assets/logo/nandivex-shield.png` is referenced in the bundle but not served (returns HTML), so the logo is broken on the live site too.
-- `robots.txt` and `sitemap.xml` point to nandivex.com, not nandivex.in.
+- Replace the placeholder logo (`public/logo.svg`) with the real brand mark.
+- The contact form opens the visitor's email client (`mailto:`). Connect a form
+  backend (Formspree, Resend, own API) for real submissions.
+- Review `privacy-policy` and `terms-and-conditions`, which are short drafts.
+- Add real phone, address and social links when available.
+- Pages are client-rendered; add prerendering for stronger SEO if needed.

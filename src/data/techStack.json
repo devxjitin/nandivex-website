@@ -1,0 +1,188 @@
+{
+  "frontend": [
+    {
+      "name": "React.js",
+      "category": "Framework",
+      "level": "Core",
+      "desc": "Component-driven user interfaces & SPAs"
+    },
+    {
+      "name": "JavaScript (ES6+)",
+      "category": "Language",
+      "level": "Core",
+      "desc": "Modern asynchronous frontend logic"
+    },
+    {
+      "name": "HTML5 & CSS3",
+      "category": "Standard",
+      "level": "Core",
+      "desc": "Semantic markup and modern layout modules"
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "Styling",
+      "level": "Core",
+      "desc": "Utility-first rapid, responsive design system"
+    },
+    {
+      "name": "Framer Motion",
+      "category": "Animation",
+      "level": "Core",
+      "desc": "Fluid, accessible micro-animations"
+    },
+    {
+      "name": "Vite",
+      "category": "Tooling",
+      "level": "Core",
+      "desc": "Next-gen lightning-fast frontend tooling"
+    }
+  ],
+  "backend": [
+    {
+      "name": "Node.js",
+      "category": "Runtime",
+      "level": "Core",
+      "desc": "High-concurrency event-driven server runtime"
+    },
+    {
+      "name": "Express.js",
+      "category": "Framework",
+      "level": "Core",
+      "desc": "Robust RESTful microservices and API gateways"
+    },
+    {
+      "name": "REST APIs",
+      "category": "Architecture",
+      "level": "Core",
+      "desc": "Standardized, versioned HTTP endpoints"
+    },
+    {
+      "name": "WebSockets",
+      "category": "Real-Time",
+      "level": "Advanced",
+      "desc": "Bi-directional instant event channels"
+    }
+  ],
+  "databases": [
+    {
+      "name": "PostgreSQL",
+      "category": "Relational",
+      "level": "Core",
+      "desc": "ACID-compliant enterprise relational database"
+    },
+    {
+      "name": "MySQL",
+      "category": "Relational",
+      "level": "Core",
+      "desc": "Proven relational storage for business transactions"
+    },
+    {
+      "name": "MongoDB",
+      "category": "NoSQL",
+      "level": "Core",
+      "desc": "Flexible document store for dynamic schemas"
+    },
+    {
+      "name": "Redis",
+      "category": "In-Memory",
+      "level": "Advanced",
+      "desc": "Sub-millisecond caching & session locks"
+    }
+  ],
+  "infrastructure": [
+    {
+      "name": "Linux (Ubuntu/RHEL)",
+      "category": "OS",
+      "level": "Core",
+      "desc": "Hardened operating systems for enterprise servers"
+    },
+    {
+      "name": "AWS (Amazon Web Services)",
+      "category": "Cloud",
+      "level": "Core",
+      "desc": "EC2, S3, RDS, VPC, CloudWatch & Route53"
+    },
+    {
+      "name": "Docker",
+      "category": "Containerization",
+      "level": "Core",
+      "desc": "Isolated, reproducible deployment containers"
+    },
+    {
+      "name": "Nginx",
+      "category": "Web Server",
+      "level": "Core",
+      "desc": "High-performance reverse proxy & load balancer"
+    },
+    {
+      "name": "Cloudflare",
+      "category": "Edge & CDN",
+      "level": "Core",
+      "desc": "Global edge CDN, DDoS mitigation & WAF"
+    },
+    {
+      "name": "Git & GitHub",
+      "category": "Version Control",
+      "level": "Core",
+      "desc": "Trunk-based collaboration and branch policies"
+    }
+  ],
+  "security": [
+    {
+      "name": "SSL / TLS 1.3",
+      "category": "Encryption",
+      "level": "Core",
+      "desc": "Modern transport encryption & cipher suites"
+    },
+    {
+      "name": "JWT & OAuth 2.0",
+      "category": "Auth",
+      "level": "Core",
+      "desc": "Secure tokenized identity and access delegation"
+    },
+    {
+      "name": "Role-Based Access (RBAC)",
+      "category": "Governance",
+      "level": "Core",
+      "desc": "Least-privilege permission enforcement"
+    },
+    {
+      "name": "OWASP Top 10 Mitigation",
+      "category": "Application",
+      "level": "Core",
+      "desc": "Protection against injection, XSS, CSRF"
+    },
+    {
+      "name": "Cloud IAM Hardening",
+      "category": "Cloud Security",
+      "level": "Core",
+      "desc": "Strict policy bounding and key rotation"
+    }
+  ],
+  "tools": [
+    {
+      "name": "Postman",
+      "category": "Testing",
+      "level": "Core",
+      "desc": "API design, contract testing and documentation"
+    },
+    {
+      "name": "GitHub Actions",
+      "category": "CI/CD",
+      "level": "Core",
+      "desc": "Automated test, lint and deploy pipelines"
+    },
+    {
+      "name": "Prometheus & Grafana",
+      "category": "Telemetry",
+      "level": "Core",
+      "desc": "Real-time metrics, dashboards and alerting"
+    },
+    {
+      "name": "WireGuard & OpenVPN",
+      "category": "Networking",
+      "level": "Core",
+      "desc": "Encrypted point-to-point tunnels"
+    }
+  ]
+}

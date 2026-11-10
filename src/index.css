@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-paper text-ink font-sans antialiased; }
+  ::selection { @apply bg-accent text-white; }
+  h1, h2, h3 { @apply font-display font-normal tracking-tight; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .label { @apply font-mono text-[11px] uppercase tracking-[0.14em] text-muted; }
+  .btn { @apply inline-flex items-center gap-2 border px-5 py-3 text-sm font-medium transition-colors; }
+  .btn-solid { @apply btn border-accent bg-accent text-white hover:bg-ink hover:border-ink; }
+  .btn-line { @apply btn border-ink text-ink hover:bg-ink hover:text-paper; }
+  .rule { @apply border-t border-line; }
+  .prose-body p { @apply mb-5 leading-relaxed text-ink/90; }
+  .prose-body h3 { @apply mt-10 mb-3 text-2xl; }
+  .prose-body h4 { @apply mt-6 mb-2 text-lg font-sans font-semibold; }
+  .prose-body ul, .prose-body ol { @apply mb-5 space-y-2 pl-5; }
+  .prose-body ul { @apply list-disc; }
+  .prose-body ol { @apply list-decimal; }
+  .prose-body code { @apply bg-ink/5 px-1 py-0.5 font-mono text-[0.9em]; }
+  .prose-body pre { @apply mb-6 overflow-x-auto bg-night p-4 text-sm text-paper; }
+  .prose-body pre code { @apply bg-transparent p-0; }
+}
