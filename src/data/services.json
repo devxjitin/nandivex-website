@@ -1,86 +1,5 @@
 [
   {
-    "id": "ai-agents",
-    "slug": "ai-agents",
-    "title": "AI Voice & Chat Agents",
-    "short": "Voice and chat assistants",
-    "subtitle": "Assistants that listen, reason and get real work done",
-    "description": "Voice and chat agents that use your tools and your documents to finish tasks, with approvals and logs so you stay in control. This is our main work: we shipped Nira, a voice assistant, for Nirman Labs.",
-    "icon": "ai-agents",
-    "featured": true,
-    "tags": ["Voice", "RAG", "Tool calling", "MCP"],
-    "useCases": [
-      "A voice assistant for students, customers or reception desks",
-      "A chat assistant that answers from your own documents",
-      "An agent that books, files, searches and updates your systems",
-      "An internal helper that saves staff hours every week"
-    ],
-    "features": [
-      "Real-time voice you can interrupt (Gemini Live, Whisper)",
-      "Chat assistants with streaming answers and file attachments",
-      "Answers from your own documents (RAG) instead of guesses",
-      "Tool-using agents that call your APIs and MCP connectors",
-      "Multi-language support, including Hindi and English",
-      "Memory and personalisation across sessions"
-    ],
-    "deliverables": [
-      "A working agent with an agreed scope and toolset",
-      "Test questions and quality checks to measure answers",
-      "Human approval for risky actions, plus run logs",
-      "Cost and usage tracking per user or team",
-      "Documentation and full source handover"
-    ],
-    "technologies": ["Python", "Gemini", "OpenAI-compatible LLMs", "RAG", "MCP", "Whisper", "Ollama", "FastAPI", "Autourgos"],
-    "process": [
-      { "step": "01", "name": "Define the task", "detail": "Pick one job the agent should do and how success is measured." },
-      { "step": "02", "name": "Connect tools and data", "detail": "Wire up the APIs, documents and permissions the agent needs." },
-      { "step": "03", "name": "Build and evaluate", "detail": "Iterate against real examples until answers are reliable." },
-      { "step": "04", "name": "Pilot with guardrails", "detail": "Roll out to a small group with approvals and monitoring." },
-      { "step": "05", "name": "Launch and improve", "detail": "Go live, watch usage and cost, and keep refining." }
-    ],
-    "relatedWork": ["nira", "ultron", "autourgos"]
-  },
-  {
-    "id": "android-apps",
-    "slug": "android-apps",
-    "title": "Android Apps",
-    "short": "Native Android software",
-    "subtitle": "Native apps that feel fast and keep working offline",
-    "description": "Native Kotlin apps for assistants, kiosks and business tools, built with Jetpack Compose and shipped with a proper release pipeline.",
-    "icon": "android-apps",
-    "tags": ["Kotlin", "Jetpack Compose", "Offline", "OTA updates"],
-    "useCases": [
-      "A voice assistant that lives on the phone",
-      "A kiosk or reception-desk app",
-      "A field-staff or business tool that works without signal",
-      "A product you want to sell on subscription"
-    ],
-    "features": [
-      "Native apps in Kotlin and Jetpack Compose",
-      "Voice and chat assistants that run on the phone",
-      "Offline-first design with on-device search and storage",
-      "Over-the-air updates with checksum verification",
-      "Licensing and subscription keys",
-      "Play Store submission and signed release builds"
-    ],
-    "deliverables": [
-      "Signed release builds ready to install or publish",
-      "Full source code and build documentation",
-      "CI pipeline that builds and signs every release",
-      "Testing on real devices before each release",
-      "Support for Android 8 and newer"
-    ],
-    "technologies": ["Kotlin", "Jetpack Compose", "Hilt", "ObjectBox", "Gemini", "AWS Lambda", "GitHub Actions"],
-    "process": [
-      { "step": "01", "name": "Scope and flows", "detail": "Map screens, offline needs and device targets." },
-      { "step": "02", "name": "Design", "detail": "Compose-ready interface design with real device testing." },
-      { "step": "03", "name": "Build", "detail": "Native Kotlin with clean architecture and automated tests." },
-      { "step": "04", "name": "Release pipeline", "detail": "Signed builds from CI and an update channel." },
-      { "step": "05", "name": "Launch and support", "detail": "Store submission, monitoring and ongoing updates." }
-    ],
-    "relatedWork": ["ultron"]
-  },
-  {
     "id": "web-software",
     "slug": "web-software",
     "title": "Web & Custom Software",
@@ -88,7 +7,12 @@
     "subtitle": "Websites, dashboards and backends, deployed and looked after",
     "description": "Fast websites, web apps and the backends behind your assistants and apps. We also deploy them to the cloud and keep them running, so you have one team to call.",
     "icon": "web-software",
-    "tags": ["React", "FastAPI", "PostgreSQL", "AWS"],
+    "tags": [
+      "React",
+      "FastAPI",
+      "PostgreSQL",
+      "AWS"
+    ],
     "useCases": [
       "A company website that explains what you do and brings in leads",
       "An admin dashboard or customer portal",
@@ -110,17 +34,123 @@
       "Backups and monitoring set up",
       "Handover or ongoing support, your choice"
     ],
-    "technologies": ["React", "Next.js", "TypeScript", "FastAPI", "PostgreSQL", "Docker", "AWS", "GitHub Actions"],
-    "process": [
-      { "step": "01", "name": "Requirements", "detail": "Turn your goals into screens, data and a short plan." },
-      { "step": "02", "name": "Design", "detail": "Clear interface design you approve before we build." },
-      { "step": "03", "name": "Build", "detail": "Component-driven front end and a tested backend." },
-      { "step": "04", "name": "Deploy", "detail": "Automated releases to the cloud with a rollback path." },
-      { "step": "05", "name": "Support", "detail": "Monitoring, patching and improvements after launch." }
+    "technologies": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "AWS",
+      "GitHub Actions"
     ],
-    "relatedWork": ["ecomatch", "url-shortener", "campusgrade"]
-  }
-  ,{
+    "process": [
+      {
+        "step": "01",
+        "name": "Requirements",
+        "detail": "Turn your goals into screens, data and a short plan."
+      },
+      {
+        "step": "02",
+        "name": "Design",
+        "detail": "Clear interface design you approve before we build."
+      },
+      {
+        "step": "03",
+        "name": "Build",
+        "detail": "Component-driven front end and a tested backend."
+      },
+      {
+        "step": "04",
+        "name": "Deploy",
+        "detail": "Automated releases to the cloud with a rollback path."
+      },
+      {
+        "step": "05",
+        "name": "Support",
+        "detail": "Monitoring, patching and improvements after launch."
+      }
+    ],
+    "relatedWork": [],
+    "image": "/services/web-software.webp"
+  },
+  {
+    "id": "android-apps",
+    "slug": "android-apps",
+    "title": "Android Apps",
+    "short": "Native Android software",
+    "subtitle": "Native apps that feel fast and keep working offline",
+    "description": "Native Kotlin apps for assistants, kiosks and business tools, built with Jetpack Compose and shipped with a proper release pipeline.",
+    "icon": "android-apps",
+    "tags": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Offline",
+      "OTA updates"
+    ],
+    "useCases": [
+      "A voice assistant that lives on the phone",
+      "A kiosk or reception-desk app",
+      "A field-staff or business tool that works without signal",
+      "A product you want to sell on subscription"
+    ],
+    "features": [
+      "Native apps in Kotlin and Jetpack Compose",
+      "Voice and chat assistants that run on the phone",
+      "Offline-first design with on-device search and storage",
+      "Over-the-air updates with checksum verification",
+      "Licensing and subscription keys",
+      "Play Store submission and signed release builds"
+    ],
+    "deliverables": [
+      "Signed release builds ready to install or publish",
+      "Full source code and build documentation",
+      "CI pipeline that builds and signs every release",
+      "Testing on real devices before each release",
+      "Support for Android 8 and newer"
+    ],
+    "technologies": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Hilt",
+      "ObjectBox",
+      "Gemini",
+      "AWS Lambda",
+      "GitHub Actions"
+    ],
+    "process": [
+      {
+        "step": "01",
+        "name": "Scope and flows",
+        "detail": "Map screens, offline needs and device targets."
+      },
+      {
+        "step": "02",
+        "name": "Design",
+        "detail": "Compose-ready interface design with real device testing."
+      },
+      {
+        "step": "03",
+        "name": "Build",
+        "detail": "Native Kotlin with clean architecture and automated tests."
+      },
+      {
+        "step": "04",
+        "name": "Release pipeline",
+        "detail": "Signed builds from CI and an update channel."
+      },
+      {
+        "step": "05",
+        "name": "Launch and support",
+        "detail": "Store submission, monitoring and ongoing updates."
+      }
+    ],
+    "relatedWork": [
+      "nira"
+    ],
+    "image": "/services/android-apps.webp"
+  },
+  {
     "id": "desktop-apps",
     "slug": "desktop-apps",
     "title": "Desktop Apps & Automation",
@@ -128,7 +158,12 @@
     "subtitle": "Windows apps that listen, see the screen and get work done",
     "description": "Windows desktop software and tools: voice assistants that control the computer, background utilities with hotkeys, and automation that works through the screen like a person would.",
     "icon": "desktop-apps",
-    "tags": ["Windows", "Python", "Voice", "Automation"],
+    "tags": [
+      "Windows",
+      "Python",
+      "Voice",
+      "Automation"
+    ],
     "useCases": [
       "A voice assistant that works your computer for you",
       "A background tool that runs on a hotkey and fills in work automatically",
@@ -150,25 +185,247 @@
       "Setup and troubleshooting guide for your team",
       "Support for Windows 10 and 11"
     ],
-    "technologies": ["Python", "Tkinter", "Qt", "PyInstaller", "Gemini Live", "Whisper", "OpenCV", "MediaPipe", "Windows SAPI", "Autourgos"],
+    "technologies": [
+      "Python",
+      "Tkinter",
+      "Qt",
+      "PyInstaller",
+      "Gemini Live",
+      "Whisper",
+      "OpenCV",
+      "MediaPipe",
+      "Windows SAPI",
+      "Autourgos"
+    ],
     "process": [
-      { "step": "01", "name": "Scope the workflow", "detail": "Pick the task the app should handle and where it must run." },
-      { "step": "02", "name": "Prototype", "detail": "A working version on your own screen and data within the first sprint." },
-      { "step": "03", "name": "Build and harden", "detail": "Reliable automation with guardrails, error handling and logs." },
-      { "step": "04", "name": "Package", "detail": "Signed installer and update channel for your machines." },
-      { "step": "05", "name": "Support", "detail": "Fixes and new features as your workflow changes." }
+      {
+        "step": "01",
+        "name": "Scope the workflow",
+        "detail": "Pick the task the app should handle and where it must run."
+      },
+      {
+        "step": "02",
+        "name": "Prototype",
+        "detail": "A working version on your own screen and data within the first sprint."
+      },
+      {
+        "step": "03",
+        "name": "Build and harden",
+        "detail": "Reliable automation with guardrails, error handling and logs."
+      },
+      {
+        "step": "04",
+        "name": "Package",
+        "detail": "Signed installer and update channel for your machines."
+      },
+      {
+        "step": "05",
+        "name": "Support",
+        "detail": "Fixes and new features as your workflow changes."
+      }
     ],
     "toolkit": [
-      { "name": "autourgos-cua-mouse-click-tool", "text": "Left and right clicks at a given pixel position.", "href": "https://github.com/devxjitin/autourgos-cua-mouse-click-tool" },
-      { "name": "autourgos-cua-scroll-tool", "text": "Horizontal and vertical scrolling with adjustable sensitivity.", "href": "https://github.com/devxjitin/autourgos-cua-scroll-tool" },
-      { "name": "autourgos-cua-coordinate-tool", "text": "Vision-based finder that locates UI elements on screen.", "href": "https://github.com/devxjitin/autourgos-cua-coordinate-tool" },
-      { "name": "autourgos-cua-screenshot-understanding-tool", "text": "Captures the screen and answers a question about it.", "href": "https://github.com/devxjitin/autourgos-cua-screenshot-understanding-tool" },
-      { "name": "autourgos-whisperstt", "text": "Local speech recognition with faster Whisper.", "href": "https://github.com/devxjitin/autourgos-whisperstt" },
-      { "name": "autourgos-windowstt", "text": "Offline Windows speech recognition using the built-in engine.", "href": "https://github.com/devxjitin/autourgos-windowstt" },
-      { "name": "autourgos-micinput", "text": "Provider-independent microphone capture.", "href": "https://github.com/devxjitin/autourgos-micinput" },
-      { "name": "autourgos-textinput", "text": "Global hotkey text input popup.", "href": "https://github.com/devxjitin/autourgos-textinput" },
-      { "name": "autourgos-textoutput", "text": "Popup for showing Markdown and plain text output.", "href": "https://github.com/devxjitin/autourgos-textoutput" }
+      {
+        "name": "autourgos-cua-mouse-click-tool",
+        "text": "Left and right clicks at a given pixel position.",
+        "href": "https://github.com/devxjitin/autourgos-cua-mouse-click-tool"
+      },
+      {
+        "name": "autourgos-cua-scroll-tool",
+        "text": "Horizontal and vertical scrolling with adjustable sensitivity.",
+        "href": "https://github.com/devxjitin/autourgos-cua-scroll-tool"
+      },
+      {
+        "name": "autourgos-cua-coordinate-tool",
+        "text": "Vision-based finder that locates UI elements on screen.",
+        "href": "https://github.com/devxjitin/autourgos-cua-coordinate-tool"
+      },
+      {
+        "name": "autourgos-cua-screenshot-understanding-tool",
+        "text": "Captures the screen and answers a question about it.",
+        "href": "https://github.com/devxjitin/autourgos-cua-screenshot-understanding-tool"
+      },
+      {
+        "name": "autourgos-whisperstt",
+        "text": "Local speech recognition with faster Whisper.",
+        "href": "https://github.com/devxjitin/autourgos-whisperstt"
+      },
+      {
+        "name": "autourgos-windowstt",
+        "text": "Offline Windows speech recognition using the built-in engine.",
+        "href": "https://github.com/devxjitin/autourgos-windowstt"
+      },
+      {
+        "name": "autourgos-micinput",
+        "text": "Provider-independent microphone capture.",
+        "href": "https://github.com/devxjitin/autourgos-micinput"
+      },
+      {
+        "name": "autourgos-textinput",
+        "text": "Global hotkey text input popup.",
+        "href": "https://github.com/devxjitin/autourgos-textinput"
+      },
+      {
+        "name": "autourgos-textoutput",
+        "text": "Popup for showing Markdown and plain text output.",
+        "href": "https://github.com/devxjitin/autourgos-textoutput"
+      }
     ],
-    "relatedWork": ["autourgos"]
+    "relatedWork": [],
+    "image": "/services/desktop-apps.webp"
+  },
+  {
+    "id": "ai-agents",
+    "slug": "ai-agents",
+    "title": "AI Voice & Chat Agents",
+    "short": "Voice and chat assistants",
+    "subtitle": "Assistants that listen, reason and get real work done",
+    "description": "Voice and chat agents that use your tools and your documents to finish tasks, with approvals and logs so you stay in control. We shipped Nira, a voice assistant, for Nirman Labs.",
+    "icon": "ai-agents",
+    "tags": [
+      "Voice",
+      "RAG",
+      "Tool calling",
+      "MCP"
+    ],
+    "useCases": [
+      "A voice assistant for students, customers or reception desks",
+      "A chat assistant that answers from your own documents",
+      "An agent that books, files, searches and updates your systems",
+      "An internal helper that saves staff hours every week"
+    ],
+    "features": [
+      "Real-time voice you can interrupt (Gemini Live, Whisper)",
+      "Chat assistants with streaming answers and file attachments",
+      "Answers from your own documents (RAG) instead of guesses",
+      "Tool-using agents that call your APIs and MCP connectors",
+      "Multi-language support, including Hindi and English",
+      "Memory and personalisation across sessions"
+    ],
+    "deliverables": [
+      "A working agent with an agreed scope and toolset",
+      "Test questions and quality checks to measure answers",
+      "Human approval for risky actions, plus run logs",
+      "Cost and usage tracking per user or team",
+      "Documentation and full source handover"
+    ],
+    "technologies": [
+      "Python",
+      "Gemini",
+      "OpenAI-compatible LLMs",
+      "RAG",
+      "MCP",
+      "Whisper",
+      "Ollama",
+      "FastAPI",
+      "Autourgos"
+    ],
+    "process": [
+      {
+        "step": "01",
+        "name": "Define the task",
+        "detail": "Pick one job the agent should do and how success is measured."
+      },
+      {
+        "step": "02",
+        "name": "Connect tools and data",
+        "detail": "Wire up the APIs, documents and permissions the agent needs."
+      },
+      {
+        "step": "03",
+        "name": "Build and evaluate",
+        "detail": "Iterate against real examples until answers are reliable."
+      },
+      {
+        "step": "04",
+        "name": "Pilot with guardrails",
+        "detail": "Roll out to a small group with approvals and monitoring."
+      },
+      {
+        "step": "05",
+        "name": "Launch and improve",
+        "detail": "Go live, watch usage and cost, and keep refining."
+      }
+    ],
+    "relatedWork": [
+      "nira"
+    ],
+    "image": "/services/ai-agents.webp"
+  },
+  {
+    "id": "cybersecurity",
+    "slug": "cybersecurity",
+    "title": "Cyber Security",
+    "short": "Security reviews, testing and hardening",
+    "subtitle": "Find the weak spots before someone else does",
+    "description": "Security reviews, penetration testing and hardening for your websites, apps and cloud setup, with a clear report of what is wrong, how serious it is and how to fix it.",
+    "icon": "cybersecurity",
+    "tags": [
+      "Pentesting",
+      "Security audit",
+      "Hardening",
+      "Secure code"
+    ],
+    "useCases": [
+      "A security check of your website or web app before launch",
+      "A review of an Android app, an API or a cloud setup",
+      "Hardening a server, network or office setup after an incident or scare",
+      "Secure-coding and access-control review for an app we or you built"
+    ],
+    "features": [
+      "Web and API testing against the OWASP Top 10: injection, broken access control, weak authentication and more",
+      "Android and Windows app review, including insecure storage, exposed keys and weak update channels",
+      "Cloud and server configuration review for AWS: permissions, open ports, secrets and backups",
+      "Network and Wi-Fi checks: exposed services, weak setups and segmentation gaps",
+      "Dependency and secrets scanning in your code and CI pipeline",
+      "Security basics for your team: password hygiene, access rules and phishing awareness"
+    ],
+    "deliverables": [
+      "A written report with every finding ranked by severity",
+      "Proof of each issue, so your team can reproduce it",
+      "Fix guidance in plain steps, and help applying it if you want",
+      "A retest after fixes, to confirm they work",
+      "A short summary for non-technical owners and managers"
+    ],
+    "technologies": [
+      "OWASP",
+      "Burp Suite",
+      "Nmap",
+      "Wireshark",
+      "Metasploit",
+      "Kali Linux",
+      "OWASP ZAP",
+      "Python",
+      "AWS IAM"
+    ],
+    "process": [
+      {
+        "step": "01",
+        "name": "Agree the scope",
+        "detail": "Decide what is tested, what is off limits and when, in writing."
+      },
+      {
+        "step": "02",
+        "name": "Map the surface",
+        "detail": "List the pages, APIs, apps, servers and accounts an attacker could reach."
+      },
+      {
+        "step": "03",
+        "name": "Test safely",
+        "detail": "Manual and tool-based testing, without harming live data or users."
+      },
+      {
+        "step": "04",
+        "name": "Report",
+        "detail": "Findings ranked by severity, with proof and plain-language fixes."
+      },
+      {
+        "step": "05",
+        "name": "Fix and retest",
+        "detail": "Support while you fix, then retest and confirm the issues are closed."
+      }
+    ],
+    "relatedWork": [],
+    "image": "/services/cybersecurity.webp"
   }
 ]

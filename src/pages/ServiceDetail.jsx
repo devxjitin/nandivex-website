@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import services from '../data/services.json';
 import { workBySlug } from '../data/work.js';
-import { CTA, List, PageHeader, Section, useMeta } from '../components/ui.jsx';
+import { List, PageHeader, Section, useMeta } from '../components/ui.jsx';
 import { WorkCard } from '../components/blocks.jsx';
 import Icon from '../components/Icons.jsx';
 import NotFound from './NotFound.jsx';
@@ -19,7 +19,7 @@ export default function ServiceDetail() {
       <PageHeader eyebrow="Services" title={s.title}>
         <p>{s.subtitle}</p>
         <p className="mt-4 text-base">{s.description}</p>
-        <Link to="/contact" className="btn mt-8 bg-white text-accent hover:bg-cyan hover:text-night">Talk about your project <Icon name="arrow" className="h-4 w-4" /></Link>
+        <Link to="/#contact" className="btn mt-8 bg-white text-accent hover:bg-cyan hover:text-night">Talk about your project <Icon name="arrow" className="h-4 w-4" /></Link>
       </PageHeader>
 
       <Section eyebrow="Good fit for" title="What clients use this for">
@@ -97,7 +97,6 @@ export default function ServiceDetail() {
           ))}
         </div>
       </Section>
-      <CTA title={`Need ${s.title.toLowerCase()}?`} label="Book a call" />
     </>
   );
 }

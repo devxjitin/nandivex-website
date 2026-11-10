@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { team } from '../data/team.js';
-import { CTA, Section, useMeta } from '../components/ui.jsx';
+import { Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 import { Avatar } from '../components/blocks.jsx';
 import NotFound from './NotFound.jsx';
@@ -15,7 +15,7 @@ export default function TeamMember() {
   return (
     <>
       <Section>
-        <Link to="/about#team" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+        <Link to="/#team" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
           <Icon name="arrow" className="h-4 w-4 rotate-180" /> Back to team
         </Link>
         <div className="grid gap-10 lg:grid-cols-[320px_1fr] lg:items-start">
@@ -121,7 +121,6 @@ export default function TeamMember() {
         </Section>
       )}
 
-      <CTA title={`Want to work with ${first}?`} label="Talk to us" />
     </>
   );
 }
