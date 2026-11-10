@@ -5,13 +5,13 @@ import projects from '../data/projects.json';
 import industries from '../data/industries.json';
 import tech from '../data/techStack.json';
 import { process, principles } from '../data/site.js';
-import { ultron } from '../data/team.js';
+import { ultron, jitin } from '../data/team.js';
 import { CTA, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 import { CountUp, RotatingWord, ScrollTimeline } from '../components/motion.jsx';
 
 const groups = [
-  { name: 'Build', line: 'Websites, web apps, mobile apps and custom software.' },
+  { name: 'Build', line: 'AI agents, Android apps, websites and custom software.' },
   { name: 'Scale', line: 'Cloud, servers, networks and automated delivery.' },
   { name: 'Secure', line: 'Penetration testing, audits and hardening.' },
 ];
@@ -29,8 +29,8 @@ const orbit = [
   { ring: 0, deg: 200, icon: 'cybersecurity' },
   { ring: 1, deg: 110, icon: 'it-infrastructure' },
   { ring: 1, deg: 290, icon: 'software-development' },
-  { ring: 2, deg: 60, icon: 'mobile-app-development' },
-  { ring: 2, deg: 180, icon: 'devops' },
+  { ring: 2, deg: 60, icon: 'android-software' },
+  { ring: 2, deg: 180, icon: 'ai-agents' },
   { ring: 2, deg: 300, icon: 'web-development' },
 ];
 const rings = [
@@ -178,7 +178,8 @@ function WorkCarousel() {
 
 export default function Home() {
   useMeta();
-  const stack = Object.values(tech).flat().map((t) => t.name);
+  const skillNames = jitin.skills.flatMap(([, items]) => items);
+  const stack = [...new Set([...skillNames, ...Object.values(tech).flat().map((t) => t.name)])];
 
   return (
     <>
@@ -195,7 +196,7 @@ export default function Home() {
               the software behind your business.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
-              An engineering team for web and mobile products, cloud and server infrastructure,
+              An engineering team for AI agents, Android software and web products, plus the cloud and server infrastructure
               and security testing. We take work from first sketch to production, and stay on to keep it healthy.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
@@ -230,6 +231,30 @@ export default function Home() {
           </dl>
         </div>
       </section>
+
+      {/* What we provide */}
+      <Section eyebrow="What we provide" title="AI agents and Android software, built end to end.">
+        <div className="grid gap-5 md:grid-cols-2">
+          {[
+            { slug: 'ai-agents', title: 'AI Agents', text: 'Voice and chat assistants that use your tools and documents to finish real tasks, with approvals and logs so you stay in control.', tags: ['Voice', 'RAG', 'Tool calling', 'MCP'] },
+            { slug: 'android-software', title: 'Android Software', text: 'Native Kotlin apps for assistants, kiosks and business tools, with offline support, over-the-air updates and a release pipeline.', tags: ['Kotlin', 'Jetpack Compose', 'On-device search', 'OTA updates'] },
+          ].map((c) => (
+            <Link key={c.slug} to={`/services/${c.slug}`} className="card-hover group flex flex-col !p-8">
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-white">
+                <Icon name={c.slug} className="h-7 w-7" />
+              </span>
+              <h3 className="mt-6 text-3xl">{c.title}</h3>
+              <p className="mt-3 flex-1 leading-relaxed text-muted">{c.text}</p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {c.tags.map((t) => <li key={t} className="chip">{t}</li>)}
+              </ul>
+              <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+                Learn more <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </Section>
 
       {/* Services */}
       <Section eyebrow="Services" title="Pick an area. See what we do." tone="soft">

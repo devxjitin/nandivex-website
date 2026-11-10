@@ -8,6 +8,8 @@ const paths = {
   'network-security': <><circle cx="12" cy="5" r="2.200" /><circle cx="5" cy="18" r="2.200" /><circle cx="19" cy="18" r="2.200" /><path d="M12 7.200v4.300M12 11.500l-6 4.500M12 11.500l6 4.500" /></>,
   'security-audit': <><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" /><path d="M14 3v5h5M9 14l2 2 4-4" /></>,
   devops: <><path d="M4 17l5-5-5-5M12 19h8" /></>,
+  'ai-agents': <><rect x="4" y="8" width="16" height="11" rx="3" /><path d="M12 8V5M9 13h.01M15 13h.01M9.500 16.200h5" /><circle cx="12" cy="3.800" r="1" /></>,
+  'android-software': <><rect x="6.500" y="2.500" width="11" height="19" rx="2.500" /><path d="M10.500 9.500L9 11l1.500 1.500M13.500 9.500L15 11l-1.500 1.500M11 18h2" /></>,
   build: <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.500 5l-3 14" />,
   scale: <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" />,
   secure: <><path d="M12 3l7.500 3v5.500c0 4.500-3.100 8-7.500 9.500-4.400-1.500-7.500-5-7.500-9.500V6L12 3z" /><path d="M8.800 12l2.200 2.200 4.200-4.400" /></>,

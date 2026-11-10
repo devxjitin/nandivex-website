@@ -1,5 +1,127 @@
 [
   {
+    "id": "ai-agents",
+    "slug": "ai-agents",
+    "title": "AI Agents",
+    "subtitle": "Assistants that listen, reason and take action",
+    "description": "Voice and chat agents that use your tools and your documents to get real work done, with approvals and logs so you stay in control.",
+    "icon": "Bot",
+    "category": "Build",
+    "features": [
+      "Voice assistants with real-time speech (Gemini Live, Whisper)",
+      "Chat assistants with streaming answers and file attachments",
+      "Answers from your own documents (RAG) instead of guesses",
+      "Tool-using agents that call your APIs and MCP connectors",
+      "Computer-use and workflow automation agents",
+      "Memory and personalisation across sessions"
+    ],
+    "deliverables": [
+      "A working agent with an agreed scope and toolset",
+      "Test questions and quality checks to measure answers",
+      "Human approval for risky actions, plus run logs",
+      "Cost and usage tracking per user or team",
+      "Documentation and source handover"
+    ],
+    "technologies": [
+      "Python",
+      "Gemini",
+      "OpenAI-compatible LLMs",
+      "RAG",
+      "MCP",
+      "Whisper",
+      "Ollama",
+      "FastAPI",
+      "Autourgos"
+    ],
+    "process": [
+      {
+        "step": "01",
+        "name": "Define the task",
+        "detail": "Pick one job the agent should do and how success is measured."
+      },
+      {
+        "step": "02",
+        "name": "Connect tools and data",
+        "detail": "Wire up the APIs, documents and permissions the agent needs."
+      },
+      {
+        "step": "03",
+        "name": "Build and evaluate",
+        "detail": "Iterate against real examples until answers are reliable."
+      },
+      {
+        "step": "04",
+        "name": "Pilot with guardrails",
+        "detail": "Roll out to a small group with approvals and monitoring."
+      },
+      {
+        "step": "05",
+        "name": "Launch and improve",
+        "detail": "Go live, watch usage and cost, and keep refining."
+      }
+    ]
+  },
+  {
+    "id": "android-software",
+    "slug": "android-software",
+    "title": "Android Software",
+    "subtitle": "Native Android apps that feel fast and work offline",
+    "description": "Native Kotlin apps for assistants, kiosks and business tools, built with Jetpack Compose and shipped with a proper release pipeline.",
+    "icon": "Smartphone",
+    "category": "Build",
+    "features": [
+      "Native apps in Kotlin and Jetpack Compose",
+      "Voice and chat assistants that run on the phone",
+      "Kiosk and reception-desk apps",
+      "Offline-first design with on-device search and storage",
+      "Over-the-air updates with checksum verification",
+      "Play Store submission and signed release builds"
+    ],
+    "deliverables": [
+      "Signed release builds ready to install or publish",
+      "Full source code and build documentation",
+      "CI pipeline that builds and signs every release",
+      "Crash and usage reporting",
+      "Support for Android 8 and newer"
+    ],
+    "technologies": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Hilt",
+      "ObjectBox",
+      "Gemini",
+      "AWS Lambda",
+      "GitHub Actions"
+    ],
+    "process": [
+      {
+        "step": "01",
+        "name": "Scope and flows",
+        "detail": "Map screens, offline needs and device targets."
+      },
+      {
+        "step": "02",
+        "name": "Design",
+        "detail": "Compose-ready interface design with real device testing."
+      },
+      {
+        "step": "03",
+        "name": "Build",
+        "detail": "Native Kotlin with clean architecture and automated tests."
+      },
+      {
+        "step": "04",
+        "name": "Release pipeline",
+        "detail": "Signed builds from CI and an update channel."
+      },
+      {
+        "step": "05",
+        "name": "Launch and support",
+        "detail": "Store submission, monitoring and ongoing updates."
+      }
+    ]
+  },
+  {
     "id": "web-development",
     "slug": "web-development",
     "title": "Web Development",
