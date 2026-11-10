@@ -3,7 +3,7 @@ import { team, jitin } from '../data/team.js';
 import { clients } from '../data/clients.js';
 import { principles, stats } from '../data/site.js';
 import { CTA, PageHeader, Section, useMeta } from '../components/ui.jsx';
-import { LogoStrip, StatRow } from '../components/blocks.jsx';
+import { Avatar, LogoStrip, StatRow } from '../components/blocks.jsx';
 import Icon from '../components/Icons.jsx';
 
 export default function About() {
@@ -36,11 +36,11 @@ export default function About() {
       </Section>
 
       <Section id="team" eyebrow="Team" title="The people behind the work." tone="soft">
-        <ul className="grid gap-6 sm:grid-cols-2">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m) => (
             <li key={m.slug}>
-              <Link to={`/team/${m.slug}`} className="card-hover group flex h-full flex-col overflow-hidden !p-0 sm:flex-row">
-                <img src={m.photo} alt={m.name} loading="lazy" width="800" height="1000" className="aspect-[4/5] w-full object-cover sm:w-44" />
+              <Link to={`/team/${m.slug}`} className="card-hover group flex h-full flex-col overflow-hidden !p-0">
+                <Avatar m={m} textClass="text-6xl" className="aspect-[4/5] w-full object-cover" />
                 <div className="flex flex-1 flex-col p-6">
                   <p className="label">{m.role}</p>
                   <h3 className="mt-2 text-2xl">{m.name}</h3>
