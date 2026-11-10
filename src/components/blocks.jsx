@@ -49,7 +49,7 @@ export function PhoneMock({ shots, interval = 3200, className = '' }) {
 
 /** Team photo, or initials on a gradient when a member has no photo yet. */
 export function Avatar({ m, className = '', textClass = 'text-5xl' }) {
-  if (m.photo) return <img src={m.photo} alt={m.name} loading="lazy" className={className} />;
+  if (m.photo) return <img src={m.photo} alt={m.name} loading="lazy" className={`object-top ${className}`} />;
   const initials = m.name.split(' ').map((w) => w[0]).slice(0, 2).join('');
   return (
     <div role="img" aria-label={m.name} className={`flex items-center justify-center bg-gradient-to-br from-night to-accent font-display font-extrabold text-white ${textClass} ${className}`}>
