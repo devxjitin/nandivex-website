@@ -46,9 +46,10 @@ export const ultron = {
   shots: [
     ['/products/ultron-home.png', 'ULTRON home screen'],
     ['/products/ultron-voice.png', 'ULTRON live voice mode'],
-    ['/products/ultron-chat.png', 'ULTRON chat with a streamed answer'],
-    ['/products/ultron-personalization.png', 'ULTRON personalisation settings'],
+    ['/products/ultron-connectors.png', 'ULTRON connectors'],
+    ['/products/ultron-settings.png', 'ULTRON settings'],
   ],
+
   siteUrl: 'https://ultron.devxjitin.dev',
 };
 
