@@ -38,7 +38,7 @@
       { "step": "04", "name": "Pilot with guardrails", "detail": "Roll out to a small group with approvals and monitoring." },
       { "step": "05", "name": "Launch and improve", "detail": "Go live, watch usage and cost, and keep refining." }
     ],
-    "relatedWork": ["nira", "ultron", "autourgos", "drishti"]
+    "relatedWork": ["nira", "ultron", "autourgos"]
   },
   {
     "id": "android-apps",
@@ -78,7 +78,7 @@
       { "step": "04", "name": "Release pipeline", "detail": "Signed builds from CI and an update channel." },
       { "step": "05", "name": "Launch and support", "detail": "Store submission, monitoring and ongoing updates." }
     ],
-    "relatedWork": ["ultron", "drishti"]
+    "relatedWork": ["ultron"]
   },
   {
     "id": "web-software",

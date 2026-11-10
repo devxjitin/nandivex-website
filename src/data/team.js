@@ -73,13 +73,6 @@ export const otherProjects = [
     stack: ['FastAPI', 'PostgreSQL', 'Next.js', 'Docker'],
     links: [{ label: 'Source', href: 'https://github.com/devxjitin/CampusGrade' }],
   },
-  {
-    name: 'Drishti',
-    tag: 'Voice assistant kiosk',
-    text: 'A reception-desk kiosk with a voice interface that answers from an organisation’s own documents instead of guessing.',
-    stack: ['Kotlin', 'Jetpack Compose', 'Gemini', 'RAG'],
-    links: [],
-  },
 ];
 
 /* Other work shown on a member's own page. */
