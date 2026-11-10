@@ -22,7 +22,7 @@ export const work = [
       'Branded for Nirman Labs, and built so another client can be branded quickly',
     ],
     outcome: [
-      'Nira shipped to Nirman Labs as signed Android builds',
+      'Nira shipped to Nirman Labs as signed Android builds, with three releases so far (v1.0.0 to v1.0.3)',
       'Updates reach phones automatically, with no store listing needed',
       'One team handled design, build and release',
     ],
