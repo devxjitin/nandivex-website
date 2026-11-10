@@ -28,7 +28,20 @@ npm run preview   # serve the production build
 └── legacy/              # compiled build of the previous site, for reference only
 ```
 
-Content lives in `src/data/*.json`, so copy changes do not need component edits.
+Content lives in `src/data/`, so copy changes do not need component edits.
+
+## Adding content
+
+| To add | Edit | Appears on |
+|---|---|---|
+| A service | `src/data/services.json` (add an object; put its icon in `components/Icons.jsx`) | Home, `/services`, `/services/:slug`, footer |
+| A case study or product | `src/data/work.js` | Home, `/work`, `/work/:slug` |
+| A client logo | drop the file in `public/clients/`, add it to `src/data/clients.js` | "Trusted by" strip, About, footer |
+| An FAQ | `src/data/faq.js` | Home |
+| A team member | `src/data/team.js` | About, `/team/:slug` |
+| A nav link, process step, stat | `src/data/site.js` | Header, Home |
+
+Old URLs (`/projects`, `/industries`, `/team`, retired service slugs) redirect to their new home in `src/App.jsx`.
 
 ## Deploy
 
@@ -38,7 +51,7 @@ It is a single-page app, so the workflow copies `index.html` to `404.html` so de
 
 ## To do before launch
 
-- Replace the placeholder logo (`public/logo.svg`) with the real brand mark.
+- Replace the generic Nirman Labs wording in `src/data/work.js` with the three assistants' names and details (see the TODO there).
 - The contact form opens the visitor's email client (`mailto:`). Connect a form
   backend (Formspree, Resend, own API) for real submissions.
 - Review `privacy-policy` and `terms-and-conditions`, which are short drafts.
