@@ -243,65 +243,6 @@
     ]
   },
   {
-    "id": "mobile-app-development",
-    "slug": "mobile-app-development",
-    "title": "Mobile App Development",
-    "subtitle": "Powerful Mobile Experiences for Android, iOS & Cross-Platform",
-    "description": "Intuitive, high-performance mobile applications engineered with native capabilities, seamless offline sync, and fluid animations.",
-    "icon": "Smartphone",
-    "category": "Build",
-    "features": [
-      "Native Android Development",
-      "Native iOS Development",
-      "Cross-Platform React Native & Flutter",
-      "Progressive Web Apps (PWA)",
-      "Push Notification & Real-Time Sync",
-      "Biometric Authentication Integration"
-    ],
-    "deliverables": [
-      "App Store & Play Store Compliance",
-      "Fluid 60 FPS User Interfaces",
-      "Offline-First Architecture",
-      "Crash Analytics & Telemetry",
-      "Secure Keystore/Keychain Storage"
-    ],
-    "technologies": [
-      "React Native",
-      "JavaScript",
-      "Android Studio",
-      "Xcode",
-      "Firebase",
-      "REST APIs"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Mobile UX Strategy",
-        "detail": "User journey mapping and mobile interaction design."
-      },
-      {
-        "step": "02",
-        "name": "Native/Hybrid Coding",
-        "detail": "Building responsive mobile screens with clean state management."
-      },
-      {
-        "step": "03",
-        "name": "API & Device Integration",
-        "detail": "Camera, GPS, biometrics, and push notification hooks."
-      },
-      {
-        "step": "04",
-        "name": "Device Matrix Testing",
-        "detail": "Validating across diverse screen sizes and OS releases."
-      },
-      {
-        "step": "05",
-        "name": "Store Submission & Launch",
-        "detail": "Handling certificate signing, privacy manifests, and approvals."
-      }
-    ]
-  },
-  {
     "id": "cloud-services",
     "slug": "cloud-services",
     "title": "Cloud Services & Migration",
