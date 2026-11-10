@@ -147,26 +147,6 @@ export const work = [
     links: [{ label: 'Live site', href: 'https://aiinterviewerpro.vercel.app' }, { label: 'Source', href: 'https://github.com/Amandsvv/AI-Interviewer' }],
     images: [],
   },
-  {
-    slug: 'ultron-windows',
-    type: 'open-source',
-    title: 'ULTRON for Windows, a voice-controlled desktop assistant',
-    tag: 'Desktop app · AI agent',
-    summary: 'A Windows assistant you talk to. It sees your screen or webcam, controls the mouse and keyboard, runs commands and remembers across sessions.',
-    challenge: 'Voice assistants answer questions but cannot work your computer. We wanted one with real hands on the desktop, and with guardrails so it stays safe.',
-    built: [
-      'Continuous two-way voice conversation that you can interrupt',
-      'Live screen or webcam vision, with voice-controlled switching between monitors',
-      'Mouse, keyboard and window control, including clicking things by description',
-      'Long-term memory and a searchable history of past conversations',
-      'Built-in emergency stop: move the mouse to a screen corner to halt automation',
-    ],
-    outcome: ['Working Windows assistant, source available'],
-    stack: ['Python', 'Gemini', 'Computer use', 'Voice', 'Windows'],
-    services: ['desktop-apps', 'ai-agents'],
-    links: [{ label: 'Source', href: 'https://github.com/devxjitin/ULTRON' }],
-    images: [],
-  },
 ];
 
 export const workBySlug = (slug) => work.find((w) => w.slug === slug);
