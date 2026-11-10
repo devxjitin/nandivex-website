@@ -13,8 +13,8 @@ export default function Services() {
         AI agents are our main work. We also build the Android apps, Windows desktop tools and web software around them, then deploy and look after it all.
       </PageHeader>
       <Section>
-        <div className="grid gap-5 md:grid-cols-2">
-          <ServiceCard s={lead} big span={rest.length} />
+        <div className="grid gap-5 md:grid-cols-3">
+          <ServiceCard s={lead} big />
           {rest.map((s) => <ServiceCard key={s.slug} s={s} />)}
         </div>
       </Section>
