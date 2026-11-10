@@ -30,10 +30,10 @@ export function PageHeader({ eyebrow, title, children }) {
   );
 }
 
-export function Section({ eyebrow, title, children, className = '', tone = 'white' }) {
+export function Section({ id, eyebrow, title, children, className = '', tone = 'white' }) {
   const bg = tone === 'soft' ? 'bg-soft' : 'bg-white';
   return (
-    <section className={`${bg} ${className}`}>
+    <section id={id} className={`${bg} ${className}`}>
       <div className="wrap py-16 sm:py-24">
         {(eyebrow || title) && (
           <div className="mb-12 max-w-2xl">
