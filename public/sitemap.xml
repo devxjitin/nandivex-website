@@ -8,7 +8,6 @@
   <url><loc>https://nandivex.in/industries</loc></url>
   <url><loc>https://nandivex.in/projects</loc></url>
   <url><loc>https://nandivex.in/products</loc></url>
-  <url><loc>https://nandivex.in/blog</loc></url>
   <url><loc>https://nandivex.in/careers</loc></url>
   <url><loc>https://nandivex.in/contact</loc></url>
   <url><loc>https://nandivex.in/privacy-policy</loc></url>
@@ -30,9 +29,4 @@
   <url><loc>https://nandivex.in/project/enterprise-business-erp</loc></url>
   <url><loc>https://nandivex.in/project/cloud-infrastructure-modernization</loc></url>
   <url><loc>https://nandivex.in/project/defensive-vapt-security-overhaul</loc></url>
-  <url><loc>https://nandivex.in/blog/defending-against-owasp-top-10</loc></url>
-  <url><loc>https://nandivex.in/blog/architecting-high-availability-cloud-infrastructure</loc></url>
-  <url><loc>https://nandivex.in/blog/building-performant-react-applications</loc></url>
-  <url><loc>https://nandivex.in/blog/practical-ci-cd-devops-playbook</loc></url>
-  <url><loc>https://nandivex.in/blog/linux-server-hardening-checklist</loc></url>
 </urlset>
