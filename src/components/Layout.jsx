@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { nav, site } from '../data/site.js';
 import services from '../data/services.json';
+import { useAutoReveal, useSmoothScroll } from './motion.jsx';
 
 function Logo() {
   return (
@@ -107,14 +108,17 @@ function Footer() {
 
 export default function Layout() {
   const { pathname } = useLocation();
+  const lenis = useSmoothScroll();
+  useAutoReveal(pathname);
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (lenis.current) lenis.current.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname, lenis]);
   return (
     <div className="flex min-h-screen flex-col">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:text-white">Skip to content</a>
       <Header />
-      <main id="main" className="flex-1"><Outlet /></main>
+      <main id="main" key={pathname} className="page-in flex-1"><Outlet /></main>
       <Footer />
     </div>
   );
