@@ -131,7 +131,7 @@ export const aman = {
   slug: 'aman-kumar',
   name: 'Aman Kumar',
   role: 'Full Stack Developer',
-  photo: null, // add /team/aman.jpeg to public/team/ and set this path to show a photo
+  photo: '/team/aman.jpeg',
   short: 'Builds full-stack products end to end, from React and Next.js front ends to Node and FastAPI back ends, with AI features on top.',
   bio: [
     'I build full-stack web products end to end: the interface, the API, the database and the deployment. I work mostly in Next.js, React, Node.js, Express and PostgreSQL, and add AI features with LLMs, RAG and LangGraph where they help.',
