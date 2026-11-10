@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import services from '../data/services.json';
 import projects from '../data/projects.json';
@@ -22,45 +22,69 @@ const stats = [
   { prefix: '−', value: 32, decimals: 0, suffix: '%', label: 'Infrastructure running cost' },
 ];
 
-/* nodes that orbit the logo: [ring index, angle in degrees, icon] */
+/* Orbit nodes: ring index, start angle (deg), icon. Rings have a radius (% of the box) and a speed (deg/s). */
 const orbit = [
-  [0, 20, 'cloud-services'],
-  [0, 200, 'cybersecurity'],
-  [1, 110, 'it-infrastructure'],
-  [1, 290, 'software-development'],
-  [2, 60, 'mobile-app-development'],
-  [2, 180, 'devops'],
-  [2, 300, 'web-development'],
+  { ring: 0, deg: 20, icon: 'cloud-services' },
+  { ring: 0, deg: 200, icon: 'cybersecurity' },
+  { ring: 1, deg: 110, icon: 'it-infrastructure' },
+  { ring: 1, deg: 290, icon: 'software-development' },
+  { ring: 2, deg: 60, icon: 'mobile-app-development' },
+  { ring: 2, deg: 180, icon: 'devops' },
+  { ring: 2, deg: 300, icon: 'web-development' },
 ];
 const rings = [
-  { size: '52%', dur: 28, dir: 'normal' },
-  { size: '76%', dur: 46, dir: 'reverse' },
-  { size: '100%', dur: 70, dir: 'normal' },
+  { radius: 26, speed: 13 },
+  { radius: 38, speed: -8 },
+  { radius: 49, speed: 5 },
 ];
 
 function HeroOrbit() {
+  const nodes = useRef([]);
+
+  useEffect(() => {
+    const place = (t) => {
+      orbit.forEach((o, i) => {
+        const el = nodes.current[i];
+        if (!el) return;
+        const r = rings[o.ring];
+        const a = ((o.deg + r.speed * t) * Math.PI) / 180;
+        el.style.left = `${50 + r.radius * Math.cos(a)}%`;
+        el.style.top = `${50 + r.radius * Math.sin(a)}%`;
+      });
+    };
+    place(0);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    let raf;
+    const t0 = performance.now();
+    const loop = (now) => {
+      place((now - t0) / 1000);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[460px]" aria-hidden="true">
-      <span className="absolute left-1/2 top-1/2 h-[30%] w-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan/40" style={{ animation: 'pulse-ring 3.2s ease-out infinite' }} />
-      <img src="/logo.png" alt="" className="absolute left-1/2 top-1/2 h-[26%] w-[26%] -translate-x-1/2 -translate-y-1/2 rounded-3xl shadow-lift" style={{ animation: 'floaty 5s ease-in-out infinite' }} />
-      {rings.map((r, ri) => (
-        <div
-          key={r.size}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/20"
-          style={{ width: r.size, height: r.size, animation: `spin ${r.dur}s linear infinite ${r.dir}` }}
+      {rings.map((r) => (
+        <span
+          key={r.radius}
+          className="absolute rounded-full border border-dashed border-white/20"
+          style={{ left: `${50 - r.radius}%`, top: `${50 - r.radius}%`, width: `${r.radius * 2}%`, height: `${r.radius * 2}%` }}
+        />
+      ))}
+      <span className="absolute inset-0 m-auto h-[20%] w-[20%] rounded-full border border-cyan/40" style={{ animation: 'pulse-ring 3.2s ease-out infinite' }} />
+      <div className="absolute inset-0 m-auto flex h-[24%] w-[24%] items-center justify-center">
+        <img src="/logo.png" alt="" className="h-full w-full rounded-3xl shadow-lift" style={{ animation: 'floaty 5s ease-in-out infinite' }} />
+      </div>
+      {orbit.map((o, i) => (
+        <span
+          key={o.icon}
+          ref={(el) => { nodes.current[i] = el; }}
+          className="absolute flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border border-white/15 bg-night text-cyan shadow-card"
         >
-          {orbit.filter((o) => o[0] === ri).map(([, deg, icon]) => (
-            <span
-              key={icon}
-              className="absolute flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border border-white/15 bg-night text-cyan shadow-card"
-              style={{ left: `${50 + 50 * Math.cos((deg * Math.PI) / 180)}%`, top: `${50 + 50 * Math.sin((deg * Math.PI) / 180)}%` }}
-            >
-              <span className="flex" style={{ animation: `spin ${r.dur}s linear infinite ${r.dir === 'normal' ? 'reverse' : 'normal'}` }}>
-                <Icon name={icon} className="h-5 w-5" />
-              </span>
-            </span>
-          ))}
-        </div>
+          <Icon name={o.icon} className="h-5 w-5" />
+        </span>
       ))}
     </div>
   );
@@ -166,7 +190,8 @@ export default function Home() {
               <span className="h-1.5 w-1.5 rounded-full bg-cyan" /> Web · Infrastructure · Security
             </p>
             <h1 className="text-5xl leading-[1.04] sm:text-6xl lg:text-[4.25rem]">
-              We <RotatingWord words={['build', 'run', 'secure']} className="text-cyan" /> the software behind your business.
+              <span className="block">We <RotatingWord words={['build', 'run', 'secure']} className="text-cyan" /></span>
+              the software behind your business.
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
               An engineering team for web and mobile products, cloud and server infrastructure,
