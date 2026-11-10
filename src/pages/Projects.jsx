@@ -13,7 +13,9 @@ export default function Projects() {
       <Section tone="soft">
         <div className="grid gap-6 md:grid-cols-2">
           {projects.map((p) => (
-            <Link key={p.slug} to={`/project/${p.slug}`} className="card-hover group flex flex-col !p-8">
+            <Link key={p.slug} to={`/project/${p.slug}`} className="card-hover group flex flex-col overflow-hidden !p-0">
+              <img src={p.image} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover" />
+              <div className="flex flex-1 flex-col p-8">
               <p className="label">{p.industry}</p>
               <h2 className="mt-3 text-2xl leading-snug group-hover:text-accent">{p.title}</h2>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.shortDescription}</p>
@@ -23,6 +25,7 @@ export default function Projects() {
               <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
                 Read the case study <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
+              </div>
             </Link>
           ))}
         </div>

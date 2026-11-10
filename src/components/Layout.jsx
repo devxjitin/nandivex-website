@@ -6,7 +6,7 @@ import services from '../data/services.json';
 function Logo() {
   return (
     <Link to="/" className="flex items-center gap-2.5" aria-label="NANDIVEX home">
-      <img src="/logo.svg" alt="" className="h-7 w-7" />
+      <img src="/logo.png" alt="" className="h-9 w-9 rounded-lg" />
       <span className="font-sans text-[15px] font-semibold tracking-[0.12em]">NANDIVEX</span>
     </Link>
   );
@@ -61,7 +61,7 @@ function Footer() {
       <div className="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2.5">
-            <img src="/logo.svg" alt="" className="h-7 w-7" />
+            <img src="/logo.png" alt="" className="h-9 w-9 rounded-lg" />
             <span className="font-semibold tracking-[0.12em]">NANDIVEX</span>
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-paper/60">

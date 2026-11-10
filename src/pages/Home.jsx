@@ -103,11 +103,14 @@ export default function Home() {
       <Section eyebrow="Selected work" title="Problems we solved, with the numbers.">
         <div className="grid gap-5 lg:grid-cols-3">
           {featured.map((p) => (
-            <Link key={p.slug} to={`/project/${p.slug}`} className="card-hover group flex flex-col">
+            <Link key={p.slug} to={`/project/${p.slug}`} className="card-hover group flex flex-col overflow-hidden !p-0">
+              <img src={p.image} alt="" loading="lazy" className="aspect-[16/9] w-full object-cover" />
+              <div className="flex flex-1 flex-col p-6">
               <p className="label">{p.industry}</p>
               <h3 className="mt-3 text-xl leading-snug">{p.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.shortDescription}</p>
               <p className="mt-5 rounded-xl bg-tint p-4 text-sm font-semibold leading-snug text-accent-dark">{p.results[0]}</p>
+              </div>
             </Link>
           ))}
         </div>

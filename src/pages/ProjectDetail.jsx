@@ -17,6 +17,10 @@ export default function ProjectDetail() {
         {p.shortDescription}
       </PageHeader>
 
+      <div className="wrap -mt-8 relative z-10">
+        <img src={p.image} alt={p.title} className="aspect-[21/9] w-full rounded-3xl object-cover shadow-lift" />
+      </div>
+
       <Section eyebrow="Results">
         <ul className="grid gap-px border border-line bg-line md:grid-cols-3">
           {p.results.map((r) => (

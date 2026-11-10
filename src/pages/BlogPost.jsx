@@ -22,6 +22,7 @@ export default function BlogPost() {
           </div>
         </header>
         <div className="wrap max-w-3xl py-14">
+          <img src={p.image} alt="" className="mb-10 aspect-[16/9] w-full rounded-2xl object-cover" />
           <Markdown source={p.content} />
           <ul className="mt-12 flex flex-wrap gap-2 border-t border-line pt-6">
             {p.tags.map((t) => (
