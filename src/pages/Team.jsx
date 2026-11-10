@@ -70,8 +70,8 @@ export default function Team() {
               <ul className="mt-6 flex flex-wrap gap-2">
                 {ultron.stack.map((s) => <li key={s} className="rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-medium text-white/80">{s}</li>)}
               </ul>
-              <a href={ultron.siteRepo} target="_blank" rel="noopener noreferrer" className="btn mt-8 border-white/25 text-white hover:bg-white/10">
-                ULTRON website source <Icon name="arrow" className="h-4 w-4 -rotate-45" />
+              <a href={ultron.siteUrl} target="_blank" rel="noopener noreferrer" className="btn mt-8 border-white/25 text-white hover:bg-white/10">
+                Visit ULTRON website <Icon name="arrow" className="h-4 w-4 -rotate-45" />
               </a>
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2">
