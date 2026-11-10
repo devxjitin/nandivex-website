@@ -38,7 +38,7 @@
       { "step": "04", "name": "Pilot with guardrails", "detail": "Roll out to a small group with approvals and monitoring." },
       { "step": "05", "name": "Launch and improve", "detail": "Go live, watch usage and cost, and keep refining." }
     ],
-    "relatedWork": ["nira", "ultron", "ultron-windows", "autourgos"]
+    "relatedWork": ["nira", "ultron", "autourgos"]
   },
   {
     "id": "android-apps",
@@ -169,6 +169,6 @@
       { "name": "autourgos-textinput", "text": "Global hotkey text input popup.", "href": "https://github.com/devxjitin/autourgos-textinput" },
       { "name": "autourgos-textoutput", "text": "Popup for showing Markdown and plain text output.", "href": "https://github.com/devxjitin/autourgos-textoutput" }
     ],
-    "relatedWork": ["ultron-windows", "autourgos"]
+    "relatedWork": ["autourgos"]
   }
 ]
