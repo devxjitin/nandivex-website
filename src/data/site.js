@@ -2,6 +2,8 @@ export const site = {
   name: 'NandiVex Technologies',
   tagline: 'AI agents, Android apps and web software',
   email: 'contact@nandivex.com',
+  phone: '+91 74080 68618',
+  phoneHref: 'tel:+917408068618',
   location: 'India',
   url: 'https://nandivex.in',
 };
