@@ -102,6 +102,7 @@ export const sonia = {
   stats: [
     ['3rd', 'INTELLITHON’26, K.R. Mangalam University (team lead, VoxAssist)'],
     ['3rd', 'Best Project Award, K.R. Mangalam University (Vox Agent)'],
+    ['IEEE', 'conference paper'],
   ],
   skills: [
     ['Design', ['Logo design', 'Brand identity', 'UI design', 'Visual design']],
