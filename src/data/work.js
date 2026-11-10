@@ -13,18 +13,20 @@ export const work = [
     tag: 'Client work · Education',
     summary: 'We built and shipped three voice assistants for Nirman Labs, a robotics and coding education company that works with schools.',
     challenge: 'Nirman Labs teaches robotics and coding to students from Class 3 to 12 across many schools. They wanted voice assistants that students and staff could simply talk to, in plain language, instead of reading menus.',
-    // TODO: replace the generic wording below with each assistant's name and purpose.
+    // TODO: add the third assistant (name and what it does).
     built: [
-      'Three voice assistants, each built for its own job and audience',
-      'Natural spoken conversation that can be interrupted',
-      'Answers drawn from Nirman Labs material rather than guesses',
-      'Delivered, tested and handed over as working products',
+      'Nirman Voice Assistant: a voice-only assistant as a web app and a native Android app. Tap, speak, hear the reply, with answers grounded in a Nirman Labs knowledge base',
+      'Nira: an Android assistant that answers only from your own documents (PDF, DOCX, TXT, Markdown), searched on the phone, plus a picture library it can show on request',
+      'Real-time spoken conversation with Gemini Live, interruptible, in English and Hindi',
+      'Signed Android builds with in-app updates and per-phone activation codes',
+      'Branded for Nirman Labs, and designed so another client can be branded in minutes',
     ],
     outcome: [
       'Three assistants shipped and in use',
+      'Nira released as signed Android builds with automatic updates',
       'One team handled design, build and release',
     ],
-    stack: ['Voice AI', 'Gemini', 'RAG', 'Python', 'Kotlin'],
+    stack: ['Gemini Live', 'RAG', 'Kotlin', 'Jetpack Compose', 'React', 'TypeScript', 'ObjectBox', 'AWS'],
     services: ['ai-agents', 'android-apps'],
     links: [{ label: 'Nirman Labs', href: 'https://nirmanlabs.com' }],
     images: [],
