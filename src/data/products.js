@@ -19,10 +19,10 @@ export const products = [
       'YouTube downloads saved to your phone',
     ],
     shots: [
-      ['/products/ultron-home.png', 'ULTRON home screen'],
-      ['/products/ultron-voice.png', 'ULTRON live voice mode'],
-      ['/products/ultron-connectors.png', 'ULTRON connectors'],
-      ['/products/ultron-settings.png', 'ULTRON settings'],
+      ['/products/ultron-home.webp', 'ULTRON home screen'],
+      ['/products/ultron-voice.webp', 'ULTRON live voice mode'],
+      ['/products/ultron-connectors.webp', 'ULTRON connectors'],
+      ['/products/ultron-skills.webp', 'ULTRON skills screen'],
     ],
     plans: [
       { name: 'Spark', length: '7 days', price: 199, was: 299, perDay: 28, off: 33 },

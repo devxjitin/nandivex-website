@@ -30,7 +30,7 @@ export default function Projects() {
             </div>
             <div className="grid grid-cols-4 gap-3">
               {ultron.shots.map(([src, alt]) => (
-                <img key={src} src={src} alt={alt} loading="lazy" width="540" height="1200" className="aspect-[9/20] w-full rounded-xl border border-white/10 bg-black/30 object-contain" />
+                <img key={src} src={src} alt={alt} loading="lazy" width="720" height="1600" className="aspect-[9/20] w-full rounded-xl border border-white/10 bg-black/30 object-contain" />
               ))}
             </div>
           </div>
