@@ -278,8 +278,8 @@ export default function Home() {
             <h2 className="mt-3 text-4xl sm:text-5xl">ULTRON, an AI assistant for Android.</h2>
             <p className="mt-5 max-w-xl leading-relaxed text-white/70">{ultron.summary}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/team#ultron" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
-                See ULTRON <Icon name="arrow" className="h-4 w-4" />
+              <Link to="/products#ultron" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
+                See plans and pricing <Icon name="arrow" className="h-4 w-4" />
               </Link>
               <Link to="/team" className="btn border-white/25 text-white hover:bg-white/10">Meet the team</Link>
             </div>
