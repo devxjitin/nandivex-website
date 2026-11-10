@@ -76,7 +76,7 @@ export default function Team() {
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2">
               {ultron.shots.map(([src, alt]) => (
-                <img key={src} src={src} alt={alt} loading="lazy" className="w-full rounded-2xl border border-white/10 bg-black/30 object-contain shadow-card" />
+                <img key={src} src={src} alt={alt} loading="lazy" width="540" height="1200" className="aspect-[9/20] w-full rounded-2xl border border-white/10 bg-black/30 object-contain shadow-card" />
               ))}
             </div>
           </div>
