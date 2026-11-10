@@ -8,7 +8,7 @@ import { ultron, team } from '../data/team.js';
 import { CTA, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 import { RotatingWord, ScrollTimeline } from '../components/motion.jsx';
-import { FAQ, LogoStrip, PhoneMock, ServiceCard, StatRow, VoiceWave, WorkCard } from '../components/blocks.jsx';
+import { Avatar, FAQ, LogoStrip, PhoneMock, ServiceCard, StatRow, VoiceWave, WorkCard } from '../components/blocks.jsx';
 
 function Hero() {
   return (
@@ -149,11 +149,11 @@ export default function Home() {
 
       {/* Team */}
       <Section eyebrow="The team" title="A small team. You talk to the people building it." tone="soft">
-        <ul className="grid gap-5 sm:grid-cols-2">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m) => (
             <li key={m.slug}>
               <Link to={`/team/${m.slug}`} className="card-hover group flex items-center gap-5 !p-4">
-                <img src={m.photo} alt={m.name} loading="lazy" width="96" height="96" className="h-24 w-24 flex-none rounded-2xl object-cover" />
+                <Avatar m={m} textClass="text-3xl" className="h-24 w-24 flex-none rounded-2xl object-cover" />
                 <span className="min-w-0">
                   <span className="label block">{m.role}</span>
                   <span className="mt-1 block font-display text-xl font-bold">{m.name}</span>

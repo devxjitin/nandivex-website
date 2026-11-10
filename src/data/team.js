@@ -127,6 +127,77 @@ export const sonia = {
   ],
 };
 
+export const aman = {
+  slug: 'aman-kumar',
+  name: 'Aman Kumar',
+  role: 'Full Stack Developer',
+  photo: null, // add /team/aman.jpeg to public/team/ and set this path to show a photo
+  short: 'Builds full-stack products end to end, from React and Next.js front ends to Node and FastAPI back ends, with AI features on top.',
+  bio: [
+    'I build full-stack web products end to end: the interface, the API, the database and the deployment. I work mostly in Next.js, React, Node.js, Express and PostgreSQL, and add AI features with LLMs, RAG and LangGraph where they help.',
+    'At NandiVex Technologies I work on the web and backend side of client projects, with a focus on fast APIs, clean data models and reliable releases.',
+  ],
+  links: [
+    { label: 'GitHub', href: 'https://github.com/Amandsvv' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aman-kg' },
+    { label: 'Portfolio', href: 'https://aman-dfolio.vercel.app' },
+    { label: 'LeetCode', href: 'https://leetcode.com/u/aman-kg' },
+  ],
+  stats: [
+    ['3rd', 'Prize, CodeFusion Hackathon (EcoMatch)'],
+    ['1672', 'Peak LeetCode rating, top 16.22% globally'],
+    ['9.30', 'CGPA in MCA (AI & ML), Dean\u2019s Honour List'],
+    ['3rd', 'Place, CTSE algorithm contest'],
+  ],
+  skills: [
+    ['Languages', ['Python', 'JavaScript', 'TypeScript', 'C++', 'SQL']],
+    ['Frontend', ['Next.js', 'React', 'HTML5', 'CSS3', 'Tailwind CSS']],
+    ['Backend', ['Node.js', 'Express', 'FastAPI', 'REST APIs', 'MVC', 'Drizzle ORM']],
+    ['Data and cloud', ['PostgreSQL', 'MongoDB', 'Redis', 'Docker', 'AWS EC2', 'GitHub Actions CI/CD']],
+    ['AI', ['LLMs', 'LangChain', 'LangGraph', 'RAG', 'Prompt engineering', 'Evaluation pipelines']],
+  ],
+  experience: [
+    {
+      role: 'UI/UX & Web Development Intern',
+      org: 'Shriram Software Solutions',
+      period: 'May – July 2025',
+      points: [
+        'Investigated and resolved 50+ UI/UX issues through performance and accessibility audits, improving user engagement by 60%.',
+        'Improved SEO performance by 20% with structured metadata, keyword work and page optimisation.',
+        'Worked with developers in Git-based, agile workflows.',
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: 'EcoMatch',
+      tag: 'Waste exchange platform',
+      text: 'An agentic AI platform that matches businesses with surplus material to nearby businesses that can use it. A 4-agent LangGraph pipeline handles classification, matching, proposals and CO2e verification, behind 38 REST endpoints and 11 PostgreSQL tables.',
+      stack: ['Next.js', 'FastAPI', 'LangGraph', 'PostgreSQL', 'Docker', 'AWS'],
+      links: [{ label: 'Live', href: 'https://ecomatch.store' }, { label: 'Source', href: 'https://github.com/Amandsvv/EcoMatch' }],
+    },
+    {
+      name: 'URL Shortener',
+      tag: 'High-performance backend',
+      text: 'A URL shortening service with Redis caching, PostgreSQL as the source of truth and a safe fallback during cache outages. A k6 test measured 845 requests per second with a 99.8% cache-hit rate.',
+      stack: ['Node.js', 'Express', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker'],
+      links: [{ label: 'Source', href: 'https://github.com/Amandsvv/url-shortner' }],
+    },
+    {
+      name: 'AI Interviewer',
+      tag: 'AI mock interviews',
+      text: 'A mock interview platform that generates questions at three difficulty levels, transcribes spoken answers and scores them across four competencies, with progress tracking and Firebase sign-in.',
+      stack: ['React', 'Node.js', 'Express', 'MongoDB', 'OpenAI API', 'Firebase'],
+      links: [{ label: 'Live', href: 'https://aiinterviewerpro.vercel.app' }, { label: 'Source', href: 'https://github.com/Amandsvv/AI-Interviewer' }],
+    },
+  ],
+  education: [
+    ['MCA, AI and ML', 'K.R. Mangalam University, Gurugram', '2025 \u2013 2027 (pursuing)'],
+    ['BCA, Gold Medallist', 'Dev Sanskriti Vishwavidyalaya, Haridwar', '2022 \u2013 2025'],
+    ['Full Stack with AI Integration', 'Programming Pathshala (certification)', 'July 2026'],
+  ],
+};
+
 /* Everyone on the Team page. To add a member, define an object like `jitin` (slug, name, role, photo, short, bio, links;
    stats, skills, projects and education are optional) and add it here. */
-export const team = [jitin, sonia];
+export const team = [jitin, sonia, aman];

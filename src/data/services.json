@@ -118,6 +118,6 @@
       { "step": "04", "name": "Deploy", "detail": "Automated releases to the cloud with a rollback path." },
       { "step": "05", "name": "Support", "detail": "Monitoring, patching and improvements after launch." }
     ],
-    "relatedWork": ["campusgrade", "autourgos"]
+    "relatedWork": ["ecomatch", "url-shortener", "campusgrade"]
   }
 ]

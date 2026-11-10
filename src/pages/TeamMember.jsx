@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { team } from '../data/team.js';
 import { CTA, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
+import { Avatar } from '../components/blocks.jsx';
 import NotFound from './NotFound.jsx';
 
 export default function TeamMember() {
@@ -18,7 +19,7 @@ export default function TeamMember() {
           <Icon name="arrow" className="h-4 w-4 rotate-180" /> Back to team
         </Link>
         <div className="grid gap-10 lg:grid-cols-[320px_1fr] lg:items-start">
-          <img src={m.photo} alt={m.name} className="aspect-[4/5] w-full max-w-sm rounded-3xl object-cover shadow-card" />
+          <Avatar m={m} textClass="text-8xl" className="aspect-[4/5] w-full max-w-sm rounded-3xl object-cover shadow-card" />
           <div>
             <p className="label">{m.role}</p>
             <h1 className="mt-2 text-4xl sm:text-5xl">{m.name}</h1>
@@ -60,6 +61,25 @@ export default function TeamMember() {
               </div>
             ))}
           </div>
+        </Section>
+      )}
+
+      {m.experience?.length > 0 && (
+        <Section eyebrow="Experience" title={`Where ${first} has worked.`}>
+          <ul className="space-y-5">
+            {m.experience.map((e) => (
+              <li key={e.role + e.org} className="card">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                  <h3 className="text-xl">{e.role}</h3>
+                  <span className="label !text-muted">{e.period}</span>
+                </div>
+                <p className="mt-1 font-semibold text-accent-dark">{e.org}</p>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted marker:text-accent">
+                  {e.points.map((p) => <li key={p}>{p}</li>)}
+                </ul>
+              </li>
+            ))}
+          </ul>
         </Section>
       )}
 
