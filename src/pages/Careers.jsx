@@ -9,7 +9,7 @@ export default function Careers() {
   return (
     <>
       <PageHeader eyebrow="Careers" title="Build things that run in production.">
-        We are a small senior-leaning team. You own your work and see it used.
+        We are an engineering team that ships. You own your work and see it used.
       </PageHeader>
 
       <Section eyebrow="Open roles" title="Where we are hiring">

@@ -74,7 +74,7 @@ function Footer() {
         <div>
           <Logo dark />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-paper/60">
-            {site.tagline}. Built and shipped by a small team, for businesses and schools.
+            {site.tagline}. Designed, built and shipped by our engineering team, for businesses and schools.
           </p>
           <a href={`mailto:${site.email}`} className="mt-5 inline-block text-sm underline underline-offset-4 hover:text-white">{site.email}</a>
           <a href={site.phoneHref} className="mt-2 block text-sm underline underline-offset-4 hover:text-white">{site.phone}</a>

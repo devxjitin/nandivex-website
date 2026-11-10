@@ -7,13 +7,13 @@ import { Avatar, LogoStrip, StatRow } from '../components/blocks.jsx';
 import Icon from '../components/Icons.jsx';
 
 export default function About() {
-  useMeta('About', 'NandiVex Technologies is a small team that builds AI voice agents, Android apps and web software.');
+  useMeta('About', 'NandiVex Technologies is an engineering team that builds AI voice agents, Android apps and web software.');
   const stack = [...new Set(jitin.skills.flatMap(([, items]) => items))];
   return (
     <>
-      <PageHeader eyebrow="About" title="A small team that ships AI assistants and the software around them.">
+      <PageHeader eyebrow="About" title="An engineering team that ships AI assistants and the software around them.">
         NandiVex Technologies designs and builds voice and chat agents, Android apps and web software.
-        We keep the team small so you deal with the people doing the work.
+        You work directly with the engineers who design and build your product.
       </PageHeader>
 
       <section className="border-b border-line bg-white py-8">
@@ -28,7 +28,7 @@ export default function About() {
             a robotics and coding education company that works with schools.
           </p>
           <p className="text-lg leading-relaxed text-muted">
-            Today we take on a few projects at a time. Each one gets design, AI, app, backend and deployment from the
+            Every project gets design, AI, app, backend and deployment from the
             same team, so nothing is lost between vendors and you always know who to call.
           </p>
         </div>
