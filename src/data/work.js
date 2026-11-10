@@ -167,25 +167,6 @@ export const work = [
     links: [{ label: 'Source', href: 'https://github.com/devxjitin/ULTRON' }],
     images: [],
   },
-  {
-    slug: 'aircursor',
-    type: 'open-source',
-    title: 'AirCursor, mouse control with your hand',
-    tag: 'Desktop tool · Computer vision',
-    summary: 'Control the Windows cursor by moving your hand in the air, using only a webcam.',
-    challenge: 'Some people need or want to control a computer without touching a mouse, and without special hardware.',
-    built: [
-      'Hand tracking with MediaPipe and a plain webcam',
-      'Move, click, double-click, right-click, scroll with flick inertia, zoom and drag',
-      'Calibration for your comfortable hand area, and a config file',
-      'A doctor command that checks camera, model and mouse access, plus a dry-run mode',
-    ],
-    outcome: ['Working Windows tool, source available'],
-    stack: ['Python', 'MediaPipe', 'OpenCV', 'Windows'],
-    services: ['desktop-apps'],
-    links: [{ label: 'Source', href: 'https://github.com/devxjitin/AirCursor' }],
-    images: [],
-  },
 ];
 
 export const workBySlug = (slug) => work.find((w) => w.slug === slug);
