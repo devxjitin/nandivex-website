@@ -113,7 +113,7 @@ function ServiceTabs() {
   const [tab, setTab] = useState('Build');
   const list = services.filter((s) => s.category === tab);
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_1.6fr]">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.6fr] [&>*]:min-w-0">
       <div role="tablist" aria-label="Service areas" className="flex gap-3 lg:flex-col">
         {groups.map((g, i) => {
           const on = tab === g.name;
@@ -123,10 +123,10 @@ function ServiceTabs() {
               role="tab"
               aria-selected={on}
               onClick={() => setTab(g.name)}
-              className={`flex-1 rounded-2xl border p-5 text-left transition-all duration-300 lg:flex-none ${on ? 'border-accent bg-accent text-white shadow-lift' : 'border-line bg-white hover:border-accent/40'}`}
+              className={`min-w-0 flex-1 rounded-2xl border p-3 text-left sm:p-5 transition-all duration-300 lg:flex-none ${on ? 'border-accent bg-accent text-white shadow-lift' : 'border-line bg-white hover:border-accent/40'}`}
             >
               <span className={`font-display text-xs font-bold ${on ? 'text-white/70' : 'text-accent'}`}>0{i + 1}</span>
-              <span className="mt-1 block font-display text-2xl font-extrabold sm:text-3xl">{g.name}</span>
+              <span className="mt-1 block font-display text-xl font-extrabold sm:text-3xl">{g.name}</span>
               <span className={`mt-2 hidden text-sm leading-snug sm:block ${on ? 'text-white/80' : 'text-muted'}`}>{g.line}</span>
             </button>
           );
