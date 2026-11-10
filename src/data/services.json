@@ -169,6 +169,6 @@
       { "name": "autourgos-textinput", "text": "Global hotkey text input popup.", "href": "https://github.com/devxjitin/autourgos-textinput" },
       { "name": "autourgos-textoutput", "text": "Popup for showing Markdown and plain text output.", "href": "https://github.com/devxjitin/autourgos-textoutput" }
     ],
-    "relatedWork": ["ultron-windows", "aircursor", "autourgos"]
+    "relatedWork": ["ultron-windows", "autourgos"]
   }
 ]
