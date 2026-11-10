@@ -8,6 +8,7 @@ export const products = [
       'Talk to your Android phone in 13 languages. ULTRON answers by voice, even with the screen off, and uses 80+ phone and cloud tools to finish the task: alarms, apps, documents, YouTube, Google Workspace and more.',
     url: 'https://ultron.devxjitin.dev',
     platform: 'Android 8+',
+    builtBy: ['jitin-kumar-sengar', 'sonia'],
     features: [
       'Live voice you can interrupt, with the screen off too',
       'Phone control: flashlight, alarms, opening apps',

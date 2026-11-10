@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { products } from '../data/products.js';
+import { team } from '../data/team.js';
 import { CTA, List, PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 
@@ -10,6 +12,20 @@ function Product({ p, tone }) {
       <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
         <div>
           <p className="max-w-xl leading-relaxed text-muted">{p.summary}</p>
+          {p.builtBy?.length > 0 && (
+            <p className="mt-4 text-sm text-muted">
+              Built by{' '}
+              {p.builtBy.map((slug, i) => {
+                const m = team.find((x) => x.slug === slug);
+                return m ? (
+                  <span key={slug}>
+                    {i > 0 && (i === p.builtBy.length - 1 ? ' and ' : ', ')}
+                    <Link to={`/team/${m.slug}`} className="font-semibold text-accent underline underline-offset-4">{m.name}</Link>
+                  </span>
+                ) : null;
+              })}
+            </p>
+          )}
           <List items={p.features} className="mt-6" />
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">

@@ -85,6 +85,53 @@ export const otherProjects = [
 /* Other work shown on a member's own page. */
 jitin.projects = otherProjects;
 
+export const sonia = {
+  slug: 'sonia',
+  name: 'Sonia Dahiya',
+  role: 'Team Leader',
+  photo: '/team/sonia.jpeg',
+  short: 'Leads the team and owns product strategy, content and documentation. Co-builder of ULTRON.',
+  bio: [
+    'I lead the team and turn what the engineers build into something people can understand and use: product direction, copy, documentation and the story around each release.',
+    'On ULTRON I work alongside Jitin as co-builder. I help shape how it looks and behaves, and I test every release on a real phone before it ships.',
+  ],
+  links: [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/soniadahiya' },
+    { label: 'GitHub', href: 'https://github.com/dahiyasonia' },
+  ],
+  stats: [
+    ['3rd', 'INTELLITHON’26, K.R. Mangalam University (team lead, VoxAssist)'],
+    ['3rd', 'Best Project Award, K.R. Mangalam University (Vox Agent)'],
+  ],
+  skills: [
+    ['Product and leadership', ['Product strategy', 'Team leadership', 'Content direction', 'Documentation', 'Release testing']],
+    ['Build', ['Python', 'Streamlit', 'YOLO11', 'Jupyter']],
+  ],
+  projects: [
+    {
+      name: 'VisionBox',
+      tag: 'Computer vision',
+      text: 'A beginner-friendly app that detects animals and the pose they are in from an image, using a YOLO11 model fine-tuned on an animals dataset, served through a Streamlit web app.',
+      stack: ['Python', 'YOLO11', 'Streamlit'],
+      links: [{ label: 'Source', href: 'https://github.com/dahiyasonia/VisionBox' }],
+    },
+    {
+      name: 'Multi-Language Translator',
+      tag: 'Language AI',
+      text: 'Translates Hindi and English text into multiple languages and generates voice for the translated text.',
+      stack: ['Python', 'Translation', 'Text-to-speech'],
+      links: [{ label: 'Source', href: 'https://github.com/dahiyasonia/Multi-Language-Translator' }],
+    },
+    {
+      name: 'Health Analyser',
+      tag: 'Health data',
+      text: 'Takes a person’s health reports and returns a plain-language health description along with a diet plan.',
+      stack: ['Python', 'Jupyter'],
+      links: [{ label: 'Source', href: 'https://github.com/dahiyasonia/Health_Analyser' }],
+    },
+  ],
+};
+
 /* Everyone on the Team page. To add a member, define an object like `jitin` (slug, name, role, photo, short, bio, links;
    stats, skills, projects and education are optional) and add it here. */
-export const team = [jitin];
+export const team = [jitin, sonia];
