@@ -21,8 +21,8 @@ export const products = [
     shots: [
       ['/products/ultron-home.png', 'ULTRON home screen'],
       ['/products/ultron-voice.png', 'ULTRON live voice mode'],
-      ['/products/ultron-chat.png', 'ULTRON chat with a streamed answer'],
-      ['/products/ultron-personalization.png', 'ULTRON personalisation settings'],
+      ['/products/ultron-connectors.png', 'ULTRON connectors'],
+      ['/products/ultron-settings.png', 'ULTRON settings'],
     ],
     plans: [
       { name: 'Spark', length: '7 days', price: 199, was: 299, perDay: 28, off: 33 },
