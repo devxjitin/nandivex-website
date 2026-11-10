@@ -88,11 +88,11 @@ jitin.projects = otherProjects;
 export const sonia = {
   slug: 'sonia',
   name: 'Sonia Dahiya',
-  role: 'Team Leader',
+  role: 'Designer',
   photo: '/team/sonia.jpeg',
-  short: 'Leads the team and owns product strategy, content and documentation. Co-builder of ULTRON.',
+  short: 'Designs our logos, brand and product visuals. Co-builder of ULTRON.',
   bio: [
-    'I lead the team and turn what the engineers build into something people can understand and use: product direction, copy, documentation and the story around each release.',
+    'I design the look of what we build: logos, brand and product visuals, so that the work is clear and recognisable at a glance.',
     'On ULTRON I work alongside Jitin as co-builder. I help shape how it looks and behaves, and I test every release on a real phone before it ships.',
   ],
   links: [
@@ -104,7 +104,8 @@ export const sonia = {
     ['3rd', 'Best Project Award, K.R. Mangalam University (Vox Agent)'],
   ],
   skills: [
-    ['Product and leadership', ['Product strategy', 'Team leadership', 'Content direction', 'Documentation', 'Release testing']],
+    ['Design', ['Logo design', 'Brand identity', 'UI design', 'Visual design']],
+    ['Product', ['Product strategy', 'Content direction', 'Documentation', 'Release testing']],
     ['Build', ['Python', 'Streamlit', 'YOLO11', 'Jupyter']],
   ],
   projects: [
