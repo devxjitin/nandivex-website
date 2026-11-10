@@ -49,7 +49,7 @@ export const ultron = {
     ['/products/ultron-chat.png', 'ULTRON chat with a streamed answer'],
     ['/products/ultron-personalization.png', 'ULTRON personalisation settings'],
   ],
-  siteRepo: 'https://github.com/devxjitin/ultron-website',
+  siteUrl: 'https://ultron.devxjitin.dev',
 };
 
 export const otherProjects = [
