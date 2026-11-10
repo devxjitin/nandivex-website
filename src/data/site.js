@@ -1,28 +1,31 @@
 export const site = {
   name: 'NandiVex Technologies',
-  tagline: 'AI agents, Android, desktop and web software',
+  tagline: 'Software, apps and automation for businesses',
   email: 'contact@nandivex.com',
-  phone: '+91 74080 68618',
-  phoneHref: 'tel:+917408068618',
+  whatsappHref: 'https://wa.me/917408068618?text=Hi%20NandiVex%2C%20I%20would%20like%20to%20talk%20about%20a%20project.',
   location: 'India',
   url: 'https://nandivex.in',
 };
 
 /* Header links. Add one here and it shows in the header and mobile menu. */
 export const nav = [
+  { to: '/', label: 'About' },
   { to: '/services', label: 'Services' },
   { to: '/work', label: 'Work' },
   { to: '/products', label: 'Products' },
-  { to: '/about', label: 'About' },
   { to: '/careers', label: 'Careers' },
 ];
 
-export const process = [
-  { name: 'Discovery call', detail: 'We learn the goal, the users and what success looks like. You get a written plan and estimate.' },
-  { name: 'Design', detail: 'Screens, voice flows and data model you approve before we build.' },
-  { name: 'Build', detail: 'Short sprints with a working demo every week or two, so nothing surprises you.' },
-  { name: 'Test and launch', detail: 'Real-device and real-user testing, then a signed, deployed release.' },
-  { name: 'Support', detail: 'Monitoring, fixes and improvements after launch, on a plan that suits you.' },
+/* Agile delivery flow, drawn by WorkflowDiagram. Stages with inSprint repeat every sprint. */
+export const workflow = [
+  { icon: 'phone', name: 'Discover', sub: 'Goals, users, scope' },
+  { icon: 'menu', name: 'Backlog', sub: 'Ranked by value' },
+  { icon: 'pencil', name: 'Sprint plan', sub: 'Pick the next slice', inSprint: true },
+  { icon: 'build', name: 'Build', sub: 'Working code, steadily', inSprint: true },
+  { icon: 'secure', name: 'Test and secure', sub: 'QA and security checks', inSprint: true },
+  { icon: 'users', name: 'Demo and review', sub: 'You try it, we adapt', inSprint: true },
+  { icon: 'rocket', name: 'Launch', sub: 'Signed, rollback ready' },
+  { icon: 'lifebuoy', name: 'Support', sub: 'Monitor and improve' },
 ];
 
 export const principles = [
@@ -36,8 +39,8 @@ export const principles = [
 
 /* Real numbers only. Shown on the home page. */
 export const stats = [
-  { value: 1, suffix: '', label: 'Client voice assistant shipped (Nira, for Nirman Labs)' },
-  { value: 13, suffix: '', label: 'Languages supported by ULTRON' },
-  { value: 80, suffix: '+', label: 'Phone and cloud tools in ULTRON' },
-  { value: 17, suffix: '', label: 'Open-source packages on PyPI' },
+  { tab: 'Services', icon: 'build', value: 5, suffix: '', label: 'Areas of work: web, Android, desktop, AI and security' },
+  { tab: 'Clients', icon: 'briefcase', value: 1, suffix: '', label: 'Client product delivered (Nira, for Nirman Labs)' },
+  { tab: 'Team', icon: 'users', value: 3, suffix: '', label: 'Engineers building your product' },
+  { tab: 'Open source', icon: 'secure', value: 17, suffix: '', label: 'Open-source packages on PyPI' },
 ];

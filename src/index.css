@@ -21,6 +21,15 @@
   .rule { @apply border-t border-line; }
   .card { @apply rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-200; }
   .card-hover { @apply card hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift; }
+
+  /* Notched card (TabCard in blocks.jsx). The top edge is drawn by two SVG slopes plus these pieces. */
+  .tabcard { --tc-line: #683bf2; --tc-fill: #f4f1fe; --tc-pill: #0f74b9; @apply relative mt-4 flex flex-col; }
+  .tabcard-notch { @apply relative -ml-4 flex flex-none items-start; }
+  .tabcard-notch::after { content: ''; position: absolute; left: 16px; right: 0; bottom: 0; height: 1.25px; background: var(--tc-line); }
+  .tabcard-pill { @apply relative z-10 -mt-[15px] inline-flex h-[38px] items-center whitespace-nowrap rounded-full px-6 font-display text-base font-bold uppercase tracking-wide text-white; background: var(--tc-pill); }
+  .tabcard-rest { @apply min-w-0 flex-1 rounded-tr-[13px] border-r border-t; border-color: var(--tc-line); background: var(--tc-fill); }
+  .tabcard-body { @apply flex flex-1 items-start gap-5 rounded-b-[13px] border-x border-b px-6 pb-10 pt-7 sm:px-8 lg:px-[50px]; border-color: var(--tc-line); background: var(--tc-fill); color: var(--tc-line); }
+  .tabcard-body > .min-w-0 { color: initial; }
   .chip { @apply rounded-full border border-line bg-white px-3.5 py-1.5 text-xs font-medium text-ink; }
   .prose-body p { @apply mb-5 text-[17px] leading-[1.75] text-ink/85; }
   .prose-body h3 { @apply mt-12 mb-3 text-2xl; }
@@ -44,14 +53,19 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
 
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); will-change: opacity, transform; }
+.reveal { opacity: 0; transform: translateY(60px); transition: opacity 1s ease-out, transform 1s cubic-bezier(.22,1,.36,1); will-change: opacity, transform; }
+.reveal[data-dir="up"] { transform: translateY(-60px); }
+.reveal-right, .reveal-right[data-dir="up"] { transform: translateX(48px); }
 .reveal.in { opacity: 1; transform: none; }
 
 /* While the page is scrolling, ignore the pointer so hover lifts/scales don't flicker under the cursor. */
 html.is-scrolling body { pointer-events: none; }
 
-.page-in { animation: pagein .5s cubic-bezier(.22,1,.36,1) both; }
+.page-in { animation: pageswap .7s cubic-bezier(.22,1,.36,1) both; }
+@keyframes pageswap { from { opacity: 0; transform: translateY(36px) scale(.985); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
 @keyframes pagein { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.route-bar { position: fixed; left: 0; top: 0; z-index: 60; height: 3px; width: 100%; transform-origin: left; background: linear-gradient(90deg, #0057E7, #18B7FF); animation: routebar .8s cubic-bezier(.22,1,.36,1) both; pointer-events: none; }
+@keyframes routebar { 0% { transform: scaleX(0); opacity: 1; } 70% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 @keyframes marquee { to { transform: translateX(-50%); } }
@@ -66,8 +80,8 @@ html.is-scrolling body { pointer-events: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .page-in, .marquee, .marquee-rev, [class*="animate-"] { animation: none !important; }
+  .reveal, .reveal-card, .reveal[data-dir] { opacity: 1; transform: none; transition: none; }
+  .page-in, .route-bar, .marquee, .marquee-rev, [class*="animate-"] { animation: none !important; }
 }
 
 /* ---------- Voice wave, FAQ, hero glow ---------- */
@@ -83,4 +97,55 @@ html.is-scrolling body { pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
   .wave-bar { animation: none; transform: scaleY(.5); }
   .menu-panel { transition: none; }
+}
+
+/* The native vertical scrollbar is hidden; PageScrollBar (motion.jsx) replaces it with a horizontal one. */
+html { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+/* Service card hover, in the style of the reference site: a plain lift, photo zoom, icon bounce and an arrow nudge. */
+.svc-card { transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s, border-color .4s; }
+.svc-img { transition: transform .8s cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .svc-card:hover { transform: translateY(-8px); border-color: rgba(0,87,231,.35); box-shadow: 0 26px 50px -24px rgba(11,27,58,.4); }
+  .svc-card:hover .svc-img { transform: scale(1.1); }
+  .svc-card:hover .svc-icon { animation: icon-bounce 1s ease-out infinite; }
+}
+
+/* Keyframes borrowed in spirit from the reference site. */
+@keyframes icon-bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
+@keyframes gelatine { 0%, 100% { transform: scale(1, 1); } 25% { transform: scale(.9, 1.1); } 50% { transform: scale(1.1, .9); } 75% { transform: scale(.95, 1.05); } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tabcard:hover .tabcard-icon { animation: gelatine .7s; }
+}
+
+/* Headings: each word rises out of a mask, one after another. */
+.split-w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
+.split-i { display: inline-block; transform: translateY(115%); transition: transform .9s cubic-bezier(.22,1,.36,1); will-change: transform; }
+.split.in .split-i { transform: none; }
+@media (prefers-reduced-motion: reduce) { .split-i { transform: none; transition: none; } }
+
+
+/* Agile workflow diagram (WorkflowDiagram in blocks.jsx). Draws itself once .wf-in is set. */
+.wf-band { stroke: #0057E7; stroke-opacity: .35; stroke-width: 1.5; stroke-dasharray: 6 8; opacity: 0; transition: opacity .8s ease .5s; }
+.wf-draw { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; transition: stroke-dashoffset 1s cubic-bezier(.22,1,.36,1), opacity .3s; }
+.wf-dot { opacity: 0; transition: opacity .6s ease 2.4s; filter: drop-shadow(0 0 6px rgba(0,87,231,.7)); }
+.wf-node { transform-box: view-box; transform: scale(.6); opacity: 0; transition: transform .7s cubic-bezier(.34,1.56,.64,1), opacity .5s ease; }
+.wf-tag { opacity: 0; transition: opacity .6s ease .8s; }
+.wf-item { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1); }
+.wf-in .wf-band, .wf-in .wf-tag, .wf-in .wf-dot { opacity: 1; }
+.wf-in .wf-draw { stroke-dashoffset: 0; opacity: 1; }
+.wf-in .wf-node { transform: none; opacity: 1; }
+.wf-in .wf-item { opacity: 1; transform: none; }
+.wf-badge { transform-box: view-box; transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+.wf-circle { fill: #fff; stroke: #0057E7; filter: drop-shadow(0 6px 14px rgba(15,23,42,.10)); transition: fill .3s, filter .3s; }
+.wf-ico { color: #0057E7; transition: color .3s; }
+.wf-chip { fill: #fff; filter: drop-shadow(0 4px 12px rgba(15,23,42,.08)); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .wf-node:hover .wf-badge { transform: scale(1.12); }
+  .wf-node:hover .wf-circle { fill: #0057E7; filter: drop-shadow(0 12px 22px rgba(0,87,231,.45)); }
+  .wf-node:hover .wf-ico { color: #fff; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wf-band, .wf-draw, .wf-tag, .wf-item, .wf-node { opacity: 1; transform: none; stroke-dashoffset: 0; transition: none; }
 }

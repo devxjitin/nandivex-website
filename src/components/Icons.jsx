@@ -3,6 +3,7 @@ const paths = {
   'software-development': <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.500 5l-3 14" />,
   'cloud-services': <path d="M7 18a4.500 4.500 0 01-.6-8.960A6 6 0 0118 10.500a3.800 3.800 0 01-.5 7.500H7z" />,
   'it-infrastructure': <><rect x="3" y="4" width="18" height="6.500" rx="2" /><rect x="3" y="13.500" width="18" height="6.500" rx="2" /><path d="M7 7.250h.01M7 16.750h.01" /></>,
+  whatsapp: <><path d="M3.500 20.500l1.300-4.300A8.500 8.500 0 1 1 8 19.300l-4.500 1.200z" /><path d="M9 8.800c.2 2.600 2.600 5 5.200 5.300l1-1.200-1.800-.9-.7.600c-.8-.3-1.600-1.100-1.900-1.900l.6-.7-.9-1.800-1.500 1.600z" /></>,
   cybersecurity: <><path d="M12 3l7.500 3v5.500c0 4.500-3.100 8-7.500 9.500-4.400-1.500-7.500-5-7.500-9.500V6L12 3z" /><path d="M8.800 12l2.200 2.200 4.200-4.400" /></>,
   'network-security': <><circle cx="12" cy="5" r="2.200" /><circle cx="5" cy="18" r="2.200" /><circle cx="19" cy="18" r="2.200" /><path d="M12 7.200v4.300M12 11.500l-6 4.500M12 11.500l6 4.500" /></>,
   'security-audit': <><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" /><path d="M14 3v5h5M9 14l2 2 4-4" /></>,
@@ -26,12 +27,16 @@ const paths = {
   scale: <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" />,
   secure: <><path d="M12 3l7.500 3v5.500c0 4.500-3.100 8-7.500 9.500-4.400-1.500-7.500-5-7.500-9.500V6L12 3z" /><path d="M8.800 12l2.200 2.200 4.200-4.400" /></>,
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
+  rocket: <><path d="M12 3c3.200 2.200 5 5.400 5 9.200L15 15H9l-2-2.800C7 8.400 8.800 5.200 12 3z" /><circle cx="12" cy="10" r="1.600" /><path d="M9 15l-1.500 4M15 15l1.500 4M12 15v5" /></>,
+  lifebuoy: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3.500" /><path d="M5.600 5.600l3.900 3.900M14.500 14.500l3.900 3.900M18.400 5.600l-3.900 3.900M9.500 14.500l-3.900 3.900" /></>,
+  pencil: <><path d="M4 20l1-4L16 5a2.100 2.100 0 013 3L8 19l-4 1z" /><path d="M14 7l3 3" /></>,
+  chevron: <path d="M9 5l7 7-7 7" />,
   check: <path d="M5 12.500l4.500 4.500L19 7.500" />,
 };
 
-export default function Icon({ name, className = 'h-6 w-6' }) {
+export default function Icon({ name, className = 'h-6 w-6', ...rest }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true" {...rest}>
       {paths[name] || paths.build}
     </svg>
   );

@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Layout from './components/Layout.jsx';
-import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Services from './pages/Services.jsx';
 import ServiceDetail from './pages/ServiceDetail.jsx';
@@ -21,9 +20,8 @@ const oldServices = {
   'cloud-services': 'web-software',
   'it-infrastructure': 'web-software',
   devops: 'web-software',
-  cybersecurity: 'web-software',
-  'network-security': 'web-software',
-  'security-audit': 'web-software',
+  'network-security': 'cybersecurity',
+  'security-audit': 'cybersecurity',
 };
 
 function OldService() {
@@ -35,8 +33,8 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
+        <Route index element={<About />} />
+        <Route path="about" element={<Navigate to="/" replace />} />
         <Route path="services" element={<Services />} />
         <Route path="services/:slug" element={<ServiceRoute />} />
         <Route path="work" element={<Work />} />
@@ -49,7 +47,7 @@ export default function App() {
         <Route path="terms-and-conditions" element={<Terms />} />
 
         {/* Redirects from the previous site structure */}
-        <Route path="team" element={<Navigate to="/about#team" replace />} />
+        <Route path="team" element={<Navigate to="/#team" replace />} />
         <Route path="industries" element={<Navigate to="/services" replace />} />
         <Route path="projects" element={<Navigate to="/work" replace />} />
         <Route path="project/:slug" element={<Navigate to="/work" replace />} />

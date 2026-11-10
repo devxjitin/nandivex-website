@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { work } from '../data/work.js';
 import services from '../data/services.json';
-import { CTA, List, Section, useMeta } from '../components/ui.jsx';
+import { List, Section, useMeta } from '../components/ui.jsx';
 import { WorkCard } from '../components/blocks.jsx';
 import Icon from '../components/Icons.jsx';
 import NotFound from './NotFound.jsx';
@@ -17,7 +17,6 @@ export default function WorkDetail() {
   return (
     <>
       <section className="relative overflow-hidden bg-night text-white">
-        <div className="grid-bg absolute inset-0" aria-hidden="true" />
         <div className="wrap relative py-14 sm:py-20">
           <Link to="/work" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan">
             <Icon name="arrow" className="h-4 w-4 rotate-180" /> All work
@@ -87,10 +86,11 @@ export default function WorkDetail() {
         </Section>
       )}
 
-      <Section eyebrow="More" title="Other work" tone={w.images.length ? 'white' : 'soft'}>
-        <div className="grid gap-5 md:grid-cols-3">{more.map((m) => <WorkCard key={m.slug} w={m} />)}</div>
-      </Section>
-      <CTA title="Want something like this?" label="Book a call" />
+      {more.length > 0 && (
+        <Section eyebrow="More" title="Other work" tone={w.images.length ? 'white' : 'soft'}>
+          <div className="grid gap-5 md:grid-cols-3">{more.map((m) => <WorkCard key={m.slug} w={m} />)}</div>
+        </Section>
+      )}
     </>
   );
 }

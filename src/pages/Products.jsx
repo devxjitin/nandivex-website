@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { products } from '../data/products.js';
 import { team } from '../data/team.js';
-import { CTA, List, PageHeader, Section, useMeta } from '../components/ui.jsx';
+import { List, PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 
 const rupee = (n) => `₹${n.toLocaleString('en-IN')}`;
@@ -68,7 +68,6 @@ export default function Products() {
         Tools we build and run ourselves, sold as simple subscriptions. No setup project, no contract.
       </PageHeader>
       {products.map((p, i) => <Product key={p.slug} p={p} tone={i % 2 ? 'soft' : 'white'} />)}
-      <CTA title="Need something built for your team?" text="Our subscriptions are the products we ship ourselves. For custom software or AI agents, talk to us." label="Start a project" />
     </>
   );
 }

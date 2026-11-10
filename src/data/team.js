@@ -76,7 +76,16 @@ export const otherProjects = [
 ];
 
 /* Other work shown on a member's own page. */
-jitin.projects = otherProjects;
+jitin.projects = [
+  {
+    name: 'ULTRON',
+    tag: 'Android voice assistant',
+    text: 'A native Android assistant you talk to in 13 languages. Real-time voice over Gemini Live, 80+ phone and cloud tools through MCP connectors, and on-device memory. Sold on subscription.',
+    stack: ['Kotlin', 'Jetpack Compose', 'Gemini Live', 'MCP', 'RAG', 'AWS Lambda'],
+    links: [{ label: 'Website', href: 'https://ultron.devxjitin.dev' }],
+  },
+  ...otherProjects,
+];
 
 export const sonia = {
   slug: 'sonia',
