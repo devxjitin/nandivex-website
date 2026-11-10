@@ -74,6 +74,10 @@ export default function Contact() {
               <a href={`mailto:${site.email}`} className="mt-2 block text-lg text-accent underline underline-offset-4">{site.email}</a>
             </div>
             <div>
+              <p className="label">Phone</p>
+              <a href={site.phoneHref} className="mt-2 block text-lg text-accent underline underline-offset-4">{site.phone}</a>
+            </div>
+            <div>
               <p className="label">Based in</p>
               <p className="mt-2">{site.location}</p>
             </div>

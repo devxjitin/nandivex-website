@@ -77,6 +77,7 @@ function Footer() {
             {site.tagline}. Built and shipped by a small team, for businesses and schools.
           </p>
           <a href={`mailto:${site.email}`} className="mt-5 inline-block text-sm underline underline-offset-4 hover:text-white">{site.email}</a>
+          <a href={site.phoneHref} className="mt-2 block text-sm underline underline-offset-4 hover:text-white">{site.phone}</a>
           {clients.length > 0 && (
             <p className="mt-6 text-xs text-paper/50">
               Trusted by{' '}
