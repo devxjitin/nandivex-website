@@ -34,7 +34,7 @@ export const principles = [
 
 /* Real numbers only. Shown on the home page. */
 export const stats = [
-  { value: 3, suffix: '', label: 'Voice assistants shipped for Nirman Labs' },
+  { value: 1, suffix: '', label: 'Client voice assistant shipped (Nira, for Nirman Labs)' },
   { value: 13, suffix: '', label: 'Languages supported by ULTRON' },
   { value: 80, suffix: '+', label: 'Phone and cloud tools in ULTRON' },
   { value: 17, suffix: '', label: 'Open-source packages on PyPI' },

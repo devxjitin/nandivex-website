@@ -24,7 +24,7 @@ export default function About() {
         <div className="grid gap-12 md:grid-cols-2">
           <p className="text-lg leading-relaxed text-muted">
             We started by building AI agents that think, see, listen and act. That work grew into real products:
-            ULTRON, a voice assistant for Android that people subscribe to, and three voice assistants shipped for Nirman Labs,
+            ULTRON, a voice assistant for Android that people subscribe to, and Nira, a document-grounded voice assistant shipped for Nirman Labs,
             a robotics and coding education company that works with schools.
           </p>
           <p className="text-lg leading-relaxed text-muted">

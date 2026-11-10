@@ -5,7 +5,7 @@
     "title": "AI Voice & Chat Agents",
     "short": "Voice and chat assistants",
     "subtitle": "Assistants that listen, reason and get real work done",
-    "description": "Voice and chat agents that use your tools and your documents to finish tasks, with approvals and logs so you stay in control. This is our main work: we have shipped three voice assistants for Nirman Labs.",
+    "description": "Voice and chat agents that use your tools and your documents to finish tasks, with approvals and logs so you stay in control. This is our main work: we shipped Nira, a voice assistant, for Nirman Labs.",
     "icon": "ai-agents",
     "featured": true,
     "tags": ["Voice", "RAG", "Tool calling", "MCP"],
@@ -38,7 +38,7 @@
       { "step": "04", "name": "Pilot with guardrails", "detail": "Roll out to a small group with approvals and monitoring." },
       { "step": "05", "name": "Launch and improve", "detail": "Go live, watch usage and cost, and keep refining." }
     ],
-    "relatedWork": ["nirman-labs-voice-assistants", "ultron", "autourgos", "drishti"]
+    "relatedWork": ["nira", "ultron", "autourgos"]
   },
   {
     "id": "android-apps",
@@ -78,7 +78,7 @@
       { "step": "04", "name": "Release pipeline", "detail": "Signed builds from CI and an update channel." },
       { "step": "05", "name": "Launch and support", "detail": "Store submission, monitoring and ongoing updates." }
     ],
-    "relatedWork": ["ultron", "drishti"]
+    "relatedWork": ["ultron"]
   },
   {
     "id": "web-software",
