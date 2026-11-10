@@ -31,18 +31,18 @@ export const jitin = {
 
 export const ultron = {
   name: 'ULTRON',
-  tag: 'Android voice and chat AI assistant',
+  tag: 'A voice assistant that works your phone for you',
   summary:
-    'A native Android assistant you can talk to or type to. Voice runs in real time over Gemini Live, chat streams answers with image, video, PDF and DOCX attachments, and both share the same memory and personalisation.',
+    'A native Android assistant you talk to in 13 languages. Voice runs in real time over Gemini Live and can be interrupted, even with the screen off. It uses 80+ phone and cloud tools to finish the task. Sold on subscription.',
   points: [
-    'Real-time voice mode with Gemini Live, plus a streaming chat mode.',
+    'Real-time voice with Gemini Live in 13 languages, interruptible, working with the screen off.',
     'Tools through MCP connectors on AWS Lambda: Google Workspace, YouTube search and app updates, so connectors change without a new app release.',
-    'Remembers facts about you and answers from your own documents using BM25 plus embedding search, stored on the device.',
+    'Remembers up to 150 notes about you and answers from your own documents with BM25 plus embedding search, stored on the device.',
     'Over-the-air updates with a checksum, so a new build installs in seconds.',
-    'Personalisation for tone, warmth and emoji, a file library, chat search and storage cleanup.',
+    'Skills written in Markdown, four personalities, a usage view and storage cleanup, plus phone control through accessibility once you allow it.',
   ],
   stack: ['Kotlin', 'Jetpack Compose', 'Gemini Live', 'MCP', 'RAG', 'ObjectBox', 'AWS Lambda'],
-  facts: [['Android 8+', 'Platform'], ['Voice + chat', 'Input'], ['Gemini + MCP', 'Engine']],
+  facts: [['Android 8+', 'Platform'], ['Voice', 'Input'], ['Gemini + MCP', 'Engine']],
   shots: [
     ['/products/ultron-home.webp', 'ULTRON home screen'],
     ['/products/ultron-voice.webp', 'ULTRON live voice mode'],
