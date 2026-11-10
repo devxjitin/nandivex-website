@@ -6,6 +6,7 @@ export const site = {
 };
 
 export const nav = [
+  { to: '/', label: 'Home' },
   { to: '/services', label: 'Services' },
   { to: '/industries', label: 'Industries' },
   { to: '/projects', label: 'Work' },

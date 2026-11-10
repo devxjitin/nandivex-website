@@ -29,7 +29,7 @@ function Header() {
         <Logo />
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
           {nav.map((n) => (
-            <NavLink key={n.to} to={n.to} className={link}>{n.label}</NavLink>
+            <NavLink key={n.to} to={n.to} end={n.to === "/"} className={link}>{n.label}</NavLink>
           ))}
           <Link to="/contact" className="btn-solid !py-2">Contact</Link>
         </nav>
@@ -46,7 +46,7 @@ function Header() {
         <nav id="mobile-nav" className="border-t border-line bg-paper lg:hidden" aria-label="Mobile">
           <div className="wrap flex flex-col py-2">
             {[...nav, { to: '/contact', label: 'Contact' }].map((n) => (
-              <NavLink key={n.to} to={n.to} className="border-b border-line py-3 text-base last:border-0">{n.label}</NavLink>
+              <NavLink key={n.to} to={n.to} end={n.to === "/"} className="border-b border-line py-3 text-base last:border-0">{n.label}</NavLink>
             ))}
           </div>
         </nav>
