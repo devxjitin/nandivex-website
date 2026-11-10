@@ -111,6 +111,13 @@ export const sonia = {
   ],
   projects: [
     {
+      name: 'ULTRON',
+      tag: 'Co-builder',
+      text: 'An Android voice assistant that works your phone for you. Sonia works with Jitin on how ULTRON looks and behaves, and tests every release on a real phone before it ships.',
+      stack: ['Android', 'Voice AI', 'UI design', 'Release testing'],
+      links: [{ label: 'Website', href: 'https://ultron.devxjitin.dev' }],
+    },
+    {
       name: 'Multi-Language Translator',
       tag: 'Language AI',
       text: 'Translates Hindi and English text into multiple languages and generates voice for the translated text.',
