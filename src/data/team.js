@@ -1,6 +1,8 @@
 export const jitin = {
+  slug: 'jitin-kumar-sengar',
   name: 'Jitin Kumar Sengar',
   role: 'AI Engineer',
+  short: 'Builds AI agents that think, see, listen and act, and ships them end to end.',
   photo: '/team/jitin.jpeg',
   bio: [
     'I build AI agents that can think, see, listen and act. I like shipping whole systems rather than single demos: the reasoning loop, the tools an agent can use, the memory it keeps, and the voice and vision it uses to deal with people.',
@@ -79,3 +81,10 @@ export const otherProjects = [
     links: [],
   },
 ];
+
+/* Other work shown on a member's own page. */
+jitin.projects = otherProjects;
+
+/* Everyone on the Team page. To add a member, define an object like `jitin` (slug, name, role, photo, short, bio, links;
+   stats, skills, projects and education are optional) and add it here. */
+export const team = [jitin];

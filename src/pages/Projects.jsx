@@ -24,7 +24,7 @@ export default function Projects() {
               <ul className="mt-6 flex flex-wrap gap-2">
                 {ultron.stack.map((s) => <li key={s} className="rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-medium text-white/80">{s}</li>)}
               </ul>
-              <Link to="/team#ultron" className="btn mt-8 bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
+              <Link to="/products#ultron" className="btn mt-8 bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
                 See ULTRON in detail <Icon name="arrow" className="h-4 w-4" />
               </Link>
             </div>
