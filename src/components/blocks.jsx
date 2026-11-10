@@ -92,28 +92,46 @@ export function LogoStrip({ clients }) {
   );
 }
 
-const rowSpan = { 1: '', 2: 'md:row-span-2', 3: 'md:row-span-3', 4: 'md:row-span-4' };
-
-export function ServiceCard({ s, big = false, span = 2 }) {
+export function ServiceCard({ s, big = false }) {
+  if (big) {
+    // Wide featured card: sits on top, full width, with the other services in a row below it.
+    return (
+      <Link
+        to={`/services/${s.slug}`}
+        className="card-hover group relative grid gap-8 overflow-hidden !border-accent/30 bg-gradient-to-br from-white to-tint !p-7 md:col-span-full md:grid-cols-[1.3fr_1fr] md:items-center sm:!p-8"
+      >
+        <span className="absolute right-5 top-5 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Main focus</span>
+        <div>
+          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-white transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
+            <Icon name={s.slug} className="h-7 w-7" />
+          </span>
+          <h3 className="mt-5 text-2xl sm:text-3xl">{s.title}</h3>
+          <p className="mt-3 max-w-xl leading-relaxed text-muted">{s.description}</p>
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {s.tags.map((t) => <li key={t} className="chip">{t}</li>)}
+          </ul>
+          <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+            Learn more <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </span>
+        </div>
+        <div className="rounded-2xl border border-line bg-white/70 p-5">
+          <VoiceWave bars={30} className="!h-10 w-full" />
+          <ul className="mt-4 space-y-2 text-sm">
+            {s.useCases.slice(0, 3).map((u) => (
+              <li key={u} className="flex gap-2"><Icon name="check" className="mt-0.5 h-4 w-4 flex-none text-accent" />{u}</li>
+            ))}
+          </ul>
+        </div>
+      </Link>
+    );
+  }
   return (
-    <Link
-      to={`/services/${s.slug}`}
-      className={`card-hover group relative flex flex-col overflow-hidden !p-8 ${big ? `${rowSpan[span] || ''} !border-accent/30 bg-gradient-to-br from-white to-tint` : ''}`}
-    >
-      {big && <span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Main focus</span>}
-      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-white transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
-        <Icon name={s.slug} className="h-7 w-7" />
+    <Link to={`/services/${s.slug}`} className="card-hover group relative flex flex-col overflow-hidden !p-7">
+      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent text-white transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
+        <Icon name={s.slug} className="h-6 w-6" />
       </span>
-      <h3 className="mt-6 text-2xl sm:text-3xl">{s.title}</h3>
-      <p className={`mt-3 leading-relaxed text-muted ${big ? '' : 'flex-1'}`}>{s.description}</p>
-      {big && <div className="flex flex-1 items-center py-6"><VoiceWave bars={34} className="w-full" /></div>}
-      {big && (
-        <ul className="mt-2 space-y-2 text-sm">
-          {s.useCases.slice(0, 3).map((u) => (
-            <li key={u} className="flex gap-2"><Icon name="check" className="mt-0.5 h-4 w-4 flex-none text-accent" />{u}</li>
-          ))}
-        </ul>
-      )}
+      <h3 className="mt-5 text-xl sm:text-2xl">{s.title}</h3>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{s.description}</p>
       <ul className="mt-5 flex flex-wrap gap-2">
         {s.tags.map((t) => <li key={t} className="chip">{t}</li>)}
       </ul>

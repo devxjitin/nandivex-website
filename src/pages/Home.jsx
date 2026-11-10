@@ -80,8 +80,8 @@ export default function Home() {
 
       {/* Services */}
       <Section eyebrow="What we do" title="One team for the assistant, the app and the software behind it." tone="soft">
-        <div className="grid gap-5 md:grid-cols-2">
-          <ServiceCard s={lead} big span={rest.length} />
+        <div className="grid gap-5 md:grid-cols-3">
+          <ServiceCard s={lead} big />
           {rest.map((s) => <ServiceCard key={s.slug} s={s} />)}
         </div>
       </Section>
