@@ -1,201 +1,68 @@
 {
-  "culturePillars": [
+  "open": false,
+  "statusTitle": "No openings right now. Hiring opens soon.",
+  "statusText": "We are not hiring today, but we will open careers and internships soon. Join the list and we will email you the moment a role goes live.",
+  "openRoles": [],
+  "upcoming": [
     {
-      "title": "Technical Excellence",
-      "description": "We write clean, documented, secure code and build resilient architectures. We don't take shortcuts that compromise long-term quality.",
-      "icon": "Award"
+      "kind": "Career",
+      "title": "AI / LLM Engineer",
+      "blurb": "Build voice and chat agents with Gemini, RAG and MCP, from idea to production.",
+      "skills": ["Python", "LLMs", "RAG", "FastAPI"]
     },
     {
-      "title": "Security-First Mindset",
-      "description": "Security is not an afterthought here. Every engineer is trained to understand threat models and build systems that defend themselves.",
-      "icon": "Shield"
+      "kind": "Career",
+      "title": "Android Developer",
+      "blurb": "Ship native Kotlin apps and voice assistants with Jetpack Compose.",
+      "skills": ["Kotlin", "Jetpack Compose", "Gemini Live"]
     },
     {
-      "title": "Autonomy & Ownership",
-      "description": "We empower engineers to take full ownership of their modules, architectures, and client deliverables with direct impact.",
-      "icon": "Cpu"
-    },
-    {
-      "title": "Continuous Upskilling",
-      "description": "Dedicated learning allowances, access to technical certifications, and collaborative peer code review cultures.",
-      "icon": "BookOpen"
-    }
-  ],
-  "benefits": [
-    {
-      "title": "Competitive Compensation",
-      "desc": "Industry-benchmarked salaries with merit-based performance bonuses."
-    },
-    {
-      "title": "Cutting-Edge Tech Stack",
-      "desc": "Work with modern tools: React, Node, AWS, Docker, Linux, and security tooling."
-    },
-    {
-      "title": "Flexible Work Modes",
-      "desc": "Collaborative hybrid work culture designed for deep focus and productivity."
-    },
-    {
-      "title": "Health & Wellness",
-      "desc": "Comprehensive health coverage for you and your dependents."
-    },
-    {
-      "title": "Certification Sponsorship",
-      "desc": "Full reimbursement for AWS, Linux, and certified cybersecurity credentials."
-    },
-    {
-      "title": "Impact-Driven Projects",
-      "desc": "Build enterprise solutions that power real businesses and transactions daily."
-    }
-  ],
-  "hiringProcess": [
-    {
-      "step": "01",
-      "name": "Application Review",
-      "detail": "Our engineering leads review your resume, code samples, or GitHub."
-    },
-    {
-      "step": "02",
-      "name": "Technical Discussion",
-      "detail": "A conversational deep dive into your technical foundation and past projects."
-    },
-    {
-      "step": "03",
-      "name": "Practical Assessment",
-      "detail": "A real-world architectural or coding challenge — no trick trivia."
-    },
-    {
-      "step": "04",
-      "name": "Culture & Leadership",
-      "detail": "Discussion with team leadership regarding goals and mutual fit."
-    },
-    {
-      "step": "05",
-      "name": "Formal Offer",
-      "detail": "Prompt feedback and a transparent, competitive offer proposal."
-    }
-  ],
-  "openRoles": [
-    {
-      "id": "react-frontend-developer",
-      "title": "React.js Frontend Engineer",
-      "department": "Web & Software Engineering",
-      "location": "Hybrid / On-site",
-      "type": "Full-time",
-      "experience": "2–5 Years",
-      "overview": "Looking for a seasoned React developer who cares deeply about UI craftsmanship, responsive layouts, performance optimization, and modular component architecture.",
-      "responsibilities": [
-        "Develop high-performance, accessible user interfaces using React.js, Tailwind CSS, and modern JavaScript.",
-        "Collaborate with backend engineers to integrate RESTful and WebSocket APIs seamlessly.",
-        "Optimize Core Web Vitals, page rendering speeds, and cross-browser reliability.",
-        "Maintain clean component documentation and reusable design libraries."
-      ],
-      "requirements": [
-        "Strong proficiency in JavaScript (ES6+), React hooks, and component lifecycle.",
-        "Deep understanding of responsive layout systems, Tailwind CSS, and CSS modern standards.",
-        "Experience with state management and REST API integration.",
-        "Familiarity with Git workflows and frontend performance profiling."
-      ]
-    },
-    {
-      "id": "nodejs-backend-developer",
-      "title": "Node.js Backend Engineer",
-      "department": "Web & Software Engineering",
-      "location": "Hybrid / On-site",
-      "type": "Full-time",
-      "experience": "2–5 Years",
-      "overview": "Architect and build high-throughput REST APIs, database schemas, and microservices powering enterprise client applications.",
-      "responsibilities": [
-        "Design, build, and maintain scalable REST APIs using Node.js and Express.",
-        "Design efficient database schemas, indexes, and queries in PostgreSQL / MySQL / MongoDB.",
-        "Implement robust authentication (JWT, OAuth2, RBAC) and rate-limiting safeguards.",
-        "Write clean unit and integration tests to ensure data consistency."
-      ],
-      "requirements": [
-        "Solid hands-on experience building production APIs with Node.js.",
-        "Strong understanding of relational and NoSQL databases and query optimization.",
-        "Proficiency in asynchronous event-loop programming and error handling.",
-        "Familiarity with Docker containerization and Linux environments."
-      ]
-    },
-    {
-      "id": "fullstack-developer",
+      "kind": "Career",
       "title": "Full Stack Developer",
-      "department": "Engineering",
-      "location": "Hybrid / On-site",
-      "type": "Full-time",
-      "experience": "3–6 Years",
-      "overview": "Bridge frontend elegance with backend resilience to deliver complete end-to-end features for web and enterprise platforms.",
-      "responsibilities": [
-        "Own feature development from database schema design to frontend UI implementation.",
-        "Ensure seamless data flow, state synchronization, and secure communications.",
-        "Participate in architectural reviews and mentor junior team members."
-      ],
-      "requirements": [
-        "Demonstrated experience with React.js, Node.js, and SQL/NoSQL databases.",
-        "Solid grasp of API security, caching layers (Redis), and cloud hosting basics.",
-        "Excellent analytical and problem-solving abilities."
-      ]
+      "blurb": "Build the websites, dashboards and backends behind our products and client projects.",
+      "skills": ["React", "Next.js", "Node.js", "PostgreSQL"]
     },
     {
-      "id": "cybersecurity-analyst",
-      "title": "Cybersecurity Analyst / VAPT Engineer",
-      "department": "Cybersecurity Practice",
-      "location": "Hybrid / On-site",
-      "type": "Full-time",
-      "experience": "2–4 Years",
-      "overview": "Perform authorized security assessments, vulnerability scans, web application security audits, and support client remediation efforts.",
-      "responsibilities": [
-        "Conduct authorized vulnerability assessments and penetration tests on web apps, APIs, and networks.",
-        "Map findings against OWASP Top 10, CWE, and CVSS severity standards.",
-        "Draft comprehensive technical reports with step-by-step remediation guidance.",
-        "Assist development teams with re-testing and vulnerability verification."
-      ],
-      "requirements": [
-        "Practical experience with security assessment tools (Burp Suite, Nmap, Wireshark, etc.).",
-        "Deep understanding of web vulnerabilities (SQLi, XSS, CSRF, IDOR/BOLA, SSRF).",
-        "Knowledge of SSL/TLS configurations, HTTP security headers, and network protocols.",
-        "Relevant certifications (e.g., CEH, eJPT, OSCP, or equivalent) are a strong plus."
-      ]
+      "kind": "Career",
+      "title": "UI/UX & Product Designer",
+      "blurb": "Design the look and feel of assistants, apps and websites, from logo to screens.",
+      "skills": ["UI design", "Brand identity", "Figma"]
     },
     {
-      "id": "devops-engineer",
-      "title": "DevOps & Infrastructure Engineer",
-      "department": "IT Infrastructure",
-      "location": "Hybrid / On-site",
-      "type": "Full-time",
-      "experience": "2–5 Years",
-      "overview": "Automate cloud deployments, orchestrate Docker containers, configure monitoring systems, and maintain high server availability.",
-      "responsibilities": [
-        "Maintain CI/CD pipelines using GitHub Actions or GitLab CI.",
-        "Manage cloud infrastructure on AWS and hardened Linux servers.",
-        "Implement automated backups, disaster recovery, and infrastructure telemetry.",
-        "Tune web servers (Nginx), reverse proxies, and caching layers."
-      ],
-      "requirements": [
-        "Hands-on experience with Linux administration (Ubuntu, Debian, RHEL).",
-        "Proficiency in Docker, container networking, and Docker Compose.",
-        "Experience configuring AWS services (EC2, S3, RDS, VPC, IAM).",
-        "Familiarity with Infrastructure as Code (Terraform) is advantageous."
-      ]
+      "kind": "Internship",
+      "title": "AI Agents Intern",
+      "blurb": "Work with our engineers on real agent projects and learn how they are tested and shipped.",
+      "skills": ["Python", "Basics of LLMs"]
     },
     {
-      "id": "ui-ux-designer",
-      "title": "UI/UX Product Designer",
-      "department": "Design & Product",
-      "location": "Hybrid / On-site",
-      "type": "Full-time",
-      "experience": "2–4 Years",
-      "overview": "Design intuitive user flows, sleek enterprise dashboards, and modern digital brand identities that delight users and drive conversions.",
-      "responsibilities": [
-        "Create wireframes, user journeys, interactive Figma prototypes, and design systems.",
-        "Translate complex technical workflows into clean, accessible user interfaces.",
-        "Collaborate closely with frontend engineers to ensure pixel-perfect implementation."
-      ],
-      "requirements": [
-        "Strong portfolio showcasing web and mobile interface designs.",
-        "Mastery of Figma, auto-layout, design tokens, and prototyping.",
-        "Strong aesthetic sense for typography, color theory, and responsive layouts."
-      ]
+      "kind": "Internship",
+      "title": "Android Intern",
+      "blurb": "Build and test features in a native Android app under an engineer's guidance.",
+      "skills": ["Kotlin", "Android basics"]
+    },
+    {
+      "kind": "Internship",
+      "title": "Web Development Intern",
+      "blurb": "Help build websites and dashboards with a real code review on every change.",
+      "skills": ["HTML/CSS", "JavaScript", "React"]
+    },
+    {
+      "kind": "Internship",
+      "title": "UI/UX Design Intern",
+      "blurb": "Support product and brand design for live projects.",
+      "skills": ["Figma", "Visual design"]
     }
+  ],
+  "culture": [
+    { "title": "Ship real work", "description": "Everything we build goes to real users, so you learn how products are made, tested and released." },
+    { "title": "Learn from builders", "description": "You work next to the engineers and designer doing the work, with reviews and regular demos." },
+    { "title": "Own your part", "description": "You take a piece of a project and see it through, from first idea to launch." },
+    { "title": "Plain communication", "description": "Clear updates, honest feedback and no unnecessary layers." }
+  ],
+  "process": [
+    { "step": "01", "name": "Apply", "detail": "Send your CV, GitHub or portfolio, and a short note about what you want to work on." },
+    { "step": "02", "name": "Conversation", "detail": "A chat with our engineers about your projects and what you have built." },
+    { "step": "03", "name": "Practical task", "detail": "A small, real-world task related to the role. No trick questions." },
+    { "step": "04", "name": "Offer", "detail": "We share the decision and next steps quickly." }
   ]
 }
