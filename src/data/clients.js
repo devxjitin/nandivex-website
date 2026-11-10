@@ -5,7 +5,7 @@ export const clients = [
     name: 'Nirman Labs',
     logo: '/clients/nirman-labs.webp',
     url: 'https://nirmanlabs.com',
-    note: '3 voice assistants shipped',
-    work: 'nirman-labs-voice-assistants',
+    note: 'Nira voice assistant shipped',
+    work: 'nira',
   },
 ];

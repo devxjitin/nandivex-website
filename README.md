@@ -51,7 +51,6 @@ It is a single-page app, so the workflow copies `index.html` to `404.html` so de
 
 ## To do before launch
 
-- Replace the generic Nirman Labs wording in `src/data/work.js` with the three assistants' names and details (see the TODO there).
 - The contact form opens the visitor's email client (`mailto:`). Connect a form
   backend (Formspree, Resend, own API) for real submissions.
 - Review `privacy-policy` and `terms-and-conditions`, which are short drafts.

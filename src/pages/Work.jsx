@@ -11,7 +11,7 @@ const filters = [
 ];
 
 export default function Work() {
-  useMeta('Work', 'Voice assistants for Nirman Labs, our ULTRON Android assistant, and open-source AI tools from NandiVex Technologies.');
+  useMeta('Work', 'Nira, our voice assistant for Nirman Labs, our ULTRON Android assistant, and open-source AI tools from NandiVex Technologies.');
   const [f, setF] = useState('all');
   const list = work.filter((w) => f === 'all' || w.type === f);
   return (

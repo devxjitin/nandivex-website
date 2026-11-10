@@ -28,7 +28,7 @@ function Hero() {
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/70">
             NandiVex designs and builds voice and chat agents, native Android apps and the web software behind them.
-            We have shipped three voice assistants for Nirman Labs, and we run our own product, ULTRON.
+            We shipped Nira, a voice assistant, for Nirman Labs, and we run our own product, ULTRON.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link to="/contact" className="btn bg-white text-accent shadow-lift hover:-translate-y-0.5 hover:bg-cyan hover:text-night">
