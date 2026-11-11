@@ -1,7 +1,7 @@
 export const jitin = {
   slug: 'jitin-kumar-sengar',
   name: 'Jitin Kumar Sengar',
-  role: 'Co-Founder, Head of AI',
+  role: 'Co-Founder, Head of AI Department',
   short: 'Builds AI agents that think, see, listen and act, and ships them end to end.',
   photo: '/team/jitin.jpeg',
   bio: [
@@ -90,7 +90,7 @@ jitin.projects = [
 export const sonia = {
   slug: 'sonia',
   name: 'Sonia Dahiya',
-  role: 'Head of Design, Junior AI Developer',
+  role: 'Head of Design Department, Junior AI Developer',
   photo: '/team/sonia.jpeg',
   short: 'Designs our logos, brand and product visuals, and builds AI features as a junior developer. Co-builder of ULTRON.',
   bio: [
@@ -139,7 +139,7 @@ export const sonia = {
 export const aman = {
   slug: 'aman-kumar',
   name: 'Aman Kumar',
-  role: 'Head of Full Stack Development',
+  role: 'Head of Full Stack Department',
   photo: '/team/aman.jpeg',
   short: 'Builds full-stack products end to end, from React and Next.js front ends to Node and FastAPI back ends, with AI features on top.',
   bio: [
