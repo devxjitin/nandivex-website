@@ -20,33 +20,6 @@ export function VoiceWave({ bars = 28, className = '' }) {
   );
 }
 
-/** Phone frame that crossfades through screenshots. shots: [[src, alt], ...] */
-export function PhoneMock({ shots, interval = 3200, className = '' }) {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (reduced() || shots.length < 2) return undefined;
-    const id = setInterval(() => setI((x) => (x + 1) % shots.length), interval);
-    return () => clearInterval(id);
-  }, [shots.length, interval]);
-  return (
-    <div className={`relative mx-auto w-[210px] sm:w-[250px] ${className}`}>
-      <div className="relative aspect-[9/19] overflow-hidden rounded-[2.4rem] border-[7px] border-night bg-night shadow-lift ring-1 ring-white/15">
-        {shots.map(([src, alt], n) => (
-          <img
-            key={src}
-            src={src}
-            alt={n === i ? alt : ''}
-            width="720"
-            height="1600"
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${n === i ? 'opacity-100' : 'opacity-0'}`}
-          />
-        ))}
-        <span className="absolute left-1/2 top-2 h-4 w-16 -translate-x-1/2 rounded-full bg-night" />
-      </div>
-    </div>
-  );
-}
-
 /** Team photo, or initials on a gradient when a member has no photo yet. */
 export function Avatar({ m, className = '', textClass = 'text-5xl' }) {
   if (m.photo) return <img src={m.photo} alt={m.name} loading="lazy" className={`object-top ${className}`} />;
@@ -137,9 +110,6 @@ export function ServiceCard({ s, big = false }) {
           </span>
           <h3 className="mt-5 text-2xl sm:text-3xl">{s.title}</h3>
           <p className="mt-3 max-w-xl leading-relaxed text-muted">{s.description}</p>
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {s.tags.map((t) => <li key={t} className="chip">{t}</li>)}
-          </ul>
           <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
             Learn more <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
@@ -170,9 +140,6 @@ export function ServiceCard({ s, big = false }) {
           </span>
           <h3 className="mt-5 text-xl transition-colors duration-300 group-hover:text-accent sm:text-2xl">{s.title}</h3>
           <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{s.description}</p>
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {s.tags.map((t) => <li key={t} className="chip">{t}</li>)}
-          </ul>
           <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
             Learn more <Icon name="arrow" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
           </span>
@@ -188,8 +155,20 @@ export function WorkCard({ w }) {
   const shot = w.images[0]?.[0];
   return (
     <Link to={`/work/${w.slug}`} className="card-hover group flex h-full flex-col overflow-hidden !p-0">
-      <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-night to-[#12306b]">
-        {w.clientLogo ? (
+      <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-night to-[#2A1B47]">
+        {w.images.length >= 3 ? (
+          <div className="absolute inset-x-0 bottom-0 top-10 flex items-end justify-center gap-3" aria-hidden="true">
+            {[1, 0, 2].map((i, n) => (
+              <img
+                key={w.images[i][0]}
+                src={w.images[i][0]}
+                alt=""
+                loading="lazy"
+                className={`aspect-[9/19.5] rounded-2xl border border-white/15 object-cover shadow-lift transition-transform duration-500 ${n === 1 ? 'h-[92%] group-hover:-translate-y-2' : 'h-[78%] translate-y-6 opacity-90 group-hover:translate-y-3'}`}
+              />
+            ))}
+          </div>
+        ) : w.clientLogo ? (
           <img src={w.clientLogo} alt={w.client} className="relative h-14 w-auto rounded-lg bg-[#16181d] shadow-lift ring-1 ring-white/20 transition-transform duration-500 group-hover:scale-110" />
         ) : shot ? (
           <img src={shot} alt="" loading="lazy" className="relative h-[115%] translate-y-6 rounded-2xl object-contain transition-transform duration-500 group-hover:translate-y-2" />
@@ -263,8 +242,8 @@ export function HeroVisual() {
 
       {/* Phone app */}
       <div className="absolute bottom-0 right-1 w-[34%] min-w-[118px] animate-[floaty_6s_ease-in-out_infinite]">
-        <div className="relative aspect-[9/17] overflow-hidden rounded-[1.7rem] border-[6px] border-[#0a1530] bg-gradient-to-b from-[#12306b] to-night shadow-lift ring-1 ring-white/20">
-          <span className="absolute left-1/2 top-1.5 h-2.5 w-10 -translate-x-1/2 rounded-full bg-[#0a1530]" />
+        <div className="relative aspect-[9/17] overflow-hidden rounded-[1.7rem] border-[6px] border-[#0C0718] bg-gradient-to-b from-[#2A1B47] to-night shadow-lift ring-1 ring-white/20">
+          <span className="absolute left-1/2 top-1.5 h-2.5 w-10 -translate-x-1/2 rounded-full bg-[#0C0718]" />
           <div className="space-y-2.5 px-3 pt-8">
             <span className="block h-2.5 w-12 rounded-full bg-white/40" />
             <span className="block h-16 rounded-xl bg-gradient-to-br from-accent to-cyan opacity-90" />
@@ -352,48 +331,48 @@ export function WorkflowDiagram({ steps }) {
       <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto hidden h-auto w-full max-w-[1200px] lg:block" role="img" aria-label={`Delivery process: ${steps.map((s) => s.name).join(', ')}. The sprint stages repeat every 1 to 2 weeks.`}>
         <defs>
           <marker id="wf-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M1 1l8 4-8 4z" fill="#0057E7" />
+            <path d="M1 1l8 4-8 4z" fill="#7A3CE0" />
           </marker>
           <marker id="wf-arrow-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M1 1l8 4-8 4z" fill="#18B7FF" />
+            <path d="M1 1l8 4-8 4z" fill="#C9A0FF" />
           </marker>
           <radialGradient id="wf-ring">
-            <stop offset="0.5" stopColor="#E8F0FF" stopOpacity="0.15" />
-            <stop offset="1" stopColor="#E8F0FF" stopOpacity="0.95" />
+            <stop offset="0.5" stopColor="#EDE3FB" stopOpacity="0.15" />
+            <stop offset="1" stopColor="#EDE3FB" stopOpacity="0.95" />
           </radialGradient>
         </defs>
 
         {/* sprint zone */}
         <circle cx={cx} cy={cy} r={R + 58} className="wf-band" fill="url(#wf-ring)" />
 
-        <circle cx={cx} cy={cy} r={R} fill="none" stroke="#0057E7" strokeOpacity=".08" strokeWidth="16" className="wf-tag" />
+        <circle cx={cx} cy={cy} r={R} fill="none" stroke="#7A3CE0" strokeOpacity=".08" strokeWidth="16" className="wf-tag" />
 
         {/* flow */}
         {links.map((d, i) => (
-          <path key={i} d={d} pathLength="1" className="wf-draw" style={{ transitionDelay: `${0.25 + i * 0.2}s` }} stroke="#0057E7" strokeWidth="3" strokeLinecap="round" fill="none" markerEnd="url(#wf-arrow)" />
+          <path key={i} d={d} pathLength="1" className="wf-draw" style={{ transitionDelay: `${0.25 + i * 0.2}s` }} stroke="#7A3CE0" strokeWidth="3" strokeLinecap="round" fill="none" markerEnd="url(#wf-arrow)" />
         ))}
-        <path d={arc(0, 180)} pathLength="1" className="wf-draw" style={{ transitionDelay: '1.8s' }} stroke="#0057E7" strokeWidth="3" strokeLinecap="round" fill="none" markerEnd="url(#wf-arrow)" />
-        <path d={refill} pathLength="1" className="wf-draw" style={{ transitionDelay: '2.2s' }} stroke="#18B7FF" strokeWidth="2.5" strokeLinecap="round" fill="none" markerEnd="url(#wf-arrow-cyan)" />
+        <path d={arc(0, 180)} pathLength="1" className="wf-draw" style={{ transitionDelay: '1.8s' }} stroke="#7A3CE0" strokeWidth="3" strokeLinecap="round" fill="none" markerEnd="url(#wf-arrow)" />
+        <path d={refill} pathLength="1" className="wf-draw" style={{ transitionDelay: '2.2s' }} stroke="#C9A0FF" strokeWidth="2.5" strokeLinecap="round" fill="none" markerEnd="url(#wf-arrow-cyan)" />
         {!still && on && (
-          <circle r="6" fill="#0057E7" className="wf-dot">
+          <circle r="6" fill="#7A3CE0" className="wf-dot">
             <animateMotion dur="8s" repeatCount="indefinite" path={loop} />
           </circle>
         )}
 
         {/* centre of the ring */}
         <g className="wf-tag" textAnchor="middle">
-          <rect x={cx - 58} y={cy - 58} width="116" height="28" rx="14" fill="#0057E7" />
+          <rect x={cx - 58} y={cy - 58} width="116" height="28" rx="14" fill="#7A3CE0" />
           <text x={cx} y={cy - 39} fill="#fff" fontSize="12" fontWeight="800" letterSpacing="2.4" className="font-display">SPRINT</text>
-          <text x={cx} y={cy - 2} fill="#0F172A" fontSize="20" fontWeight="800" className="font-display">Repeats every</text>
-          <text x={cx} y={cy + 24} fill="#0F172A" fontSize="20" fontWeight="800" className="font-display">1 to 2 weeks</text>
+          <text x={cx} y={cy - 2} fill="#1B1426" fontSize="20" fontWeight="800" className="font-display">Repeats every</text>
+          <text x={cx} y={cy + 24} fill="#1B1426" fontSize="20" fontWeight="800" className="font-display">1 to 2 weeks</text>
         </g>
         <g className="wf-tag" style={{ transitionDelay: '2s' }} textAnchor="middle">
-          <rect x={cx - 116} y={cy + 92} width="232" height="30" rx="15" fill="#fff" stroke="#0057E7" strokeOpacity=".3" />
-          <text x={cx} y={cy + 112} fill="#0A45B8" fontSize="13" fontWeight="600">Feedback shapes the next sprint</text>
+          <rect x={cx - 116} y={cy + 92} width="232" height="30" rx="15" fill="#fff" stroke="#7A3CE0" strokeOpacity=".3" />
+          <text x={cx} y={cy + 112} fill="#5A24B0" fontSize="13" fontWeight="600">Feedback shapes the next sprint</text>
         </g>
         <g className="wf-tag" style={{ transitionDelay: '2.4s' }} textAnchor="middle">
-          <rect x={refillMid - 172} y={refillLow - 16} width="344" height="32" rx="16" fill="#EAF8FF" stroke="#18B7FF" strokeOpacity=".7" />
-          <text x={refillMid} y={refillLow + 5} fill="#0A45B8" fontSize="14" fontWeight="600">Live feedback and new ideas refill the backlog</text>
+          <rect x={refillMid - 172} y={refillLow - 16} width="344" height="32" rx="16" fill="#F5EEFD" stroke="#C9A0FF" strokeOpacity=".7" />
+          <text x={refillMid} y={refillLow + 5} fill="#5A24B0" fontSize="14" fontWeight="600">Live feedback and new ideas refill the backlog</text>
         </g>
 
         {/* stages */}
@@ -409,8 +388,8 @@ export function WorkflowDiagram({ steps }) {
                 <Icon name={s.icon} className="wf-ico" x={x - 15} y={y - 15} width="30" height="30" />
               </g>
               {onRingEdge && <rect x={x - 76} y={nameY - 21} width="152" height="50" rx="12" className="wf-chip" />}
-              <text x={x} y={nameY} textAnchor="middle" fill="#0F172A" fontSize="17" fontWeight="700" className="font-display">{s.name}</text>
-              <text x={x} y={subY} textAnchor="middle" fill="#5A6578" fontSize="13">{s.sub}</text>
+              <text x={x} y={nameY} textAnchor="middle" fill="#1B1426" fontSize="17" fontWeight="700" className="font-display">{s.name}</text>
+              <text x={x} y={subY} textAnchor="middle" fill="#655C75" fontSize="13">{s.sub}</text>
             </g>
           );
         })}

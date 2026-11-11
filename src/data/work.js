@@ -30,7 +30,13 @@ export const work = [
     stack: ['Gemini Live', 'RAG', 'Kotlin', 'Jetpack Compose', 'ObjectBox', 'AWS', 'GitHub Actions'],
     services: ['ai-agents', 'android-apps'],
     links: [{ label: 'Nirman Labs', href: 'https://nirmanlabs.com' }],
-    images: [],
+    images: [
+      ['/work/nira-home.webp', 'Nira home screen: "What can I do for you today?" with a mic button'],
+      ['/work/nira-menu.webp', 'Nira menu with Home, Knowledge, Settings, Update and About'],
+      ['/work/nira-settings.webp', 'Nira settings: Gemini key, voice, language and microphone sensitivity'],
+      ['/work/nira-about.webp', 'Nira About screen: what it does and how your data is handled'],
+      ['/work/nira-updates.webp', 'Nira Update screen with version history and a check for updates button'],
+    ],
   },
 ];
 

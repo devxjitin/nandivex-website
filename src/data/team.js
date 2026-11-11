@@ -1,7 +1,7 @@
 export const jitin = {
   slug: 'jitin-kumar-sengar',
   name: 'Jitin Kumar Sengar',
-  role: 'AI Engineer',
+  role: 'Co-Founder, Head of AI',
   short: 'Builds AI agents that think, see, listen and act, and ships them end to end.',
   photo: '/team/jitin.jpeg',
   bio: [
@@ -90,7 +90,7 @@ jitin.projects = [
 export const sonia = {
   slug: 'sonia',
   name: 'Sonia Dahiya',
-  role: 'Designer and Junior AI Developer',
+  role: 'Head of Design, Junior AI Developer',
   photo: '/team/sonia.jpeg',
   short: 'Designs our logos, brand and product visuals, and builds AI features as a junior developer. Co-builder of ULTRON.',
   bio: [
@@ -139,7 +139,7 @@ export const sonia = {
 export const aman = {
   slug: 'aman-kumar',
   name: 'Aman Kumar',
-  role: 'Full Stack Developer',
+  role: 'Head of Full Stack Development',
   photo: '/team/aman.jpeg',
   short: 'Builds full-stack products end to end, from React and Next.js front ends to Node and FastAPI back ends, with AI features on top.',
   bio: [
@@ -207,6 +207,27 @@ export const aman = {
   ],
 };
 
+export const chandra = {
+  slug: 'chandra-prakash-tiwari',
+  name: 'Chandra Prakash Tiwari',
+  role: 'Founder & CEO, Cybersecurity Professional',
+  photo: '/team/chandra.jpeg',
+  short: 'Pioneering enterprise cybersecurity, autonomous AI architectures, and next-gen digital resilience to safeguard and scale modern businesses.',
+  bio: [
+    'I lead NandiVex Technologies with a mission to bridge high-assurance cybersecurity and bleeding-edge artificial intelligence. With deep roots in penetration testing, digital forensics, and secure systems architecture, I believe technology should not only be intelligent and automated, but fundamentally resilient against modern cyber threats.',
+    'At NandiVex, I steer our strategic engineering and client deployments, delivering autonomous agent ecosystems, zero-trust security postures, and scalable digital solutions that protect revenue, ensure compliance, and unlock real operational leverage for enterprises.',
+  ],
+  links: [
+    { label: 'GitHub', href: 'https://github.com/Chandra-prakash-knight13' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/chandra-prakash-t/' },
+    { label: 'TryHackMe', href: 'https://tryhackme.com/p/knight2' },
+  ],
+  skills: [
+    ['Cybersecurity', ['Penetration testing', 'Digital forensics', 'Secure systems architecture', 'Zero-trust security']],
+    ['AI and delivery', ['Autonomous agent ecosystems', 'Enterprise deployments', 'Compliance']],
+  ],
+};
+
 /* Everyone on the Team page. To add a member, define an object like `jitin` (slug, name, role, photo, short, bio, links;
    stats, skills, projects and education are optional) and add it here. */
-export const team = [jitin, sonia, aman];
+export const team = [chandra, jitin, sonia, aman];

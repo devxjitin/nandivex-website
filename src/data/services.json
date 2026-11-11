@@ -1,5 +1,78 @@
 [
   {
+    "id": "ai-agents",
+    "slug": "ai-agents",
+    "title": "AI Voice & Chat Agents",
+    "short": "Voice and chat assistants",
+    "subtitle": "Assistants that listen, reason and get real work done",
+    "description": "Voice and chat agents that use your tools and your documents to finish tasks, with approvals and logs so you stay in control. We shipped Nira, a voice assistant, for Nirman Labs.",
+    "icon": "ai-agents",
+    "tags": [],
+    "useCases": [
+      "A voice assistant for students, customers or reception desks",
+      "A chat assistant that answers from your own documents",
+      "An agent that books, files, searches and updates your systems",
+      "An internal helper that saves staff hours every week"
+    ],
+    "features": [
+      "Real-time voice you can interrupt (Gemini Live, Whisper)",
+      "Chat assistants with streaming answers and file attachments",
+      "Answers from your own documents (RAG) instead of guesses",
+      "Tool-using agents that call your APIs and MCP connectors",
+      "Multi-language support, including Hindi and English",
+      "Memory and personalisation across sessions"
+    ],
+    "deliverables": [
+      "A working agent with an agreed scope and toolset",
+      "Test questions and quality checks to measure answers",
+      "Human approval for risky actions, plus run logs",
+      "Cost and usage tracking per user or team",
+      "Documentation and full source handover"
+    ],
+    "technologies": [
+      "Python",
+      "Gemini",
+      "OpenAI-compatible LLMs",
+      "RAG",
+      "MCP",
+      "Whisper",
+      "Ollama",
+      "FastAPI",
+      "Autourgos"
+    ],
+    "process": [
+      {
+        "step": "01",
+        "name": "Define the task",
+        "detail": "Pick one job the agent should do and how success is measured."
+      },
+      {
+        "step": "02",
+        "name": "Connect tools and data",
+        "detail": "Wire up the APIs, documents and permissions the agent needs."
+      },
+      {
+        "step": "03",
+        "name": "Build and evaluate",
+        "detail": "Iterate against real examples until answers are reliable."
+      },
+      {
+        "step": "04",
+        "name": "Pilot with guardrails",
+        "detail": "Roll out to a small group with approvals and monitoring."
+      },
+      {
+        "step": "05",
+        "name": "Launch and improve",
+        "detail": "Go live, watch usage and cost, and keep refining."
+      }
+    ],
+    "relatedWork": [
+      "nira"
+    ],
+    "image": "/services/ai-agents.webp"
+  },
+  {
     "id": "web-software",
     "slug": "web-software",
     "title": "Web & Custom Software",
@@ -273,84 +346,6 @@
     ],
     "relatedWork": [],
     "image": "/services/desktop-apps.webp"
-  },
-  {
-    "id": "ai-agents",
-    "slug": "ai-agents",
-    "title": "AI Voice & Chat Agents",
-    "short": "Voice and chat assistants",
-    "subtitle": "Assistants that listen, reason and get real work done",
-    "description": "Voice and chat agents that use your tools and your documents to finish tasks, with approvals and logs so you stay in control. We shipped Nira, a voice assistant, for Nirman Labs.",
-    "icon": "ai-agents",
-    "tags": [
-      "Voice",
-      "RAG",
-      "Tool calling",
-      "MCP"
-    ],
-    "useCases": [
-      "A voice assistant for students, customers or reception desks",
-      "A chat assistant that answers from your own documents",
-      "An agent that books, files, searches and updates your systems",
-      "An internal helper that saves staff hours every week"
-    ],
-    "features": [
-      "Real-time voice you can interrupt (Gemini Live, Whisper)",
-      "Chat assistants with streaming answers and file attachments",
-      "Answers from your own documents (RAG) instead of guesses",
-      "Tool-using agents that call your APIs and MCP connectors",
-      "Multi-language support, including Hindi and English",
-      "Memory and personalisation across sessions"
-    ],
-    "deliverables": [
-      "A working agent with an agreed scope and toolset",
-      "Test questions and quality checks to measure answers",
-      "Human approval for risky actions, plus run logs",
-      "Cost and usage tracking per user or team",
-      "Documentation and full source handover"
-    ],
-    "technologies": [
-      "Python",
-      "Gemini",
-      "OpenAI-compatible LLMs",
-      "RAG",
-      "MCP",
-      "Whisper",
-      "Ollama",
-      "FastAPI",
-      "Autourgos"
-    ],
-    "process": [
-      {
-        "step": "01",
-        "name": "Define the task",
-        "detail": "Pick one job the agent should do and how success is measured."
-      },
-      {
-        "step": "02",
-        "name": "Connect tools and data",
-        "detail": "Wire up the APIs, documents and permissions the agent needs."
-      },
-      {
-        "step": "03",
-        "name": "Build and evaluate",
-        "detail": "Iterate against real examples until answers are reliable."
-      },
-      {
-        "step": "04",
-        "name": "Pilot with guardrails",
-        "detail": "Roll out to a small group with approvals and monitoring."
-      },
-      {
-        "step": "05",
-        "name": "Launch and improve",
-        "detail": "Go live, watch usage and cost, and keep refining."
-      }
-    ],
-    "relatedWork": [
-      "nira"
-    ],
-    "image": "/services/ai-agents.webp"
   },
   {
     "id": "cybersecurity",

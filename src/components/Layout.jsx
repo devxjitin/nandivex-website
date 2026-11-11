@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { nav, site } from '../data/site.js';
 import services from '../data/services.json';
 import { clients } from '../data/clients.js';
-import { PageScrollBar, useAutoReveal, useSmoothScroll } from './motion.jsx';
+import { PageScrollBar, useAutoReveal, useScrollRestoration } from './motion.jsx';
 import Icon from './Icons.jsx';
 
 function Logo({ dark = false }) {
@@ -58,48 +58,6 @@ function ServicesMenu({ item, link }) {
   );
 }
 
-/** "Connect" dropdown: WhatsApp and email. Opens on hover or keyboard focus, like the Services menu. */
-function ConnectMenu({ link }) {
-  const [show, setShow] = useState(false);
-  const items = [
-    ['whatsapp', 'WhatsApp', 'Chat with us', site.whatsappHref, true],
-    ['mail', 'Email', site.email, `mailto:${site.email}`, false],
-  ];
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
-      onFocus={() => setShow(true)}
-      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setShow(false); }}
-    >
-      <button type="button" className={`${link({ isActive: false })} cursor-pointer`} aria-haspopup="true" aria-expanded={show}>
-        <span className="inline-flex items-center gap-1">
-          Connect
-          <Icon name="chevron" className={`h-3 w-3 rotate-90 transition-transform duration-200 ${show ? '-rotate-90' : ''}`} />
-        </span>
-      </button>
-      <div className={`absolute right-0 top-full z-50 w-72 pt-4 transition-all duration-200 ${show ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'}`}>
-        <ul className="rounded-2xl border border-line bg-white p-2 shadow-lift">
-          {items.map(([icon, title, sub, href, external]) => (
-            <li key={title}>
-              <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="group flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-tint" tabIndex={show ? 0 : -1}>
-                <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-tint text-accent transition-colors group-hover:bg-accent group-hover:text-white">
-                  <Icon name={icon} className="h-5 w-5" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-sm font-semibold text-ink">{title}</span>
-                  <span className="block truncate text-xs text-muted">{sub}</span>
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
 function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -123,8 +81,10 @@ function Header() {
           {nav.map((n) => (n.to === '/services'
             ? <ServicesMenu key={n.to} item={n} link={link} />
             : <NavLink key={n.to} to={n.to} end={n.to === '/'} className={link}>{n.label}</NavLink>))}
-          <ConnectMenu link={link} />
-          <Link to="/#contact" className="btn-solid !py-2">Book a call</Link>
+          <div className="flex items-center gap-3">
+            <Link to="/#contact" className="btn-line !py-2">Contact</Link>
+            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-solid !py-2"><Icon name="whatsapp" className="h-4 w-4" /> Quick Connect</a>
+          </div>
         </nav>
         <button
           className="flex h-10 w-10 items-center justify-center rounded-full border border-line lg:hidden"
@@ -153,14 +113,8 @@ function Header() {
                 )}
               </div>
             ))}
-            <div className="border-b border-line py-3.5">
-              <p className="text-base font-medium">Connect</p>
-              <ul className="mt-1 pl-4">
-                <li><a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className="block py-2.5 text-sm text-ink/75">WhatsApp</a></li>
-                <li><a href={`mailto:${site.email}`} tabIndex={open ? 0 : -1} className="block py-2.5 text-sm text-ink/75">Email</a></li>
-              </ul>
-            </div>
-            <Link to="/#contact" tabIndex={open ? 0 : -1} className="btn-solid my-4">Book a call</Link>
+            <Link to="/#contact" tabIndex={open ? 0 : -1} className="btn-line mt-4 justify-center">Contact</Link>
+            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className="btn-solid mb-4 mt-3 justify-center"><Icon name="whatsapp" className="h-4 w-4" /> Quick Connect</a>
           </div>
         </div>
       </nav>
@@ -201,12 +155,12 @@ function ContactRow({ icon, children }) {
 function Footer() {
   const quick = [['/', 'About Us'], ['/work', 'Work'], ['/products', 'Products'], ['/careers', 'Careers'], ['/#contact', 'Contact'], ['/privacy-policy', 'Privacy Policy'], ['/terms-and-conditions', 'Terms & Conditions']];
   return (
-    <footer className="bg-[#040a18] text-paper">
+    <footer className="bg-[#09050F] text-paper">
       <div className="wrap grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.2fr_1.2fr]">
         <div>
           <Logo dark />
           <p className="mt-6 max-w-xs leading-relaxed text-paper/70">
-            {site.name} designs, builds and supports websites, web platforms, Android and Windows apps, and AI assistants for businesses.
+            {site.name} designs, builds and supports AI assistants, websites, web platforms, and Android and Windows apps for businesses.
           </p>
           {clients.length > 0 && (
             <p className="mt-6 text-sm text-paper/60">
@@ -245,17 +199,8 @@ function Footer() {
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
-  const lenis = useSmoothScroll();
+  useScrollRestoration(pathname, hash);
   useAutoReveal(pathname);
-  useEffect(() => {
-    const target = hash ? document.getElementById(hash.slice(1)) : null;
-    if (target) {
-      const top = target.getBoundingClientRect().top + window.scrollY - 64;
-      if (lenis.current) lenis.current.scrollTo(top, { immediate: true });
-      else window.scrollTo(0, top);
-    } else if (lenis.current) lenis.current.scrollTo(0, { immediate: true });
-    else window.scrollTo(0, 0);
-  }, [pathname, hash, lenis]);
   return (
     <div className="flex min-h-screen flex-col">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:bg-accent focus:px-3 focus:py-2 focus:text-white">Skip to content</a>
