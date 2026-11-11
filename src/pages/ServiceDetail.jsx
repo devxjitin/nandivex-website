@@ -19,7 +19,7 @@ export default function ServiceDetail() {
       <PageHeader eyebrow="Services" title={s.title}>
         <p>{s.subtitle}</p>
         <p className="mt-4 text-base">{s.description}</p>
-        <Link to="/#contact" className="btn mt-8 bg-white text-accent hover:bg-cyan hover:text-night">Talk about your project <Icon name="arrow" className="h-4 w-4" /></Link>
+        <Link to="/#contact" className="btn mt-8 bg-white text-accent-dark hover:bg-cyan hover:text-night">Talk about your project <Icon name="arrow" className="h-4 w-4" /></Link>
       </PageHeader>
 
       <Section eyebrow="Good fit for" title="What clients use this for">

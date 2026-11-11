@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  /* Theme colours as RGB channels, so Tailwind opacity modifiers keep working. .dark swaps them. */
+  :root {
+    color-scheme: light;
+    --c-paper: 255 255 255; --c-surface: 255 255 255; --c-soft: 247 243 253;
+    --c-ink: 27 20 38; --c-muted: 101 92 117; --c-line: 230 222 242;
+    --c-accent: 122 60 224; --c-accent-dark: 90 36 176; --c-tint: 237 227 251; --c-night: 21 14 36;
+  }
+  :root.dark {
+    color-scheme: dark;
+    --c-paper: 13 9 23; --c-surface: 27 19 46; --c-soft: 20 14 35;
+    --c-ink: 240 235 250; --c-muted: 168 159 188; --c-line: 49 39 72;
+    --c-accent: 154 106 242; --c-accent-dark: 172 132 248; --c-tint: 42 28 72; --c-night: 31 21 56;
+  }
   html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   html, body { overflow-x: clip; }
   body { @apply bg-paper text-ink font-sans antialiased; }
@@ -17,19 +30,19 @@
   .label { @apply font-display text-xs font-bold uppercase tracking-[0.14em] text-accent; }
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition-all duration-200; }
   .btn-solid { @apply btn border-accent bg-accent text-white shadow-lift hover:-translate-y-0.5 hover:bg-accent-dark hover:border-accent-dark; }
-  .btn-line { @apply btn border-line bg-white text-ink hover:border-accent hover:text-accent; }
-  .card { @apply rounded-2xl border border-line bg-white p-6 text-ink shadow-card transition-all duration-200; }
+  .btn-line { @apply btn border-line bg-surface text-ink hover:border-accent hover:text-accent; }
+  .card { @apply rounded-2xl border border-line bg-surface p-6 text-ink shadow-card transition-all duration-200; }
   .card-hover { @apply card hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift; }
 
   /* Notched card (TabCard in blocks.jsx). The top edge is drawn by two SVG slopes plus these pieces. */
-  .tabcard { --tc-line: #7A3CE0; --tc-fill: #F5EEFD; --tc-pill: #5A24B0; @apply relative mt-4 flex flex-col; }
+  .tabcard { --tc-line: rgb(var(--c-accent)); --tc-fill: rgb(var(--c-tint)); --tc-pill: #5A24B0; @apply relative mt-4 flex flex-col; }
   .tabcard-notch { @apply relative -ml-4 flex flex-none items-start; }
   .tabcard-notch::after { content: ''; position: absolute; left: 16px; right: 0; bottom: 0; height: 1.25px; background: var(--tc-line); }
   .tabcard-pill { @apply relative z-10 -mt-[15px] inline-flex h-[38px] items-center whitespace-nowrap rounded-full px-6 font-display text-base font-bold uppercase tracking-wide text-white; background: var(--tc-pill); }
   .tabcard-rest { @apply min-w-0 flex-1 rounded-tr-[13px] border-r border-t; border-color: var(--tc-line); background: var(--tc-fill); }
   .tabcard-body { @apply flex flex-1 items-start gap-5 rounded-b-[13px] border-x border-b px-6 pb-10 pt-7 sm:px-8 lg:px-[50px]; border-color: var(--tc-line); background: var(--tc-fill); color: var(--tc-line); }
   .tabcard-body > .min-w-0 { color: initial; }
-  .chip { @apply rounded-full border border-line bg-white px-3.5 py-1.5 text-xs font-medium text-ink; }
+  .chip { @apply rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-medium text-ink; }
   .prose-body p { @apply mb-5 text-[17px] leading-[1.75] text-ink/85; }
   .prose-body h3 { @apply mt-12 mb-3 text-2xl; }
   .prose-body h4 { @apply mt-6 mb-2 text-lg font-bold; }
@@ -43,6 +56,11 @@
 }
 
 /* ---------- Motion ---------- */
+/* Theme switch: colours cross-fade for a moment, then the class is removed so normal transitions are untouched. */
+html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *::after {
+  transition: background-color .5s ease, color .5s ease, border-color .5s ease, fill .5s ease, stroke .5s ease, box-shadow .5s ease !important;
+}
+.theme-icon { transition: transform .6s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; }
 /* Scroll reveal: every variant eases in with the same long curve; the variant only changes where it comes from. */
 .reveal { opacity: 0; transform: translate3d(0, 36px, 0); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
 .reveal-soft { transform: translate3d(0, 20px, 0); transition-duration: 1.1s; }
@@ -123,9 +141,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; heig
 .wf-in .wf-node { transform: none; opacity: 1; }
 .wf-in .wf-item { opacity: 1; transform: none; }
 .wf-badge { transform-box: view-box; transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
-.wf-circle { fill: #fff; stroke: #7A3CE0; filter: drop-shadow(0 6px 14px rgba(27,20,38,.10)); transition: fill .3s, filter .3s; }
+.wf-circle { fill: rgb(var(--c-surface)); stroke: #7A3CE0; filter: drop-shadow(0 6px 14px rgba(27,20,38,.10)); transition: fill .3s, filter .3s; }
 .wf-ico { color: #7A3CE0; transition: color .3s; }
-.wf-chip { fill: #fff; filter: drop-shadow(0 4px 12px rgba(27,20,38,.08)); }
+.wf-chip { fill: rgb(var(--c-surface)); filter: drop-shadow(0 4px 12px rgba(27,20,38,.08)); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .wf-node:hover .wf-badge { transform: scale(1.12); }
   .wf-node:hover .wf-circle { fill: #7A3CE0; filter: drop-shadow(0 12px 22px rgba(122,60,224,.45)); }

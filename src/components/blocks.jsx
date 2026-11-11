@@ -63,10 +63,10 @@ export function StatRow({ stats }) {
     <dl className="grid gap-x-8 gap-y-12 sm:grid-cols-2">
       {stats.map((s) => (
         <TabCard key={s.label} tab={s.tab} icon={s.icon}>
-          <dt className="font-display text-[3.25rem] font-extrabold leading-none tracking-tight text-[#1a1a1a]">
+          <dt className="font-display text-[3.25rem] font-extrabold leading-none tracking-tight text-ink">
             <CountUp value={s.value} suffix={s.suffix} />
           </dt>
-          <dd className="mt-5 text-lg leading-[1.7] text-[#333]">{s.label}</dd>
+          <dd className="mt-5 text-lg leading-[1.7] text-ink/80">{s.label}</dd>
         </TabCard>
       ))}
     </dl>
@@ -101,7 +101,7 @@ export function ServiceCard({ s, big = false }) {
     return (
       <Link
         to={`/services/${s.slug}`}
-        className="card-hover group relative grid gap-8 overflow-hidden !border-accent/30 bg-gradient-to-br from-white to-tint !p-7 md:col-span-full md:grid-cols-[1.3fr_1fr] md:items-center sm:!p-8"
+        className="card-hover group relative grid gap-8 overflow-hidden !border-accent/30 bg-gradient-to-br from-surface to-tint !p-7 md:col-span-full md:grid-cols-[1.3fr_1fr] md:items-center sm:!p-8"
       >
         <span className="absolute right-5 top-5 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Main focus</span>
         <div>
@@ -114,7 +114,7 @@ export function ServiceCard({ s, big = false }) {
             Learn more <Icon name="arrow" className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </div>
-        <div className="rounded-2xl border border-line bg-white/70 p-5">
+        <div className="rounded-2xl border border-line bg-surface/70 p-5">
           <VoiceWave bars={30} className="!h-10 w-full" />
           <ul className="mt-4 space-y-2 text-sm">
             {s.useCases.slice(0, 3).map((u) => (
@@ -192,7 +192,7 @@ export function WorkCard({ w }) {
 /** Accessible accordion using details/summary. items: [[question, answer], ...] */
 export function FAQ({ items }) {
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-line rounded-2xl border border-line bg-white shadow-card">
+    <div className="mx-auto max-w-3xl divide-y divide-line rounded-2xl border border-line bg-surface shadow-card">
       {items.map(([q, a]) => (
         <details key={q} className="faq group px-6">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-lg font-bold">
@@ -337,8 +337,8 @@ export function WorkflowDiagram({ steps }) {
             <path d="M1 1l8 4-8 4z" fill="#C9A0FF" />
           </marker>
           <radialGradient id="wf-ring">
-            <stop offset="0.5" stopColor="#EDE3FB" stopOpacity="0.15" />
-            <stop offset="1" stopColor="#EDE3FB" stopOpacity="0.95" />
+            <stop offset="0.5" style={{ stopColor: 'rgb(var(--c-tint))' }} stopOpacity="0.15" />
+            <stop offset="1" style={{ stopColor: 'rgb(var(--c-tint))' }} stopOpacity="0.95" />
           </radialGradient>
         </defs>
 
@@ -363,16 +363,16 @@ export function WorkflowDiagram({ steps }) {
         <g className="wf-tag" textAnchor="middle">
           <rect x={cx - 58} y={cy - 58} width="116" height="28" rx="14" fill="#7A3CE0" />
           <text x={cx} y={cy - 39} fill="#fff" fontSize="12" fontWeight="800" letterSpacing="2.4" className="font-display">SPRINT</text>
-          <text x={cx} y={cy - 2} fill="#1B1426" fontSize="20" fontWeight="800" className="font-display">Repeats every</text>
-          <text x={cx} y={cy + 24} fill="#1B1426" fontSize="20" fontWeight="800" className="font-display">1 to 2 weeks</text>
+          <text x={cx} y={cy - 2} fontSize="20" fontWeight="800" className="fill-ink font-display">Repeats every</text>
+          <text x={cx} y={cy + 24} fontSize="20" fontWeight="800" className="fill-ink font-display">1 to 2 weeks</text>
         </g>
         <g className="wf-tag" style={{ transitionDelay: '2s' }} textAnchor="middle">
-          <rect x={cx - 116} y={cy + 92} width="232" height="30" rx="15" fill="#fff" stroke="#7A3CE0" strokeOpacity=".3" />
-          <text x={cx} y={cy + 112} fill="#5A24B0" fontSize="13" fontWeight="600">Feedback shapes the next sprint</text>
+          <rect x={cx - 116} y={cy + 92} width="232" height="30" rx="15" className="fill-surface" stroke="#7A3CE0" strokeOpacity=".3" />
+          <text x={cx} y={cy + 112} fontSize="13" fontWeight="600" className="fill-accent-dark">Feedback shapes the next sprint</text>
         </g>
         <g className="wf-tag" style={{ transitionDelay: '2.4s' }} textAnchor="middle">
-          <rect x={refillMid - 172} y={refillLow - 16} width="344" height="32" rx="16" fill="#F5EEFD" stroke="#C9A0FF" strokeOpacity=".7" />
-          <text x={refillMid} y={refillLow + 5} fill="#5A24B0" fontSize="14" fontWeight="600">Live feedback and new ideas refill the backlog</text>
+          <rect x={refillMid - 172} y={refillLow - 16} width="344" height="32" rx="16" className="fill-tint" stroke="#C9A0FF" strokeOpacity=".7" />
+          <text x={refillMid} y={refillLow + 5} fontSize="14" fontWeight="600" className="fill-accent-dark">Live feedback and new ideas refill the backlog</text>
         </g>
 
         {/* stages */}
@@ -388,8 +388,8 @@ export function WorkflowDiagram({ steps }) {
                 <Icon name={s.icon} className="wf-ico" x={x - 15} y={y - 15} width="30" height="30" />
               </g>
               {onRingEdge && <rect x={x - 76} y={nameY - 21} width="152" height="50" rx="12" className="wf-chip" />}
-              <text x={x} y={nameY} textAnchor="middle" fill="#1B1426" fontSize="17" fontWeight="700" className="font-display">{s.name}</text>
-              <text x={x} y={subY} textAnchor="middle" fill="#655C75" fontSize="13">{s.sub}</text>
+              <text x={x} y={nameY} textAnchor="middle" fontSize="17" fontWeight="700" className="fill-ink font-display">{s.name}</text>
+              <text x={x} y={subY} textAnchor="middle" fontSize="13" className="fill-muted">{s.sub}</text>
             </g>
           );
         })}
@@ -400,8 +400,8 @@ export function WorkflowDiagram({ steps }) {
         {steps.map((s, i) => {
           const startsSprint = s.inSprint && !steps[i - 1]?.inSprint;
           return (
-            <li key={s.name} className={`wf-item flex items-center gap-4 rounded-2xl border p-4 ${s.inSprint ? 'border-accent/40 bg-tint/60' : 'border-line bg-white'}`} style={{ transitionDelay: `${i * 0.1}s` }}>
-              <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full border-2 border-accent bg-white text-accent">
+            <li key={s.name} className={`wf-item flex items-center gap-4 rounded-2xl border p-4 ${s.inSprint ? 'border-accent/40 bg-tint/60' : 'border-line bg-surface'}`} style={{ transitionDelay: `${i * 0.1}s` }}>
+              <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full border-2 border-accent bg-surface text-accent">
                 <Icon name={s.icon} className="h-6 w-6" />
               </span>
               <span className="min-w-0">

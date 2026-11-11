@@ -80,7 +80,7 @@ export default function WorkDetail() {
         <Section eyebrow="Screens" title="What it looks like" tone="soft">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {w.images.map(([src, alt]) => (
-              <img key={src} src={src} alt={alt} loading="lazy" width="720" height="1600" className="aspect-[9/20] w-full rounded-2xl border border-line bg-white object-contain shadow-card" />
+              <img key={src} src={src} alt={alt} loading="lazy" width="720" height="1600" className="aspect-[9/20] w-full rounded-2xl border border-line bg-surface object-contain shadow-card" />
             ))}
           </div>
         </Section>

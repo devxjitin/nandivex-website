@@ -198,9 +198,9 @@ export function PageScrollBar() {
       <div className="absolute inset-x-3 top-1/2 h-[3px] -translate-y-1/2 rounded-full bg-line/70">
         <div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-accent to-cyan" style={{ width: `${p * 100}%` }} />
         {marks.map((m) => (
-          <span key={m} className={`absolute top-1/2 h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.5px] border-white ${p >= m - 0.001 ? 'bg-accent' : 'bg-[#D6CCE6]'}`} style={{ left: `${m * 100}%` }} />
+          <span key={m} className={`absolute top-1/2 h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.5px] border-paper ${p >= m - 0.001 ? 'bg-accent' : 'bg-line'}`} style={{ left: `${m * 100}%` }} />
         ))}
-        <span className="absolute top-1/2 h-[14px] w-[14px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[2.5px] border-white bg-accent shadow-lift ring-2 ring-accent/30 transition-transform group-hover:scale-125 group-focus-visible:ring-4" style={{ left: `${p * 100}%` }} />
+        <span className="absolute top-1/2 h-[14px] w-[14px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[2.5px] border-paper bg-accent shadow-lift ring-2 ring-accent/30 transition-transform group-hover:scale-125 group-focus-visible:ring-4" style={{ left: `${p * 100}%` }} />
       </div>
     </div>
   );

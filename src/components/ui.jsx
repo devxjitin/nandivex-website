@@ -49,7 +49,7 @@ export function PageHeader({ eyebrow, title, children, visual }) {
 
 export function Section({ id, eyebrow, title, children, className = '', tone = 'white' }) {
   const dark = tone === 'dark';
-  const bg = dark ? 'bg-night text-white' : tone === 'soft' ? 'bg-soft' : 'bg-white';
+  const bg = dark ? 'bg-night text-white' : tone === 'soft' ? 'bg-soft' : 'bg-paper';
   return (
     <section id={id} className={`relative overflow-hidden ${bg} ${className}`}>
       {dark && <div className="glow absolute -left-32 top-0 h-[360px] w-[360px] opacity-40" aria-hidden="true" />}

@@ -57,7 +57,7 @@ export default function About() {
         <ul className="grid gap-6 sm:grid-cols-2">
           {team.map((m) => (
             <li key={m.slug}>
-              <Link to={`/team/${m.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white text-ink sm:flex-row shadow-card transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-lift">
+              <Link to={`/team/${m.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface text-ink sm:flex-row shadow-card transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-lift">
                 <div className="overflow-hidden sm:w-[38%] sm:flex-none">
                   <Avatar m={m} textClass="text-6xl" className="aspect-[5/4] w-full object-cover sm:aspect-auto sm:h-full transition-transform duration-700 ease-out group-hover:scale-105" />
                 </div>

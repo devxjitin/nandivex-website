@@ -51,6 +51,18 @@
       "title": "UI/UX Design Intern",
       "blurb": "Support product and brand design for live projects.",
       "skills": ["Figma", "Visual design"]
+    },
+    {
+      "kind": "Internship",
+      "title": "Penetration Testing Intern",
+      "blurb": "Learn to find and report real weaknesses in web apps, APIs and networks, with a senior tester reviewing your findings.",
+      "skills": ["Networking basics", "OWASP Top 10", "Burp Suite", "Linux"]
+    },
+    {
+      "kind": "Internship",
+      "title": "SOC Analyst Intern",
+      "blurb": "Watch logs and alerts, triage incidents and write up what happened, working alongside our security team.",
+      "skills": ["Log analysis", "SIEM basics", "Networking", "Incident response"]
     }
   ],
   "culture": [

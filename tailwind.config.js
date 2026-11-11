@@ -1,18 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
       colors: {
-        paper: '#FFFFFF',
-        soft: '#F7F3FD',
-        ink: '#1B1426',
-        muted: '#655C75',
-        line: '#E6DEF2',
-        accent: '#7A3CE0',
-        'accent-dark': '#5A24B0',
-        tint: '#EDE3FB',
-        night: '#150E24',
+        paper: 'rgb(var(--c-paper) / <alpha-value>)',
+        surface: 'rgb(var(--c-surface) / <alpha-value>)',
+        soft: 'rgb(var(--c-soft) / <alpha-value>)',
+        ink: 'rgb(var(--c-ink) / <alpha-value>)',
+        muted: 'rgb(var(--c-muted) / <alpha-value>)',
+        line: 'rgb(var(--c-line) / <alpha-value>)',
+        accent: 'rgb(var(--c-accent) / <alpha-value>)',
+        'accent-dark': 'rgb(var(--c-accent-dark) / <alpha-value>)',
+        tint: 'rgb(var(--c-tint) / <alpha-value>)',
+        night: 'rgb(var(--c-night) / <alpha-value>)',
         cyan: '#C9A0FF',
         sun: '#FFB020',
       },
