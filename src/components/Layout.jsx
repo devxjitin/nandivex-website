@@ -10,7 +10,7 @@ import Icon from './Icons.jsx';
 function Logo({ dark = false }) {
   return (
     <Link to="/" className="flex items-center gap-2.5" aria-label="NandiVex Technologies home">
-      <img src="/logo.png" alt="" className="h-9 w-9 rounded-lg" />
+      <img src="/logo.png" alt="" className="h-10 w-10 object-contain" />
       <span className="leading-none">
         <span className="block font-display text-[17px] font-extrabold tracking-tight">NandiVex</span>
         <span className={`mt-1 block text-[8.5px] font-semibold uppercase tracking-[0.3em] ${dark ? 'text-white/60' : 'text-muted'}`}>Technologies</span>
