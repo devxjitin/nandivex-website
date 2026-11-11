@@ -29,6 +29,18 @@
       "skills": ["UI design", "Brand identity", "Figma"]
     },
     {
+      "kind": "Career",
+      "title": "Penetration Tester",
+      "blurb": "Find and report real weaknesses in web apps, APIs and networks for client projects and our own products.",
+      "skills": ["OWASP Top 10", "Burp Suite", "Networking", "Linux"]
+    },
+    {
+      "kind": "Career",
+      "title": "SOC Analyst",
+      "blurb": "Monitor logs and alerts, triage incidents and write up what happened, so threats are caught early.",
+      "skills": ["SIEM", "Log analysis", "Incident response", "Networking"]
+    },
+    {
       "kind": "Internship",
       "title": "AI Agents Intern",
       "blurb": "Work with our engineers on real agent projects and learn how they are tested and shipped.",
@@ -51,18 +63,6 @@
       "title": "UI/UX Design Intern",
       "blurb": "Support product and brand design for live projects.",
       "skills": ["Figma", "Visual design"]
-    },
-    {
-      "kind": "Internship",
-      "title": "Penetration Testing Intern",
-      "blurb": "Learn to find and report real weaknesses in web apps, APIs and networks, with a senior tester reviewing your findings.",
-      "skills": ["Networking basics", "OWASP Top 10", "Burp Suite", "Linux"]
-    },
-    {
-      "kind": "Internship",
-      "title": "SOC Analyst Intern",
-      "blurb": "Watch logs and alerts, triage incidents and write up what happened, working alongside our security team.",
-      "skills": ["Log analysis", "SIEM basics", "Networking", "Incident response"]
     }
   ],
   "culture": [
