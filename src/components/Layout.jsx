@@ -12,7 +12,7 @@ function Logo({ dark = false }) {
       <img src="/logo.png" alt="" className="h-9 w-9 rounded-lg" />
       <span className="leading-none">
         <span className="block font-display text-[17px] font-extrabold tracking-tight">NandiVex</span>
-        <span className={`mt-1 block text-[8.5px] font-semibold uppercase tracking-[0.3em] ${dark ? 'text-paper/60' : 'text-muted'}`}>Technologies</span>
+        <span className={`mt-1 block text-[8.5px] font-semibold uppercase tracking-[0.3em] ${dark ? 'text-white/60' : 'text-muted'}`}>Technologies</span>
       </span>
     </Link>
   );
@@ -38,7 +38,7 @@ function ServicesMenu({ item, link }) {
         </span>
       </NavLink>
       <div className={`absolute left-1/2 top-full z-50 w-[22rem] -translate-x-1/2 pt-4 transition-all duration-200 ${show ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'}`}>
-        <ul className="rounded-2xl border border-line bg-white p-2 shadow-lift">
+        <ul className="rounded-2xl border border-line bg-surface p-2 shadow-lift">
           {services.map((sv) => (
             <li key={sv.slug}>
               <Link to={`/services/${sv.slug}`} className="group flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-tint" tabIndex={show ? 0 : -1}>
@@ -55,6 +55,46 @@ function ServicesMenu({ item, link }) {
         </ul>
       </div>
     </div>
+  );
+}
+
+/** Light / dark theme, kept in localStorage; the first visit follows the system setting (see the script in index.html). */
+function useTheme() {
+  const read = () => document.documentElement.classList.contains('dark');
+  const [dark, setDark] = useState(read);
+  useEffect(() => {
+    const sync = () => setDark(read());
+    window.addEventListener('themechange', sync);
+    return () => window.removeEventListener('themechange', sync);
+  }, []);
+  const toggle = () => {
+    const root = document.documentElement;
+    const next = !root.classList.contains('dark');
+    root.classList.add('theme-fade');
+    root.classList.toggle('dark', next);
+    try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch (e) { /* private mode */ }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#0D0917' : '#FFFFFF');
+    window.dispatchEvent(new Event('themechange'));
+    setTimeout(() => root.classList.remove('theme-fade'), 600);
+  };
+  return [dark, toggle];
+}
+
+/** Round button with a sun (day) and a moon (night) that swap with a turn. */
+function ThemeToggle({ className = '' }) {
+  const [dark, toggle] = useTheme();
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+      aria-pressed={dark}
+      title={dark ? 'Day mode' : 'Night mode'}
+      className={`relative flex h-10 w-10 flex-none items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-accent hover:text-accent ${className}`}
+    >
+      <Icon name="sun" className={`theme-icon absolute h-5 w-5 ${dark ? 'rotate-90 scale-50 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
+      <Icon name="moon" className={`theme-icon absolute h-5 w-5 ${dark ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-50 opacity-0'}`} />
+    </button>
   );
 }
 
@@ -85,18 +125,22 @@ function Header() {
             <Link to="/#contact" className="btn-line !py-2">Contact</Link>
             <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-solid !py-2"><Icon name="whatsapp" className="h-4 w-4" /> Quick Connect</a>
           </div>
+          <ThemeToggle />
         </nav>
-        <button
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line lg:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen(!open)}
-        >
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
-          </svg>
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-line"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen(!open)}
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
+          <ThemeToggle />
+        </div>
       </div>
       <nav id="mobile-nav" aria-label="Mobile" aria-hidden={!open} className={`menu-panel border-t border-line bg-paper lg:hidden ${open ? 'open' : 'border-transparent'}`}>
         <div>
@@ -135,7 +179,7 @@ function FooterList({ title, children }) {
 function FooterLink({ to, children }) {
   return (
     <li>
-      <Link to={to} className="group flex items-center gap-2 text-[15px] text-paper/80 transition-colors hover:text-white">
+      <Link to={to} className="group flex items-center gap-2 text-[15px] text-white/80 transition-colors hover:text-white">
         <Icon name="chevron" className="h-3.5 w-3.5 flex-none text-cyan transition-transform group-hover:translate-x-0.5" />
         {children}
       </Link>
@@ -145,7 +189,7 @@ function FooterLink({ to, children }) {
 
 function ContactRow({ icon, children }) {
   return (
-    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-paper/80">
+    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-white/80">
       <Icon name={icon} className="mt-0.5 h-5 w-5 flex-none text-cyan" />
       <span>{children}</span>
     </li>
@@ -155,18 +199,18 @@ function ContactRow({ icon, children }) {
 function Footer() {
   const quick = [['/', 'About Us'], ['/work', 'Work'], ['/products', 'Products'], ['/careers', 'Careers'], ['/#contact', 'Contact'], ['/privacy-policy', 'Privacy Policy'], ['/terms-and-conditions', 'Terms & Conditions']];
   return (
-    <footer className="bg-[#09050F] text-paper">
+    <footer className="bg-[#09050F] text-white">
       <div className="wrap grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.2fr_1.2fr]">
         <div>
           <Logo dark />
-          <p className="mt-6 max-w-xs leading-relaxed text-paper/70">
+          <p className="mt-6 max-w-xs leading-relaxed text-white/70">
             {site.name} designs, builds and supports AI assistants, websites, web platforms, and Android and Windows apps for businesses.
           </p>
           {clients.length > 0 && (
-            <p className="mt-6 text-sm text-paper/60">
+            <p className="mt-6 text-sm text-white/60">
               Trusted by{' '}
               {clients.map((c, i) => (
-                <span key={c.name}>{i > 0 && ', '}<a href={c.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-paper/90 hover:text-white">{c.name}</a></span>
+                <span key={c.name}>{i > 0 && ', '}<a href={c.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-white/90 hover:text-white">{c.name}</a></span>
               ))}
             </p>
           )}
@@ -189,7 +233,7 @@ function Footer() {
         </FooterList>
       </div>
       <div className="border-t border-white/10">
-        <div className="wrap py-6 text-center text-sm text-paper/50">
+        <div className="wrap py-6 text-center text-sm text-white/50">
           © {new Date().getFullYear()} {site.name}. All rights reserved.
         </div>
       </div>

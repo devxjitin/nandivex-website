@@ -4,7 +4,7 @@ import { site } from '../data/site.js';
 import { PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 
-const field = 'w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent';
+const field = 'w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent';
 
 function NotifyForm() {
   const [sent, setSent] = useState(false);
@@ -72,7 +72,7 @@ function RoleCard({ r }) {
   return (
     <li className="card flex flex-col">
       <div className="flex items-center justify-between gap-3">
-        <span className={`rounded-full px-3 py-1 text-xs font-bold ${intern ? 'bg-sun/20 text-[#8a5a00]' : 'bg-tint text-accent-dark'}`}>{r.kind}</span>
+        <span className={`rounded-full px-3 py-1 text-xs font-bold ${intern ? 'bg-sun/20 text-[#8a5a00] dark:text-sun' : 'bg-tint text-accent-dark'}`}>{r.kind}</span>
         <span className="text-xs font-semibold text-muted">Opening soon</span>
       </div>
       <h3 className="mt-4 text-xl">{r.title}</h3>
@@ -122,9 +122,9 @@ export default function Careers() {
           </div>
         </Section>
       ) : (
-        <section className="bg-white">
+        <section className="bg-paper">
           <div className="wrap py-12">
-            <div className="flex flex-col gap-6 rounded-3xl border border-accent/20 bg-gradient-to-br from-tint to-white p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
+            <div className="flex flex-col gap-6 rounded-3xl border border-accent/20 bg-gradient-to-br from-tint to-surface p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
               <div className="flex gap-5">
                 <span className="relative mt-1 flex h-4 w-4 flex-none">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/50" />

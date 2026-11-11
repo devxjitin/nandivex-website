@@ -30,7 +30,7 @@ function Product({ p, tone }) {
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {p.shots.map(([src, alt]) => (
-            <img key={src} src={src} alt={alt} loading="lazy" width="720" height="1600" className="aspect-[9/20] w-full rounded-xl border border-line bg-white object-contain shadow-card" />
+            <img key={src} src={src} alt={alt} loading="lazy" width="720" height="1600" className="aspect-[9/20] w-full rounded-xl border border-line bg-surface object-contain shadow-card" />
           ))}
         </div>
       </div>

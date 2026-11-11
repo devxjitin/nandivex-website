@@ -4,7 +4,7 @@ import { site } from '../data/site.js';
 import services from '../data/services.json';
 import Icon from '../components/Icons.jsx';
 
-const field = 'w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10';
+const field = 'w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10';
 
 /* One form for everything. Field types: text, email, tel, select, textarea. */
 const form = {
@@ -77,7 +77,7 @@ export function ContactSection() {
           </ul>
         </div>
 
-        <form onSubmit={submit} className="rounded-3xl bg-white p-6 text-ink shadow-lift sm:p-9">
+        <form onSubmit={submit} className="rounded-3xl bg-surface p-6 text-ink shadow-lift sm:p-9">
           <h3 className="border-b border-line pb-6 text-2xl">Please fill in the information below</h3>
           <div className="mt-6 grid gap-5 sm:grid-cols-2">
             {form.fields.map((f) => <Field key={f.name} f={f} />)}
