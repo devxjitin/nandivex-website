@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { nav, site } from '../data/site.js';
 import services from '../data/services.json';
@@ -67,14 +68,31 @@ function useTheme() {
     window.addEventListener('themechange', sync);
     return () => window.removeEventListener('themechange', sync);
   }, []);
-  const toggle = () => {
+  // The whole page is cross-faded through a circle that grows from the button (View Transitions API).
+  // Browsers without it fall back to a plain colour fade (.theme-fade in index.css).
+  const toggle = (e) => {
     const root = document.documentElement;
     const next = !root.classList.contains('dark');
+    const apply = () => {
+      root.classList.toggle('dark', next);
+      try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch (err) { /* private mode */ }
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#0D0917' : '#FFFFFF');
+      flushSync(() => setDark(next));
+      window.dispatchEvent(new Event('themechange'));
+    };
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (document.startViewTransition && !still) {
+      const r = e?.currentTarget?.getBoundingClientRect();
+      const x = r ? r.left + r.width / 2 : window.innerWidth;
+      const y = r ? r.top + r.height / 2 : 0;
+      root.style.setProperty('--tx', `${x}px`);
+      root.style.setProperty('--ty', `${y}px`);
+      root.style.setProperty('--tr', `${Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))}px`);
+      document.startViewTransition(apply);
+      return;
+    }
     root.classList.add('theme-fade');
-    root.classList.toggle('dark', next);
-    try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch (e) { /* private mode */ }
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#0D0917' : '#FFFFFF');
-    window.dispatchEvent(new Event('themechange'));
+    apply();
     setTimeout(() => root.classList.remove('theme-fade'), 600);
   };
   return [dark, toggle];
