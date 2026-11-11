@@ -3,36 +3,33 @@ import { useLocation } from 'react-router-dom';
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** Smooth (inertia) scrolling for the whole site. Returns the Lenis instance ref. */
-export function useSmoothScroll() {
-  // Lenis is disabled: its inertia loop fought the native scroll (page jittered up/down).
-  // Native scrolling is used instead; Layout falls back to window.scrollTo when ref.current is null.
-  // While scrolling, html gets .is-scrolling so hover effects don't fire as cards pass under the cursor.
+/** Scrolls to the top of the page, or to the element named by the URL hash. Smooth for in-page jumps, instant between pages. */
+export function useScrollRestoration(pathname, hash) {
+  const last = useRef(null);
   useEffect(() => {
-    const root = document.documentElement;
-    let t;
-    const onScroll = () => {
-      if (!root.classList.contains('is-scrolling')) root.classList.add('is-scrolling');
-      clearTimeout(t);
-      t = setTimeout(() => root.classList.remove('is-scrolling'), 150);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener('scroll', onScroll);
-      root.classList.remove('is-scrolling');
-    };
-  }, []);
-  return useRef(null);
+    const samePage = last.current === pathname;
+    last.current = pathname;
+    const target = hash ? document.getElementById(hash.slice(1)) : null;
+    const top = target ? target.getBoundingClientRect().top + window.scrollY - 64 : 0;
+    window.scrollTo({ top, behavior: samePage && !reduced() ? 'smooth' : 'instant' });
+  }, [pathname, hash]);
 }
 
 /**
- * Adds scroll-reveal to the content of every page automatically:
- * each direct child of a section's .wrap fades in, and the children of
- * grids/lists inside it are staggered as cards. It plays on every pass, scrolling
- * down and back up: content leaving through the top waits above (data-dir="up")
- * and slides down into place when you scroll back; content below slides up.
+ * Scroll-reveal for the content of every page, with a different entrance depending on what is revealed:
+ * eyebrow labels slide in from the right, two-column grids slide in from alternating sides, three-column grids
+ * rise and zoom, lists slide in from the left and everything else fades up. It plays in both scroll directions:
+ * content leaving through the top waits above (data-dir="up") and drops into place when you scroll back up,
+ * content below rises into place as you scroll down.
  */
+const variantFor = (parent, i) => {
+  const cls = parent.className;
+  if (/grid-cols-2/.test(cls) && !/grid-cols-[3-9]/.test(cls)) return i % 2 ? 'reveal-right' : 'reveal-left';
+  if (/grid-cols-[3-9]/.test(cls)) return ['reveal-up', 'reveal-zoom', 'reveal-up'][i % 3];
+  if (/^(UL|OL)$/.test(parent.tagName)) return 'reveal-left';
+  return 'reveal-up';
+};
+
 export function useAutoReveal(key) {
   useLayoutEffect(() => {
     if (reduced() || !('IntersectionObserver' in window)) return undefined;
@@ -40,16 +37,15 @@ export function useAutoReveal(key) {
     document.querySelectorAll('main section:not([data-hero]) > .wrap, main section:not([data-hero]) > div > .wrap').forEach((wrap) => {
       [...wrap.children].forEach((child) => {
         if (child.hasAttribute('data-noreveal')) return;
-        const isGroup = /^(UL|OL|DL)$/.test(child.tagName) || /\bgrid\b/.test(child.className);
+        const isGroup = /^(UL|OL|DL)$/.test(child.tagName) || child.classList.contains('grid');
         if (isGroup && child.children.length > 1) {
-          [...child.children].forEach((c, i) => targets.push([c, Math.min(i, 8) * 140, true]));
+          [...child.children].forEach((c, i) => targets.push([c, Math.min(i, 5) * 90, variantFor(child, i)]));
         } else {
-          targets.push([child, 0, false]);
+          targets.push([child, 0, 'reveal-soft']);
         }
       });
     });
-    // eyebrow labels slide in from the right, like animate.css fadeInRight
-    document.querySelectorAll('main [data-reveal="right"]').forEach((el) => targets.push([el, 0, false, 'reveal-right']));
+    document.querySelectorAll('main [data-reveal="right"]').forEach((el) => targets.push([el, 0, 'reveal-right']));
     const splits = [...document.querySelectorAll('main .split')];
     const io = new IntersectionObserver(
       (entries) => {
@@ -65,18 +61,16 @@ export function useAutoReveal(key) {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '-4% 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
     );
     splits.forEach((el) => io.observe(el));
-    targets.forEach(([el, delay, card, extra]) => {
-      el.classList.add('reveal');
-      if (extra) el.classList.add(extra);
-      if (card) el.classList.add('reveal-card');
+    targets.forEach(([el, delay, variant]) => {
+      el.classList.add('reveal', variant);
       el.dataset.delay = delay;
       el.dataset.dir = 'down';
       io.observe(el);
     });
-    // Keep the entry direction of hidden items current, so fast jumps still enter from the right side.
+    // Hidden items keep their entry side current, so fast jumps still enter from the right direction.
     let raf = 0;
     const syncDirs = () => {
       cancelAnimationFrame(raf);
@@ -87,16 +81,15 @@ export function useAutoReveal(key) {
       });
     };
     window.addEventListener('scroll', syncDirs, { passive: true });
-    syncDirs();
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('scroll', syncDirs);
       io.disconnect();
       splits.forEach((el) => el.classList.remove('in'));
-      targets.forEach(([el]) => {
-        el.classList.remove('reveal', 'reveal-card', 'reveal-right', 'in');
-        el.removeAttribute('data-dir');
+      targets.forEach(([el, , variant]) => {
+        el.classList.remove('reveal', variant, 'in');
         el.removeAttribute('data-delay');
+        el.removeAttribute('data-dir');
         el.style.transitionDelay = '';
       });
     };
@@ -126,30 +119,6 @@ export function CountUp({ value, decimals = 0, prefix = '', suffix = '' }) {
     return () => io.disconnect();
   }, [value]);
   return <span ref={ref}>{prefix}{n.toFixed(decimals)}{suffix}</span>;
-}
-
-/** Cycles through words with a soft slide; width stays that of the longest word. */
-export function RotatingWord({ words, interval = 2200, className = '' }) {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (reduced()) return undefined;
-    const id = setInterval(() => setI((x) => (x + 1) % words.length), interval);
-    return () => clearInterval(id);
-  }, [words.length, interval]);
-  return (
-    <span className="inline-grid align-bottom">
-      {words.map((w, n) => (
-        <span
-          key={w}
-          style={{ gridArea: '1 / 1' }}
-          className={`${className} transition-all duration-500 ease-out ${n === i ? 'translate-y-0 opacity-100' : n === (i + words.length - 1) % words.length ? '-translate-y-4 opacity-0' : 'translate-y-4 opacity-0'}`}
-          aria-hidden={n !== i}
-        >
-          {w}
-        </span>
-      ))}
-    </span>
-  );
 }
 
 /**
@@ -198,14 +167,14 @@ export function PageScrollBar() {
   const scrollToPointer = (e) => {
     const r = trackRef.current.getBoundingClientRect();
     const f = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
-    window.scrollTo(0, f * (document.documentElement.scrollHeight - window.innerHeight));
+    window.scrollTo({ top: f * (document.documentElement.scrollHeight - window.innerHeight), behavior: 'instant' });
   };
   const onKey = (e) => {
     const step = window.innerHeight * 0.8;
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') window.scrollBy(0, step);
     else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') window.scrollBy(0, -step);
-    else if (e.key === 'Home') window.scrollTo(0, 0);
-    else if (e.key === 'End') window.scrollTo(0, document.documentElement.scrollHeight);
+    else if (e.key === 'Home') window.scrollTo({ top: 0 });
+    else if (e.key === 'End') window.scrollTo({ top: document.documentElement.scrollHeight });
     else return;
     e.preventDefault();
   };
@@ -229,7 +198,7 @@ export function PageScrollBar() {
       <div className="absolute inset-x-3 top-1/2 h-[3px] -translate-y-1/2 rounded-full bg-line/70">
         <div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-accent to-cyan" style={{ width: `${p * 100}%` }} />
         {marks.map((m) => (
-          <span key={m} className={`absolute top-1/2 h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.5px] border-white ${p >= m - 0.001 ? 'bg-accent' : 'bg-[#cdd6e6]'}`} style={{ left: `${m * 100}%` }} />
+          <span key={m} className={`absolute top-1/2 h-[7px] w-[7px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.5px] border-white ${p >= m - 0.001 ? 'bg-accent' : 'bg-[#D6CCE6]'}`} style={{ left: `${m * 100}%` }} />
         ))}
         <span className="absolute top-1/2 h-[14px] w-[14px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[2.5px] border-white bg-accent shadow-lift ring-2 ring-accent/30 transition-transform group-hover:scale-125 group-focus-visible:ring-4" style={{ left: `${p * 100}%` }} />
       </div>

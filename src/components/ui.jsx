@@ -48,13 +48,15 @@ export function PageHeader({ eyebrow, title, children, visual }) {
 }
 
 export function Section({ id, eyebrow, title, children, className = '', tone = 'white' }) {
-  const bg = tone === 'soft' ? 'bg-soft' : 'bg-white';
+  const dark = tone === 'dark';
+  const bg = dark ? 'bg-night text-white' : tone === 'soft' ? 'bg-soft' : 'bg-white';
   return (
     <section id={id} className={`relative overflow-hidden ${bg} ${className}`}>
+      {dark && <div className="glow absolute -left-32 top-0 h-[360px] w-[360px] opacity-40" aria-hidden="true" />}
       <div className="wrap relative py-16 sm:py-24">
         {(eyebrow || title) && (
           <div data-noreveal className="mb-12 max-w-2xl">
-            {eyebrow && <p data-reveal="right" className="label mb-3">{eyebrow}</p>}
+            {eyebrow && <p data-reveal="right" className={`label mb-3 ${dark ? '!text-cyan' : ''}`}>{eyebrow}</p>}
             {title && <SplitHeading className="text-3xl sm:text-4xl">{title}</SplitHeading>}
           </div>
         )}

@@ -17,6 +17,7 @@ const form = {
     { name: 'phone', label: 'Phone (optional)', type: 'tel', auto: 'tel' },
     { name: 'company', label: 'Company (optional)', auto: 'organization' },
     { name: 'topic', label: 'What is this about?', type: 'select', wide: true, options: [...services.map((s) => s.title), 'ULTRON (our Android assistant)', 'Careers or collaboration', 'Something else'] },
+    { name: 'budget', label: 'Your budget (optional)', type: 'select', wide: true, options: ['Not sure yet, happy to discuss', 'Under ₹50,000', '₹50,000 – ₹1,50,000', '₹1,50,000 – ₹5,00,000', '₹5,00,000 – ₹15,00,000', '₹15,00,000 and above'] },
     { name: 'message', label: 'Your message', type: 'textarea', required: true, wide: true, placeholder: 'What should it do, who will use it, and what does success look like?' },
   ],
 };
@@ -57,12 +58,12 @@ export function ContactSection() {
     setSent(true);
   }
 
-  const offers = ['Custom websites and web platforms', 'Android and Windows apps', 'AI voice and chat agents', 'Cyber security and audits'];
+  const offers = ['AI voice and chat agents', 'Custom websites and web platforms', 'Android and Windows apps', 'Cyber security and audits'];
   return (
     <section id="contact" className="relative overflow-hidden bg-night text-white">
       <div className="wrap relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
         <div>
-          <p className="label !text-cyan">Book a call</p>
+          <p className="label !text-cyan">Connect</p>
           <h2 className="mt-4 text-4xl leading-[1.1] text-white sm:text-5xl">Let us talk. Tell us what you want built.</h2>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
             Share a few details and an engineer, not a salesperson, reads your message. We reply with questions or a call slot within two working days.
@@ -74,12 +75,6 @@ export function ContactSection() {
               </li>
             ))}
           </ul>
-          <div className="mt-12">
-            <p className="font-display text-2xl font-bold">Let us work together</p>
-            <div className="mt-4 space-y-2 text-white/85">
-              <p className="text-white/60">Based in {site.location}</p>
-            </div>
-          </div>
         </div>
 
         <form onSubmit={submit} className="rounded-3xl bg-white p-6 text-ink shadow-lift sm:p-9">

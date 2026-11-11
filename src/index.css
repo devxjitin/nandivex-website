@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
   html, body { overflow-x: clip; }
   body { @apply bg-paper text-ink font-sans antialiased; }
   ::selection { @apply bg-accent text-white; }
@@ -18,12 +18,11 @@
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition-all duration-200; }
   .btn-solid { @apply btn border-accent bg-accent text-white shadow-lift hover:-translate-y-0.5 hover:bg-accent-dark hover:border-accent-dark; }
   .btn-line { @apply btn border-line bg-white text-ink hover:border-accent hover:text-accent; }
-  .rule { @apply border-t border-line; }
-  .card { @apply rounded-2xl border border-line bg-white p-6 shadow-card transition-all duration-200; }
+  .card { @apply rounded-2xl border border-line bg-white p-6 text-ink shadow-card transition-all duration-200; }
   .card-hover { @apply card hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift; }
 
   /* Notched card (TabCard in blocks.jsx). The top edge is drawn by two SVG slopes plus these pieces. */
-  .tabcard { --tc-line: #683bf2; --tc-fill: #f4f1fe; --tc-pill: #0f74b9; @apply relative mt-4 flex flex-col; }
+  .tabcard { --tc-line: #7A3CE0; --tc-fill: #F5EEFD; --tc-pill: #5A24B0; @apply relative mt-4 flex flex-col; }
   .tabcard-notch { @apply relative -ml-4 flex flex-none items-start; }
   .tabcard-notch::after { content: ''; position: absolute; left: 16px; right: 0; bottom: 0; height: 1.25px; background: var(--tc-line); }
   .tabcard-pill { @apply relative z-10 -mt-[15px] inline-flex h-[38px] items-center whitespace-nowrap rounded-full px-6 font-display text-base font-bold uppercase tracking-wide text-white; background: var(--tc-pill); }
@@ -40,48 +39,40 @@
   .prose-body code { @apply rounded bg-tint px-1.5 py-0.5 font-mono text-[0.88em] text-accent-dark; }
   .prose-body pre { @apply mb-6 overflow-x-auto rounded-2xl bg-night p-5 text-sm text-white/90; }
   .prose-body pre code { @apply bg-transparent p-0 text-inherit; }
-  .grid-bg {
-    background-image:
-      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
+
 }
 
 /* ---------- Motion ---------- */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
-
-.reveal { opacity: 0; transform: translateY(60px); transition: opacity 1s ease-out, transform 1s cubic-bezier(.22,1,.36,1); will-change: opacity, transform; }
-.reveal[data-dir="up"] { transform: translateY(-60px); }
-.reveal-right, .reveal-right[data-dir="up"] { transform: translateX(48px); }
+/* Scroll reveal: every variant eases in with the same long curve; the variant only changes where it comes from. */
+.reveal { opacity: 0; transform: translate3d(0, 36px, 0); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+.reveal-soft { transform: translate3d(0, 20px, 0); transition-duration: 1.1s; }
+.reveal-left { transform: translate3d(-56px, 0, 0); }
+.reveal-right { transform: translate3d(56px, 0, 0); }
+.reveal-zoom { transform: translate3d(0, 24px, 0) scale(.92); }
+/* Coming back down from above (scrolling up): enter from the top, or from the same side for the sliding variants. */
+.reveal[data-dir="up"] { transform: translate3d(0, -36px, 0); }
+.reveal-soft[data-dir="up"] { transform: translate3d(0, -20px, 0); }
+.reveal-zoom[data-dir="up"] { transform: translate3d(0, -24px, 0) scale(.92); }
+.reveal-left[data-dir="up"] { transform: translate3d(-56px, 0, 0); }
+.reveal-right[data-dir="up"] { transform: translate3d(56px, 0, 0); }
 .reveal.in { opacity: 1; transform: none; }
 
-/* While the page is scrolling, ignore the pointer so hover lifts/scales don't flicker under the cursor. */
-html.is-scrolling body { pointer-events: none; }
-
-.page-in { animation: pageswap .7s cubic-bezier(.22,1,.36,1) both; }
-@keyframes pageswap { from { opacity: 0; transform: translateY(36px) scale(.985); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+/* Page change: a short fade and rise, no blur, so it stays on the compositor. */
+.page-in { animation: pageswap .6s cubic-bezier(.22,1,.36,1) both; }
+@keyframes pageswap { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: none; } }
 @keyframes pagein { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-.route-bar { position: fixed; left: 0; top: 0; z-index: 60; height: 3px; width: 100%; transform-origin: left; background: linear-gradient(90deg, #0057E7, #18B7FF); animation: routebar .8s cubic-bezier(.22,1,.36,1) both; pointer-events: none; }
+.route-bar { position: fixed; left: 0; top: 0; z-index: 60; height: 3px; width: 100%; transform-origin: left; background: linear-gradient(90deg, #7A3CE0, #C9A0FF); animation: routebar .8s cubic-bezier(.22,1,.36,1) both; pointer-events: none; }
 @keyframes routebar { 0% { transform: scaleX(0); opacity: 1; } 70% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
 
-@keyframes spin { to { transform: rotate(360deg); } }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-@keyframes pulse-ring { 0% { transform: scale(.9); opacity: .6; } 100% { transform: scale(1.5); opacity: 0; } }
 
-.marquee { animation: marquee 45s linear infinite; }
-.marquee-rev { animation: marquee 55s linear infinite reverse; }
-.marquee-wrap:hover .marquee, .marquee-wrap:hover .marquee-rev { animation-play-state: paused; }
-.fade-edges { mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.no-scrollbar { scrollbar-width: none; }
-.no-scrollbar::-webkit-scrollbar { display: none; }
+.marquee { animation: marquee 90s linear infinite; }
+.marquee-wrap:hover .marquee { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal-card, .reveal[data-dir] { opacity: 1; transform: none; transition: none; }
-  .page-in, .route-bar, .marquee, .marquee-rev, [class*="animate-"] { animation: none !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .page-in, .route-bar, .marquee, [class*="animate-"] { animation: none !important; }
 }
 
 /* ---------- Voice wave, FAQ, hero glow ---------- */
@@ -89,8 +80,7 @@ html.is-scrolling body { pointer-events: none; }
 @keyframes wave { to { transform: scaleY(1); } }
 .faq[open] > p { animation: pagein .35s ease-out both; }
 .faq summary::-webkit-details-marker { display: none; }
-.glow { background: radial-gradient(closest-side, rgba(24,183,255,.35), transparent); filter: blur(10px); }
-.text-grad { background: linear-gradient(90deg, #18B7FF, #7DD3FF 50%, #fff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.glow { background: radial-gradient(closest-side, rgba(201,160,255,.35), transparent); filter: blur(10px); }
 .menu-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s cubic-bezier(.22,1,.36,1); }
 .menu-panel.open { grid-template-rows: 1fr; }
 .menu-panel > div { overflow: hidden; }
@@ -107,29 +97,24 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; heig
 .svc-card { transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s, border-color .4s; }
 .svc-img { transition: transform .8s cubic-bezier(.22,1,.36,1); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .svc-card:hover { transform: translateY(-8px); border-color: rgba(0,87,231,.35); box-shadow: 0 26px 50px -24px rgba(11,27,58,.4); }
+  .svc-card:hover { transform: translateY(-8px); border-color: rgba(122,60,224,.35); box-shadow: 0 26px 50px -24px rgba(21,14,36,.4); }
   .svc-card:hover .svc-img { transform: scale(1.1); }
   .svc-card:hover .svc-icon { animation: icon-bounce 1s ease-out infinite; }
 }
 
-/* Keyframes borrowed in spirit from the reference site. */
 @keyframes icon-bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
-@keyframes gelatine { 0%, 100% { transform: scale(1, 1); } 25% { transform: scale(.9, 1.1); } 50% { transform: scale(1.1, .9); } 75% { transform: scale(.95, 1.05); } }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .tabcard:hover .tabcard-icon { animation: gelatine .7s; }
-}
 
 /* Headings: each word rises out of a mask, one after another. */
 .split-w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
-.split-i { display: inline-block; transform: translateY(115%); transition: transform .9s cubic-bezier(.22,1,.36,1); will-change: transform; }
+.split-i { display: inline-block; transform: translateY(115%); transition: transform 1s cubic-bezier(.22,1,.36,1); }
 .split.in .split-i { transform: none; }
 @media (prefers-reduced-motion: reduce) { .split-i { transform: none; transition: none; } }
 
 
 /* Agile workflow diagram (WorkflowDiagram in blocks.jsx). Draws itself once .wf-in is set. */
-.wf-band { stroke: #0057E7; stroke-opacity: .35; stroke-width: 1.5; stroke-dasharray: 6 8; opacity: 0; transition: opacity .8s ease .5s; }
+.wf-band { stroke: #7A3CE0; stroke-opacity: .35; stroke-width: 1.5; stroke-dasharray: 6 8; opacity: 0; transition: opacity .8s ease .5s; }
 .wf-draw { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; transition: stroke-dashoffset 1s cubic-bezier(.22,1,.36,1), opacity .3s; }
-.wf-dot { opacity: 0; transition: opacity .6s ease 2.4s; filter: drop-shadow(0 0 6px rgba(0,87,231,.7)); }
+.wf-dot { opacity: 0; transition: opacity .6s ease 2.4s; filter: drop-shadow(0 0 6px rgba(122,60,224,.7)); }
 .wf-node { transform-box: view-box; transform: scale(.6); opacity: 0; transition: transform .7s cubic-bezier(.34,1.56,.64,1), opacity .5s ease; }
 .wf-tag { opacity: 0; transition: opacity .6s ease .8s; }
 .wf-item { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1); }
@@ -138,12 +123,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; heig
 .wf-in .wf-node { transform: none; opacity: 1; }
 .wf-in .wf-item { opacity: 1; transform: none; }
 .wf-badge { transform-box: view-box; transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
-.wf-circle { fill: #fff; stroke: #0057E7; filter: drop-shadow(0 6px 14px rgba(15,23,42,.10)); transition: fill .3s, filter .3s; }
-.wf-ico { color: #0057E7; transition: color .3s; }
-.wf-chip { fill: #fff; filter: drop-shadow(0 4px 12px rgba(15,23,42,.08)); }
+.wf-circle { fill: #fff; stroke: #7A3CE0; filter: drop-shadow(0 6px 14px rgba(27,20,38,.10)); transition: fill .3s, filter .3s; }
+.wf-ico { color: #7A3CE0; transition: color .3s; }
+.wf-chip { fill: #fff; filter: drop-shadow(0 4px 12px rgba(27,20,38,.08)); }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .wf-node:hover .wf-badge { transform: scale(1.12); }
-  .wf-node:hover .wf-circle { fill: #0057E7; filter: drop-shadow(0 12px 22px rgba(0,87,231,.45)); }
+  .wf-node:hover .wf-circle { fill: #7A3CE0; filter: drop-shadow(0 12px 22px rgba(122,60,224,.45)); }
   .wf-node:hover .wf-ico { color: #fff; }
 }
 @media (prefers-reduced-motion: reduce) {

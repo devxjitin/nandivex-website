@@ -25,7 +25,6 @@ npm run preview   # serve the production build
 │   ├── pages/           # one file per route
 │   └── data/            # all site content (services, projects, careers ...)
 ├── docs/site-extract.md # notes from the original site
-└── legacy/              # compiled build of the previous site, for reference only
 ```
 
 Content lives in `src/data/`, so copy changes do not need component edits.
