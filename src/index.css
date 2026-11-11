@@ -60,6 +60,9 @@
 html.theme-fade, html.theme-fade *, html.theme-fade *::before, html.theme-fade *::after {
   transition: background-color .5s ease, color .5s ease, border-color .5s ease, fill .5s ease, stroke .5s ease, box-shadow .5s ease !important;
 }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { animation: theme-reveal .8s cubic-bezier(.22,1,.36,1) both; }
+@keyframes theme-reveal { from { clip-path: circle(0 at var(--tx, 100%) var(--ty, 0)); } to { clip-path: circle(var(--tr, 150vmax) at var(--tx, 100%) var(--ty, 0)); } }
 .theme-icon { transition: transform .6s cubic-bezier(.34,1.56,.64,1), opacity .35s ease; }
 /* Scroll reveal: every variant eases in with the same long curve; the variant only changes where it comes from. */
 .reveal { opacity: 0; transform: translate3d(0, 36px, 0); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
