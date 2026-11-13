@@ -1,7 +1,7 @@
 export const site = {
   name: 'NandiVex Technologies',
   tagline: 'Software, apps and automation for businesses',
-  email: 'contact@nandivex.com',
+  email: 'contact@nandivex.in',
   whatsappHref: 'https://wa.me/917408068618?text=Hi%20NandiVex%2C%20I%20would%20like%20to%20talk%20about%20a%20project.',
   location: 'India',
   url: 'https://nandivex.in',

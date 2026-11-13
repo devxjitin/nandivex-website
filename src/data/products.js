@@ -1,8 +1,34 @@
+/* Product lineup cards shown at the top of /products. Nothing here is launched yet. */
+export const lineup = [
+  {
+    name: 'Friday',
+    status: 'Coming soon',
+    tag: 'A focused assistant for a fixed set of tasks.',
+    text: 'Friday does not try to do everything. It handles only a predefined list of tasks, and for each one it follows a better, purpose-built way of doing it, so the result is more reliable than a general assistant.',
+    points: ['Predefined tasks only', 'A tuned method for every task', 'Expert-level results on what it covers'],
+  },
+  {
+    name: 'ULTRON',
+    status: 'Experimental',
+    tag: 'A voice assistant that works your phone for you.',
+    text: 'Talk to your Android phone in 13 languages. ULTRON answers by voice and uses 80+ phone and cloud tools to finish the task. It is still experimental and not yet stable.',
+    points: ['13 languages, live voice', '19 connectors and 80+ tools', 'Android 8+'],
+    href: '#ultron',
+  },
+  {
+    name: 'Nandi',
+    status: 'Coming soon',
+    tag: 'An on-device RAG assistant that costs very little.',
+    text: 'Upload as many documents as you like, with no limit, and Nandi answers only from what you gave it. It runs on your device and is priced to be very cheap.',
+    points: ['Unlimited document uploads', 'Answers based on your documents', 'Runs on the device, very low cost'],
+  },
+];
+
 /* Software we sell on subscription. Add another object to this array and it appears on /products. */
 export const products = [
   {
     slug: 'ultron',
-    name: 'ULTRON',
+    name: 'ULTRON (Experimental)',
     tag: 'A voice assistant that works your phone for you.',
     summary:
       'Talk to your Android phone in 13 languages. ULTRON answers by voice, even with the screen off, and uses 80+ phone and cloud tools to finish the task: alarms, apps, documents, YouTube, Google Workspace and more.',
@@ -25,15 +51,8 @@ export const products = [
       ['/products/ultron-connectors.webp', 'ULTRON connectors'],
       ['/products/ultron-skills.webp', 'ULTRON skills screen'],
     ],
-    plans: [
-      { name: 'Spark', length: '7 days', price: 199, was: 299, perDay: 28, off: 33 },
-      { name: 'Surge', length: '1 month', price: 699, was: 999, perDay: 23, off: 30 },
-      { name: 'Apex', length: '3 months', price: 1499, was: 2199, perDay: 17, off: 32, best: true },
-    ],
     notes: [
-      'Every plan includes everything above. Plans differ only in length.',
-      'The key starts counting from the day you first activate it.',
-      'Each key works on one phone at a time. No automatic renewal.',
+      'ULTRON is experimental and not yet stable. It is not on sale.',
       'ULTRON uses your own Gemini API key, so Google sets its limits and any charges.',
     ],
   },
