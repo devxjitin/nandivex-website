@@ -79,7 +79,7 @@ export const otherProjects = [
 jitin.projects = [
   {
     name: 'ULTRON',
-    tag: 'Android voice assistant',
+    tag: 'Android voice assistant · Experimental',
     text: 'A native Android assistant you talk to in 13 languages. Real-time voice over Gemini Live, 80+ phone and cloud tools through MCP connectors, and on-device memory. Sold on subscription.',
     stack: ['Kotlin', 'Jetpack Compose', 'Gemini Live', 'MCP', 'RAG', 'AWS Lambda'],
     links: [{ label: 'Website', href: 'https://ultron.devxjitin.dev' }],
@@ -92,7 +92,7 @@ export const sonia = {
   name: 'Sonia Dahiya',
   role: 'Head of Design Department, Junior AI Developer',
   photo: '/team/sonia.jpeg',
-  short: 'Designs our logos, brand and product visuals, and builds AI features as a junior developer. Co-builder of ULTRON.',
+  short: 'Designs our logos, brand and product visuals, and builds AI features as a junior developer. Co-builder of ULTRON (Experimental).',
   bio: [
     'I design the look of what we build: logos, brand and product visuals, so that the work is clear and recognisable at a glance. I also work as a junior AI developer, building small AI projects in Python.',
     'On ULTRON I work alongside Jitin as co-builder. I help shape how it looks and behaves, and I test every release on a real phone before it ships.',
@@ -114,7 +114,7 @@ export const sonia = {
   projects: [
     {
       name: 'ULTRON',
-      tag: 'Co-builder',
+      tag: 'Co-builder · Experimental',
       text: 'An Android voice assistant that works your phone for you. Sonia works with Jitin on how ULTRON looks and behaves, and tests every release on a real phone before it ships.',
       stack: ['Android', 'Voice AI', 'UI design', 'Release testing'],
       links: [{ label: 'Website', href: 'https://ultron.devxjitin.dev' }],

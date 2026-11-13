@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-import { products } from '../data/products.js';
+import { products, lineup } from '../data/products.js';
 import { team } from '../data/team.js';
 import { List, PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
-
-const rupee = (n) => `₹${n.toLocaleString('en-IN')}`;
 
 function Product({ p, tone }) {
   return (
@@ -35,24 +33,6 @@ function Product({ p, tone }) {
         </div>
       </div>
 
-      <h3 className="mb-6 mt-14 text-2xl">Plans</h3>
-      <div className="grid gap-5 md:grid-cols-3">
-        {p.plans.map((pl) => (
-          <div key={pl.name} className={`card relative flex flex-col !p-7 ${pl.best ? '!border-accent shadow-lift' : ''}`}>
-            {pl.best && <span className="absolute -top-3 left-7 rounded-full bg-accent px-3 py-1 text-xs font-bold text-white">Lowest per day</span>}
-            <p className="font-display text-sm font-bold uppercase tracking-wider text-accent">{pl.name}</p>
-            <p className="mt-1 text-muted">{pl.length}</p>
-            <p className="mt-5 flex items-baseline gap-2">
-              <span className="font-display text-4xl font-extrabold">{rupee(pl.price)}</span>
-              <span className="text-sm text-muted line-through">{rupee(pl.was)}</span>
-            </p>
-            <p className="mt-1 text-sm text-muted">About {rupee(pl.perDay)} a day · {pl.off}% launch discount</p>
-            <a href={p.url} target="_blank" rel="noopener noreferrer" className={`mt-7 ${pl.best ? 'btn-solid' : 'btn-line'}`}>
-              Subscribe <Icon name="arrow" className="h-4 w-4 -rotate-45" />
-            </a>
-          </div>
-        ))}
-      </div>
       <ul className="mt-8 space-y-1.5 text-sm text-muted">
         {p.notes.map((n) => <li key={n}>{n}</li>)}
       </ul>
@@ -64,10 +44,26 @@ export default function Products() {
   useMeta('Products', 'Software by NandiVex Technologies that you can subscribe to, starting with ULTRON, a voice assistant for Android.');
   return (
     <>
-      <PageHeader eyebrow="Products" title="Software you can subscribe to.">
-        Tools we build and run ourselves, sold as simple subscriptions. No setup project, no contract.
+      <PageHeader eyebrow="Products" title="Software we are building.">
+        Tools we build and run ourselves. None of them is launched yet, and ULTRON is still experimental.
       </PageHeader>
-      {products.map((p, i) => <Product key={p.slug} p={p} tone={i % 2 ? 'soft' : 'white'} />)}
+      <Section eyebrow="Our lineup" title="Three products, none launched yet." tone="white">
+        <div className="grid gap-5 md:grid-cols-3">
+          {lineup.map((l) => (
+            <div key={l.name} className="card flex flex-col !p-7">
+              <span className={`self-start rounded-full px-3 py-1 text-xs font-bold ${l.status === 'Experimental' ? 'bg-accent text-white' : 'border border-line text-muted'}`}>{l.status}</span>
+              <h3 className="mt-4 text-2xl">{l.name}</h3>
+              <p className="mt-1 font-semibold text-accent">{l.tag}</p>
+              <p className="mt-4 leading-relaxed text-muted">{l.text}</p>
+              <ul className="mt-5 space-y-1.5 text-sm text-muted">
+                {l.points.map((x) => <li key={x}>· {x}</li>)}
+              </ul>
+              {l.href && <a href={l.href} className="btn-line mt-6 self-start">See details <Icon name="arrow" className="h-4 w-4" /></a>}
+            </div>
+          ))}
+        </div>
+      </Section>
+      {products.map((p, i) => <Product key={p.slug} p={p} tone={i % 2 ? 'white' : 'soft'} />)}
     </>
   );
 }
