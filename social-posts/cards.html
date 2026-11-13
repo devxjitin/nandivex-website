@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NandiVex Team Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  :root { --paper: #FFFFFF; --soft: #F7F3FD; --ink: #1B1426; --muted: #655C75; --line: #E6DEF2; --accent: #7A3CE0; --accent-dark: #5A24B0; --tint: #EDE3FB; --orange: #F47B2E; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; background: var(--paper); }
+  body { font-family: Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  h1, h2 { font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+
+  .card { position: relative; width: 1080px; height: 1350px; display: none; flex-direction: column; overflow: hidden; background: var(--paper); }
+  .card.on { display: flex; }
+
+  /* ---------- Card 1: violet cover ---------- */
+  .c1 { background: var(--accent-dark); color: #fff; padding: 76px 72px 64px; }
+  .c1::before { content: ''; position: absolute; width: 900px; height: 900px; right: -300px; top: -260px; border-radius: 50%; background: var(--accent); }
+  .c1 > * { position: relative; }
+  .c1 .bigmark { position: absolute; right: -40px; top: 60px; width: 560px; opacity: .16; }
+  .c1 .logo { height: 60px; width: auto; align-self: flex-start; }
+  .c1 .hi { margin-top: 150px; font-family: "Plus Jakarta Sans"; font-size: 30px; font-weight: 700; color: #E4D4FF; }
+  .c1 .hi i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: var(--orange); margin-right: 14px; }
+  .c1 h1 { font-size: 116px; line-height: .98; margin-top: 18px; }
+  .c1 .lede { font-size: 31px; line-height: 1.5; color: #E9DEFB; margin-top: 30px; max-width: 860px; }
+  .c1 .pills { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 48px; }
+  .c1 .pills span { padding: 14px 26px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.35); font-size: 25px; font-weight: 500; }
+  .c1 .founded { margin-top: auto; background: #fff; color: var(--ink); border-radius: 30px; padding: 34px 40px; }
+  .c1 .founded small { font-family: "Plus Jakarta Sans"; font-size: 22px; font-weight: 700; color: var(--accent); }
+  .c1 .founders { display: flex; margin-top: 14px; }
+  .c1 .founders div { flex: 1; }
+  .c1 .founders div + div { padding-left: 36px; border-left: 2px solid var(--line); }
+  .c1 .founders b { display: block; font-family: "Plus Jakarta Sans"; font-size: 36px; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+  .c1 .founders span { display: block; font-size: 22px; color: var(--muted); margin-top: 6px; }
+  .c1 .url { margin-top: 30px; font-size: 24px; font-weight: 600; color: #E4D4FF; }
+
+  /* ---------- Member cards ---------- */
+  .panel { position: absolute; left: 0; right: 0; top: 0; height: 600px; background: var(--accent-dark); overflow: hidden; }
+  .panel::before { content: ''; position: absolute; width: 760px; height: 760px; right: -260px; top: -300px; border-radius: 50%; background: var(--accent); }
+  .panel img { position: absolute; left: -90px; bottom: -110px; width: 520px; opacity: .14; }
+  .head { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 56px 64px 0; }
+  .head img { height: 50px; }
+  .head span { font-family: "Plus Jakarta Sans"; font-size: 22px; font-weight: 700; color: #fff; padding: 11px 22px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.45); }
+  .frame { position: relative; align-self: center; margin-top: 34px; padding: 12px; background: #fff; border-radius: 30px;
+    box-shadow: 0 30px 60px -18px rgba(40,16,90,.45); }
+  .frame img { display: block; height: 640px; width: auto; border-radius: 20px; }
+  .frame .dot { position: absolute; right: -16px; top: -16px; width: 40px; height: 40px; border-radius: 50%; background: var(--orange); border: 6px solid #fff; }
+  .body { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 40px 76px 50px; }
+  .body h2 { font-size: 68px; line-height: 1; }
+  .role { margin-top: 16px; padding: 10px 24px; border-radius: 999px; background: var(--tint); color: var(--accent-dark); font-family: "Plus Jakarta Sans"; font-size: 24px; font-weight: 700; }
+  .quote { font-size: 27px; line-height: 1.5; color: #3A3247; margin-top: 22px; }
+  .skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }
+  .skills span { font-family: "Plus Jakarta Sans"; font-size: 20px; font-weight: 700; color: var(--accent-dark); padding: 9px 20px; border-radius: 999px; border: 1.5px solid rgba(122,60,224,.45); }
+  .url { margin-top: auto; font-size: 23px; font-weight: 600; color: var(--muted); }
+  .url i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); margin-right: 10px; vertical-align: 2px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Company + founders -->
+<section class="card c1" id="c1">
+  <img class="bigmark" src="../public/brand/icon-white.png" alt="">
+  <img class="logo" src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies">
+  <div class="hi"><i></i>Hello, we're</div>
+  <h1>NandiVex<br>Technologies</h1>
+  <p class="lede">We build software, apps and automation for growing businesses. Design, AI, development and security under one roof, with full source ownership handed to you.</p>
+  <div class="pills"><span>AI Voice &amp; Chat Agents</span><span>Web &amp; Custom Software</span><span>Android Apps</span><span>Desktop Apps &amp; Automation</span><span>Cyber Security</span></div>
+  <div class="founded">
+    <small>Founded By</small>
+    <div class="founders">
+      <div><b>Chandra Prakash Tiwari</b><span>Founder &amp; CEO</span></div>
+      <div><b>Jitin Kumar Sengar</b><span>Co-Founder, Head of AI</span></div>
+    </div>
+  </div>
+  <div class="url">nandivex.in</div>
+</section>
+
+<!-- 2. Founder -->
+<section class="card" id="c2">
+  <div class="panel"><img src="../public/brand/icon-white.png" alt=""></div>
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span>Meet Our Founder</span></div>
+  <div class="frame"><img src="../public/team/chandra.jpeg" alt="Chandra Prakash Tiwari"><i class="dot"></i></div>
+  <div class="body">
+    <h2>Chandra Prakash Tiwari</h2>
+    <div class="role">Founder &amp; CEO</div>
+    <p class="quote">Chandra leads NandiVex and heads our cybersecurity operations and training. He bridges the gap between complex security strategies and real-world defense, ensuring robust protection for every client project.</p>
+    <div class="skills"><span>Penetration Testing</span><span>Digital Forensics</span><span>Cyber Security Training</span><span>Zero Trust</span></div>
+    <div class="url"><i></i>nandivex.in</div>
+  </div>
+</section>
+
+<!-- 3. Co-founder -->
+<section class="card" id="c3">
+  <div class="panel"><img src="../public/brand/icon-white.png" alt=""></div>
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span>Meet Our Co-Founder</span></div>
+  <div class="frame"><img src="../public/team/jitin.jpeg" alt="Jitin Kumar Sengar"><i class="dot"></i></div>
+  <div class="body">
+    <h2>Jitin Kumar Sengar</h2>
+    <div class="role">Co-Founder, Head of AI</div>
+    <p class="quote">Jitin co-founded NandiVex and leads our AI department. He builds intelligent voice and chat agents, including our ULTRON assistant, turning cutting-edge AI into tools that save clients real hours.</p>
+    <div class="skills"><span>LLM Agents</span><span>Gemini Live</span><span>RAG</span><span>MCP</span><span>Kotlin</span><span>FastAPI</span><span>AWS</span></div>
+    <div class="url"><i></i>nandivex.in</div>
+  </div>
+</section>
+
+<!-- 4. Sonia -->
+<section class="card" id="c4">
+  <div class="panel"><img src="../public/brand/icon-white.png" alt=""></div>
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span>Meet the Team</span></div>
+  <div class="frame"><img src="../public/team/sonia.jpeg" alt="Sonia"><i class="dot"></i></div>
+  <div class="body">
+    <h2>Sonia</h2>
+    <div class="role">Head of Design, Junior AI Developer</div>
+    <p class="quote">Sonia heads our design department and shapes the visual identity of everything we build. From logos to product interfaces, she ensures every release is clear, polished and tested on real devices.</p>
+    <div class="skills"><span>Logo Design</span><span>Brand Identity</span><span>UI Design</span><span>Release Testing</span><span>Python</span></div>
+    <div class="url"><i></i>nandivex.in</div>
+  </div>
+</section>
+
+<!-- 5. Aman -->
+<section class="card" id="c5">
+  <div class="panel"><img src="../public/brand/icon-white.png" alt=""></div>
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span>Meet the Team</span></div>
+  <div class="frame"><div role="img" aria-label="Aman Kumar" style="width: 480px; height: 640px; border-radius: 20px; background: url(../public/team/aman.jpeg) no-repeat -90px -198px / 722px auto;"></div><i class="dot"></i></div>
+  <div class="body">
+    <h2>Aman Kumar</h2>
+    <div class="role">Head of Full Stack</div>
+    <p class="quote">Aman heads our full stack department and owns the web side of every client project. From interface to API, database and deployment, he delivers fast, reliable products built to scale.</p>
+    <div class="skills"><span>Next.js</span><span>React</span><span>Node.js</span><span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>LangGraph</span></div>
+    <div class="url"><i></i>nandivex.in</div>
+  </div>
+</section>
+
+<script>
+  const n = new URLSearchParams(location.search).get('card') || '1';
+  document.getElementById('c' + n).classList.add('on');
+</script>
+</body>
+</html>

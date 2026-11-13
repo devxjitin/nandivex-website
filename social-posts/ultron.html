@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ULTRON Launch Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  :root { --bg: #0B0B0E; --panel: #17171C; --line: #2A2A33; --ink: #F4F2F7; --muted: #A6A3B0; --red: #E8343F; --red-soft: #FF6B6B; --orange: #F47B2E; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; background: var(--bg); }
+  body { font-family: Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: "Plus Jakarta Sans", Inter, sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+
+  .card { position: relative; width: 1080px; height: 1350px; display: none; flex-direction: column; overflow: hidden; padding: 56px 72px 56px;
+    background: radial-gradient(900px 620px at 50% 108%, rgba(232,52,63,.38), transparent 70%), radial-gradient(600px 420px at 100% 0%, rgba(232,52,63,.14), transparent 70%), var(--bg); }
+  .card.on { display: flex; }
+  .card > * { position: relative; }
+
+  .head { display: flex; align-items: center; justify-content: space-between; }
+  .head img { height: 48px; }
+  .pill { font-family: "Plus Jakarta Sans"; font-size: 21px; font-weight: 700; padding: 10px 22px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.3); color: var(--ink); }
+  .pill i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-right: 10px; vertical-align: 2px; }
+
+  /* phone frame: full screenshot, nothing cropped */
+  .phone { padding: 11px; background: #000; border-radius: 46px; border: 2px solid #3A3A44; box-shadow: 0 40px 80px -24px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.04); }
+  .phone img { display: block; width: auto; border-radius: 36px; }
+
+  .red { color: var(--red-soft); }
+
+  /* ---------- U1 ---------- */
+  .u1 .intro { text-align: center; margin-top: 54px; }
+  .u1 .kicker { font-family: "Plus Jakarta Sans"; font-size: 26px; font-weight: 700; color: var(--red-soft); }
+  .u1 h1 { font-size: 150px; line-height: .9; letter-spacing: -.04em; margin-top: 14px; }
+  .u1 .tag { font-size: 32px; line-height: 1.35; color: #DDD9E4; margin-top: 18px; }
+  .u1 .phones { display: flex; justify-content: center; gap: 36px; margin-top: 44px; }
+  .u1 .phones .phone:nth-child(2) { transform: translateY(26px); }
+  .u1 .phone img { height: 560px; }
+  .u1 .facts { display: flex; justify-content: center; gap: 0; margin-top: auto; }
+  .u1 .facts div { padding: 0 44px; text-align: center; }
+  .u1 .facts div + div { border-left: 1.5px solid var(--line); }
+  .u1 .facts b { display: block; font-family: "Plus Jakarta Sans"; font-size: 46px; font-weight: 800; letter-spacing: -.03em; }
+  .u1 .facts span { display: block; font-size: 20px; color: var(--muted); margin-top: 4px; }
+
+  /* ---------- U2 ---------- */
+  .u2 h2 { font-size: 76px; line-height: 1; margin-top: 56px; }
+  .u2 .sub { font-size: 27px; color: var(--muted); margin-top: 14px; }
+  .u2 .grid { display: grid; grid-template-columns: auto 1fr; gap: 48px; margin-top: 46px; align-items: center; }
+  .u2 .phone img { height: 760px; }
+  .u2 .feat { display: flex; flex-direction: column; gap: 30px; }
+  .u2 .feat div { padding-left: 24px; border-left: 3px solid var(--red); }
+  .u2 .feat h3 { font-size: 31px; letter-spacing: -.02em; }
+  .u2 .feat p { font-size: 22px; line-height: 1.45; color: #CBC7D3; margin-top: 8px; }
+  .u2 .foot { margin-top: auto; text-align: center; font-size: 22px; font-weight: 600; color: var(--muted); }
+
+  /* ---------- U3 ---------- */
+  .u3 h2 { font-size: 72px; line-height: 1.02; margin-top: 56px; }
+  .u3 .lede { font-size: 27px; line-height: 1.5; color: #CBC7D3; margin-top: 22px; }
+  .u3 .phones { display: flex; justify-content: center; gap: 32px; margin-top: 40px; }
+  .u3 .phone img { height: 500px; }
+  .u3 .stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 40px; }
+  .u3 .stack span { font-family: "Plus Jakarta Sans"; font-size: 18px; font-weight: 700; padding: 9px 16px; border-radius: 999px; border: 1.5px solid rgba(232,52,63,.55); color: #FFD9DB; }
+  .u3 .bottom { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: 26px; border-top: 1.5px solid var(--line); }
+  .u3 .bottom small { display: block; font-size: 19px; color: var(--muted); }
+  .u3 .bottom b { display: block; font-family: "Plus Jakarta Sans"; font-size: 26px; font-weight: 800; margin-top: 4px; letter-spacing: -.01em; }
+  .u3 .bottom .right { text-align: right; }
+
+  /* ---------- U4: pricing ---------- */
+  .u4 h2 { font-size: 80px; line-height: 1; margin-top: 60px; }
+  .u4 .sub { font-size: 27px; color: var(--muted); margin-top: 16px; }
+  .u4 .plans { display: flex; flex-direction: column; gap: 20px; margin-top: 50px; }
+  .plan { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 34px 40px; border-radius: 28px; background: var(--panel); border: 1.5px solid var(--line); }
+  .plan.best { border: 2px solid var(--red); background: linear-gradient(135deg, rgba(232,52,63,.22), var(--panel) 70%); }
+  .plan .badge { position: absolute; top: -17px; left: 40px; font-family: "Plus Jakarta Sans"; font-size: 18px; font-weight: 800; padding: 6px 16px; border-radius: 999px; background: var(--red); color: #fff; }
+  .plan h3 { font-size: 40px; letter-spacing: -.02em; }
+  .plan .len { font-size: 23px; color: var(--muted); margin-top: 6px; }
+  .plan .right { text-align: right; }
+  .plan .price { font-family: "Plus Jakarta Sans"; font-size: 60px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  .plan .price s { font-size: 26px; font-weight: 600; color: var(--muted); margin-left: 12px; letter-spacing: 0; }
+  .plan .per { font-size: 20px; color: var(--muted); margin-top: 10px; }
+  .plan .per b { color: var(--red-soft); font-weight: 600; }
+  .u4 .notes { list-style: none; margin-top: 44px; display: flex; flex-direction: column; gap: 14px; }
+  .u4 .notes li { font-size: 23px; color: #CBC7D3; padding-left: 36px; position: relative; }
+  .u4 .notes li::before { content: ''; position: absolute; left: 4px; top: 8px; width: 12px; height: 7px; border-left: 3px solid var(--red-soft); border-bottom: 3px solid var(--red-soft); transform: rotate(-45deg); }
+  .u4 .cta { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 16px; font-family: "Plus Jakarta Sans"; font-size: 28px; font-weight: 800; }
+  .u4 .cta span { padding: 16px 34px; border-radius: 999px; background: var(--red); color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- U1: Launch -->
+<section class="card u1" id="c1">
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span class="pill"><i></i>Our First Product</span></div>
+  <div class="intro">
+    <div class="kicker">Introducing</div>
+    <h1>ULTRON</h1>
+    <p class="tag">A voice assistant that works your phone for you.</p>
+  </div>
+  <div class="phones">
+    <div class="phone"><img src="../public/products/ultron-home.webp" alt="ULTRON home screen"></div>
+    <div class="phone"><img src="../public/products/ultron-voice.webp" alt="ULTRON live voice mode"></div>
+  </div>
+  <div class="facts">
+    <div><b>13</b><span>Languages</span></div>
+    <div><b>80+</b><span>Phone &amp; Cloud Tools</span></div>
+    <div><b>Android 8+</b><span>Native App</span></div>
+  </div>
+</section>
+
+<!-- U2: Features -->
+<section class="card u2" id="c2">
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span class="pill"><i></i>ULTRON</span></div>
+  <h2>What <span class="red">ULTRON</span><br>Can Do</h2>
+  <p class="sub">Just say it. ULTRON takes care of the rest.</p>
+  <div class="grid">
+    <div class="phone"><img src="../public/products/ultron-connectors.webp" alt="ULTRON connectors"></div>
+    <div class="feat">
+      <div><h3>Talks in 13 Languages</h3><p>Real-time voice over Gemini Live. Interrupt it anytime, even with the screen off.</p></div>
+      <div><h3>Gets Things Done</h3><p>80+ phone and cloud tools, from alarms and device controls to Google Workspace and YouTube.</p></div>
+      <div><h3>Remembers You</h3><p>Keeps up to 150 notes about you and answers from your own documents, stored on your device.</p></div>
+      <div><h3>Grows With You</h3><p>Custom skills, four personalities and over-the-air updates that install in seconds.</p></div>
+    </div>
+  </div>
+  <div class="foot">ultron.nandivex.in</div>
+</section>
+
+<!-- U3: Built by NandiVex -->
+<section class="card u3" id="c3">
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span class="pill"><i></i>ULTRON</span></div>
+  <h2>Built In-House<br>at <span class="red">NandiVex</span></h2>
+  <p class="lede">Designed, built and tested by our own team. ULTRON brings together real-time voice AI, tool-calling agents and native Android in one product, now available on subscription.</p>
+  <div class="phones">
+    <div class="phone"><img src="../public/products/ultron-skills.webp" alt="ULTRON skills screen"></div>
+    <div class="phone"><img src="../public/products/ultron-home.webp" alt="ULTRON home screen"></div>
+  </div>
+  <div class="stack"><span>Kotlin</span><span>Jetpack Compose</span><span>Gemini Live</span><span>MCP</span><span>RAG</span><span>ObjectBox</span><span>AWS Lambda</span></div>
+  <div class="bottom">
+    <div><small>Built By</small><b>Jitin Kumar Sengar &amp; Sonia</b></div>
+    <div class="right"><small>Learn More</small><b>ultron.nandivex.in</b></div>
+  </div>
+</section>
+
+<!-- U4: Pricing -->
+<section class="card u4" id="c4">
+  <div class="head"><img src="../public/brand/logo-horizontal-white.png" alt="NandiVex Technologies"><span class="pill"><i></i>ULTRON</span></div>
+  <h2>Simple <span class="red">Pricing</span></h2>
+  <p class="sub">Every plan includes every feature. Plans differ only in length.</p>
+  <div class="plans">
+    <div class="plan"><div><h3>Spark</h3><div class="len">7 Days</div></div><div class="right"><div class="price">₹199<s>₹299</s></div><div class="per">About ₹28 a day · <b>33% off</b></div></div></div>
+    <div class="plan"><div><h3>Surge</h3><div class="len">1 Month</div></div><div class="right"><div class="price">₹699<s>₹999</s></div><div class="per">About ₹23 a day · <b>30% off</b></div></div></div>
+    <div class="plan best"><span class="badge">Lowest Per Day</span><div><h3>Apex</h3><div class="len">3 Months</div></div><div class="right"><div class="price">₹1,499<s>₹2,199</s></div><div class="per">About ₹17 a day · <b>32% off</b></div></div></div>
+  </div>
+  <ul class="notes">
+    <li>Launch discount on every plan.</li>
+    <li>No automatic renewal. One phone per key.</li>
+    <li>Your plan starts the day you activate it.</li>
+    <li>Uses your own Gemini API key, so Google sets its limits and any charges.</li>
+  </ul>
+  <div class="cta"><span>Get ULTRON at ultron.nandivex.in</span></div>
+</section>
+
+<script>
+  const n = new URLSearchParams(location.search).get('card') || '1';
+  document.getElementById('c' + n).classList.add('on');
+</script>
+</body>
+</html>
