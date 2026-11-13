@@ -4,8 +4,8 @@ export const lineup = [
     name: 'Friday',
     status: 'Coming soon',
     tag: 'A focused assistant for a fixed set of tasks.',
-    text: 'Friday does not try to do everything. It handles only a predefined list of tasks, and for each one it follows a better, purpose-built way of doing it, so the result is more reliable than a general assistant.',
-    points: ['Predefined tasks only', 'A tuned method for every task', 'Expert-level results on what it covers'],
+    text: 'Friday does not try to do everything. It handles only a predefined list of tasks, and for each one it follows a better, purpose-built way of doing it. It can also control your phone with short, one-time commands like scroll, tap here or go back. It does not run long, multi-step tasks such as sending a message on WhatsApp.',
+    points: ['Predefined tasks only, each with a tuned method', 'Phone control with short one-time commands: scroll, tap here, go back', 'No long-running tasks like messaging on WhatsApp'],
   },
   {
     name: 'ULTRON',
