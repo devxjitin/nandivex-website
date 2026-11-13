@@ -41,7 +41,7 @@ function Product({ p, tone }) {
 }
 
 export default function Products() {
-  useMeta('Products', 'Software by NandiVex Technologies that you can subscribe to, starting with ULTRON, a voice assistant for Android.');
+  useMeta('Products', 'Software by NandiVex Technologies that we are building: Friday, ULTRON (experimental) and Nandi. None is launched yet.');
   return (
     <>
       <PageHeader eyebrow="Products" title="Software we are building.">

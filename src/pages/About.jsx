@@ -37,8 +37,8 @@ export default function About() {
           <div className="max-w-3xl">
             <p className="label mb-3">Products</p>
             <p className="text-lg leading-relaxed text-muted">
-              Besides client projects, NandiVex has software of its own that you can subscribe to. Our first product is ULTRON, a voice assistant
-              that works your Android phone for you. We build, ship and support what we sell, the same way we do for clients.
+              Besides client projects, NandiVex is building software of its own: Friday, ULTRON and Nandi. None of them is launched yet, and
+              ULTRON is still experimental. We will build, ship and support them the same way we do for clients.
             </p>
           </div>
           <Link to="/products" className="btn-line flex-none self-start md:self-auto">
