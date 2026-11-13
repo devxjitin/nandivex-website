@@ -35,7 +35,7 @@ export const ultron = {
   name: 'ULTRON',
   tag: 'A voice assistant that works your phone for you',
   summary:
-    'A native Android assistant you talk to in 13 languages. Voice runs in real time over Gemini Live and can be interrupted, even with the screen off. It uses 80+ phone and cloud tools to finish the task. Sold on subscription.',
+    'A native Android assistant you talk to in 13 languages. Voice runs in real time over Gemini Live and can be interrupted, even with the screen off. It uses 80+ phone and cloud tools to finish the task. Currently experimental and not yet launched.',
   points: [
     'Real-time voice with Gemini Live in 13 languages, interruptible, working with the screen off.',
     'Tools through MCP connectors on AWS Lambda: Google Workspace, YouTube search and app updates, so connectors change without a new app release.',
@@ -80,7 +80,7 @@ jitin.projects = [
   {
     name: 'ULTRON',
     tag: 'Android voice assistant · Experimental',
-    text: 'A native Android assistant you talk to in 13 languages. Real-time voice over Gemini Live, 80+ phone and cloud tools through MCP connectors, and on-device memory. Sold on subscription.',
+    text: 'A native Android assistant you talk to in 13 languages. Real-time voice over Gemini Live, 80+ phone and cloud tools through MCP connectors, and on-device memory. Currently experimental and not yet launched.',
     stack: ['Kotlin', 'Jetpack Compose', 'Gemini Live', 'MCP', 'RAG', 'AWS Lambda'],
     links: [{ label: 'Website', href: 'https://ultron.devxjitin.dev' }],
   },
