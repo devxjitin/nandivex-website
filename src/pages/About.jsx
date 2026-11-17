@@ -5,7 +5,7 @@ import { techIcons } from '../data/techIcons.js';
 import { clients } from '../data/clients.js';
 import { principles, stats, workflow } from '../data/site.js';
 import { PageHeader, Section, useMeta } from '../components/ui.jsx';
-import { Avatar, ClientsSection, HeroVisual, ServiceCard, StatRow, WorkflowDiagram } from '../components/blocks.jsx';
+import { ClientsSection, HeroVisual, ServiceCard, StatRow, WorkflowDiagram } from '../components/blocks.jsx';
 import Icon from '../components/Icons.jsx';
 import { ContactSection } from './Contact.jsx';
 
@@ -58,9 +58,6 @@ export default function About() {
           {team.map((m) => (
             <li key={m.slug}>
               <Link to={`/team/${m.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface text-ink sm:flex-row shadow-card transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-lift">
-                <div className="overflow-hidden sm:w-[38%] sm:flex-none">
-                  <Avatar m={m} textClass="text-6xl" className="aspect-[5/4] w-full object-cover sm:aspect-auto sm:h-full transition-transform duration-700 ease-out group-hover:scale-105" />
-                </div>
                 <div className="flex flex-1 flex-col p-5">
                   <p className="label">{m.role}</p>
                   <h3 className="mt-2 text-xl transition-colors duration-300 group-hover:text-accent">{m.name}</h3>

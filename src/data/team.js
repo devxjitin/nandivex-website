@@ -3,7 +3,6 @@ export const jitin = {
   name: 'Jitin Kumar Sengar',
   role: 'Co-Founder, Head of AI Department',
   short: 'Builds AI agents that think, see, listen and act, and ships them end to end.',
-  photo: '/team/jitin.jpeg',
   bio: [
     'I build AI agents that can think, see, listen and act. I like shipping whole systems rather than single demos: the reasoning loop, the tools an agent can use, the memory it keeps, and the voice and vision it uses to deal with people.',
     'At NandiVex Technologies I bring that to client work: voice and chat assistants, retrieval over a company’s own documents, and automation that saves real hours.',
@@ -91,7 +90,6 @@ export const sonia = {
   slug: 'sonia',
   name: 'Sonia Dahiya',
   role: 'Head of Design Department, Junior AI Developer',
-  photo: '/team/sonia.jpeg',
   short: 'Designs our logos, brand and product visuals, and builds AI features as a junior developer. Co-builder of ULTRON (Experimental).',
   bio: [
     'I design the look of what we build: logos, brand and product visuals, so that the work is clear and recognisable at a glance. I also work as a junior AI developer, building small AI projects in Python.',
@@ -140,7 +138,6 @@ export const aman = {
   slug: 'aman-kumar',
   name: 'Aman Kumar',
   role: 'Head of Full Stack Department',
-  photo: '/team/aman.jpeg',
   short: 'Builds full-stack products end to end, from React and Next.js front ends to Node and FastAPI back ends, with AI features on top.',
   bio: [
     'I build full-stack web products end to end: the interface, the API, the database and the deployment. I work mostly in Next.js, React, Node.js, Express and PostgreSQL, and add AI features with LLMs, RAG and LangGraph where they help.',
@@ -207,27 +204,17 @@ export const aman = {
   ],
 };
 
-export const chandra = {
-  slug: 'chandra-prakash-tiwari',
-  name: 'Chandra Prakash Tiwari',
-  role: 'Founder & CEO, Cybersecurity Professional',
-  photo: '/team/chandra.jpeg',
-  short: 'Pioneering enterprise cybersecurity, autonomous AI architectures, and next-gen digital resilience to safeguard and scale modern businesses.',
+export const durgesh = {
+  slug: 'durgesh-tiwari',
+  name: 'Durgesh Tiwari',
+  role: 'Lead Generation and Management',
+  short: 'Finds and nurtures new clients and keeps projects and communication running smoothly.',
   bio: [
-    'I lead NandiVex Technologies with a mission to bridge high-assurance cybersecurity and bleeding-edge artificial intelligence. With deep roots in penetration testing, digital forensics, and secure systems architecture, I believe technology should not only be intelligent and automated, but fundamentally resilient against modern cyber threats.',
-    'At NandiVex, I steer our strategic engineering and client deployments, delivering autonomous agent ecosystems, zero-trust security postures, and scalable digital solutions that protect revenue, ensure compliance, and unlock real operational leverage for enterprises.',
-  ],
-  links: [
-    { label: 'GitHub', href: 'https://github.com/Chandra-prakash-knight13' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/chandra-prakash-t/' },
-    { label: 'TryHackMe', href: 'https://tryhackme.com/p/knight2' },
-  ],
-  skills: [
-    ['Cybersecurity', ['Penetration testing', 'Digital forensics', 'Secure systems architecture', 'Zero-trust security']],
-    ['AI and delivery', ['Autonomous agent ecosystems', 'Enterprise deployments', 'Compliance']],
+    'I handle lead generation and management at NandiVex Technologies: reaching the right businesses, understanding what they need and bringing them to the team.',
+    'I also keep the process organised once a project starts, so clients always know where things stand and the team can focus on building.',
   ],
 };
 
-/* Everyone on the Team page. To add a member, define an object like `jitin` (slug, name, role, photo, short, bio, links;
+/* Everyone on the Team page. To add a member, define an object like `jitin` (slug, name, role, short, bio, links;
    stats, skills, projects and education are optional) and add it here. */
-export const team = [chandra, jitin, sonia, aman];
+export const team = [jitin, sonia, aman, durgesh];

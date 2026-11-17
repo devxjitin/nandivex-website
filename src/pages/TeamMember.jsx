@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router-dom';
 import { team } from '../data/team.js';
 import { Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
-import { Avatar } from '../components/blocks.jsx';
 import NotFound from './NotFound.jsx';
 
 export default function TeamMember() {
@@ -18,8 +17,7 @@ export default function TeamMember() {
         <Link to="/#team" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
           <Icon name="arrow" className="h-4 w-4 rotate-180" /> Back to team
         </Link>
-        <div className="grid gap-10 lg:grid-cols-[320px_1fr] lg:items-start">
-          <Avatar m={m} textClass="text-8xl" className="aspect-[4/5] w-full max-w-sm rounded-3xl object-cover shadow-card" />
+        <div className="grid gap-10">
           <div>
             <p className="label">{m.role}</p>
             <h1 className="mt-2 text-4xl sm:text-5xl">{m.name}</h1>
