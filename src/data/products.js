@@ -1,5 +1,13 @@
-/* Product lineup cards shown at the top of /products. Nothing here is launched yet. */
+/* Product lineup cards shown at the top of /products. Parakh is live; the rest are not launched. */
 export const lineup = [
+  {
+    name: 'Parakh',
+    status: 'Live',
+    tag: 'Run proctored online exams and issue verifiable certificates.',
+    text: 'Trainers plan a paper, add questions by hand, paste or with AI, and run a proctored exam that grades itself. Students join with an exam code and get a certificate with a serial number and QR code anyone can check online.',
+    points: ['Single, multiple-choice and written questions', 'Tab-switch strikes you control', 'Trainers earn a share of every student fee'],
+    href: '#parakh',
+  },
   {
     name: 'Friday',
     status: 'Coming soon',
@@ -24,8 +32,26 @@ export const lineup = [
   },
 ];
 
-/* Software we sell on subscription. Add another object to this array and it appears on /products. */
+/* Products with their own section on /products. Add another object and it appears there. */
 export const products = [
+  {
+    slug: 'parakh',
+    name: 'Parakh',
+    tag: 'Run proctored online exams and issue verifiable certificates.',
+    summary:
+      'Parakh lets trainers and institutes run exams online. Plan the paper, add questions, publish with a code, and the exam grades itself. Students join with just an email, and every certificate carries a serial number and a QR code anyone can verify.',
+    url: 'https://parakh.nandivex.com',
+    platform: 'Web',
+    features: [
+      'Paper plan: question types, counts and marks kept in step',
+      'Add questions by hand, paste them, or build the paper with an AI prompt',
+      'Full-screen proctoring with tab-switch strikes you set',
+      'Choice answers graded instantly; written answers marked by the trainer',
+      'Certificates with a serial number and QR code, checkable online',
+      'Pay per exam, no subscription. Trainers earn a share of student fees',
+    ],
+    notes: ['Live now. Prices are shown on the Parakh website.'],
+  },
   {
     slug: 'ultron',
     name: 'ULTRON (Experimental)',
