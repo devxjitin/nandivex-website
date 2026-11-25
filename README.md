@@ -1,6 +1,6 @@
 # NandiVex Technologies website
 
-Source for https://nandivex.in: React 18, Vite 5, React Router 6, Tailwind CSS 3.
+Source for https://nandivex.com: React 18, Vite 5, React Router 6, Tailwind CSS 3.
 
 ## Commands
 
@@ -46,7 +46,7 @@ Old URLs (`/projects`, `/industries`, `/team`, retired service slugs) redirect t
 
 Hosted on GitHub Pages. `.github/workflows/deploy.yml` builds and deploys on every push to `main`.
 It is a single-page app, so the workflow copies `index.html` to `404.html` so deep links work.
-`public/CNAME` sets the custom domain `nandivex.in`.
+`public/CNAME` sets the custom domain `nandivex.com`.
 
 ## To do before launch
 

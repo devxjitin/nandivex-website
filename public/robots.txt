@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nandivex.in/sitemap.xml
+Sitemap: https://nandivex.com/sitemap.xml
