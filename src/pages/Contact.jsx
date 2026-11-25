@@ -48,14 +48,47 @@ export default function Contact() {
 
 /** Contact form and details, shown at the bottom of the About page. */
 export function ContactSection() {
-  const [sent, setSent] = useState(false);
+  // idle | sending | sent | error
+  const [state, setState] = useState('idle');
+  const [problem, setProblem] = useState('');
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const lines = form.fields.map((x) => `${x.label.replace(' (optional)', '')}: ${f.get(x.name) || '-'}`);
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(`${form.subject} from ${f.get('name')}`)}&body=${encodeURIComponent(lines.join('\n'))}`;
-    setSent(true);
+    const formEl = e.currentTarget;
+    const f = new FormData(formEl);
+    const body = Object.fromEntries(form.fields.map((x) => [x.name, String(f.get(x.name) || '').trim()]));
+    body.website = String(f.get('website') || '');
+    for (const k of Object.keys(body)) if (body[k] === '') delete body[k];
+    setState('sending');
+    setProblem('');
+    try {
+      const res = await fetch(site.contactApi, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (res.status === 400) {
+        const data = await res.json().catch(() => ({}));
+        const first = Array.isArray(data.message) ? data.message[0] : data.message;
+        setProblem(typeof first === 'string' ? first : 'Please check the form and try again.');
+        setState('error');
+        return;
+      }
+      if (res.status === 429) {
+        setProblem('Too many messages from this connection. Please wait a minute and try again.');
+        setState('error');
+        return;
+      }
+      const data = res.ok ? await res.json().catch(() => ({})) : {};
+      if (data.sent) {
+        formEl.reset();
+        setState('sent');
+      } else {
+        setState('error');
+      }
+    } catch {
+      setState('error');
+    }
   }
 
   const offers = ['AI voice and chat agents', 'Custom websites and web platforms', 'Android and Windows apps', 'Cyber security and audits'];
@@ -82,11 +115,22 @@ export function ContactSection() {
           <div className="mt-6 grid gap-5 sm:grid-cols-2">
             {form.fields.map((f) => <Field key={f.name} f={f} />)}
           </div>
-          <button type="submit" className="btn-solid mt-8 w-full justify-center">{form.submit} <Icon name="arrow" className="h-4 w-4" /></button>
-          {sent && (
-            <p role="status" className="mt-4 text-sm text-muted">
-              Your email app should open with the message filled in. If it did not, write to{' '}
-              <a className="text-accent underline" href={`mailto:${site.email}`}>{site.email}</a>.
+          {/* Honeypot: hidden from people, filled in by bots. */}
+          <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+            <label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" /></label>
+          </div>
+          <button type="submit" disabled={state === 'sending'} className="btn-solid mt-8 w-full justify-center disabled:opacity-60">
+            {state === 'sending' ? 'Sending…' : form.submit} <Icon name="arrow" className="h-4 w-4" />
+          </button>
+          {state === 'sent' && (
+            <p role="status" className="mt-4 text-sm font-semibold text-ink">
+              Thank you. Your message is with us, and we have emailed you a confirmation. We reply within two working days.
+            </p>
+          )}
+          {state === 'error' && (
+            <p role="alert" className="mt-4 text-sm text-red-700">
+              {problem || 'We could not send your message right now.'} You can also write to us at{' '}
+              <a className="underline" href={`mailto:${site.email}`}>{site.email}</a>.
             </p>
           )}
         </form>
