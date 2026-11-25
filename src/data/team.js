@@ -13,7 +13,6 @@ export const jitin = {
     { label: 'Portfolio', href: 'https://portfolio.devxjitin.dev/' },
   ],
   stats: [
-    ['17', 'open-source packages on PyPI'],
     ['3rd', 'Best Project Award, K.R. Mangalam University'],
     ['Top 5', 'Build with Bharat 2.0, NIT Delhi'],
     ['IEEE', 'conference paper'],

@@ -41,6 +41,5 @@ export const principles = [
 export const stats = [
   { tab: 'Services', icon: 'build', value: 5, suffix: '', label: 'Areas of work: AI, web, Android, desktop and security' },
   { tab: 'Clients', icon: 'briefcase', value: 1, suffix: '', label: 'Client product delivered (Nira, for Nirman Labs)' },
-  { tab: 'Team', icon: 'users', value: 4, suffix: '', label: 'Engineers building your product' },
-  { tab: 'Open source', icon: 'secure', value: 17, suffix: '', label: 'Open-source packages on PyPI' },
+  { tab: 'Team', icon: 'users', value: 4, suffix: '', label: 'People on the team: engineering, AI and business' },
 ];

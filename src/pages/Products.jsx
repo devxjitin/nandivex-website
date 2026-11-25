@@ -26,13 +26,16 @@ function Product({ p, tone }) {
           )}
           <List items={p.features} className="mt-6" />
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {p.shots?.length > 0 && <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {p.shots.map(([src, alt]) => (
             <img key={src} src={src} alt={alt} loading="lazy" width="720" height="1600" className="aspect-[9/20] w-full rounded-xl border border-line bg-surface object-contain shadow-card" />
           ))}
-        </div>
+        </div>}
       </div>
 
+      {p.url && p.slug === 'parakh' && (
+        <a href={p.url} target="_blank" rel="noopener noreferrer" className="btn-solid mt-8 inline-flex">Open Parakh <Icon name="arrow" className="h-4 w-4" /></a>
+      )}
       <ul className="mt-8 space-y-1.5 text-sm text-muted">
         {p.notes.map((n) => <li key={n}>{n}</li>)}
       </ul>
@@ -41,17 +44,17 @@ function Product({ p, tone }) {
 }
 
 export default function Products() {
-  useMeta('Products', 'Software by NandiVex Technologies that we are building: Friday, ULTRON (experimental) and Nandi. None is launched yet.');
+  useMeta('Products', 'Software by NandiVex Technologies: Parakh (live), and Friday, ULTRON (experimental) and Nandi (not launched yet).');
   return (
     <>
       <PageHeader eyebrow="Products" title="Software we are building.">
-        Tools we build and run ourselves. None of them is launched yet, and ULTRON is still experimental.
+        Tools we build and run ourselves. Parakh is live. The others are not launched yet, and ULTRON is still experimental.
       </PageHeader>
-      <Section eyebrow="Our lineup" title="Three products, none launched yet." tone="white">
-        <div className="grid gap-5 md:grid-cols-3">
+      <Section eyebrow="Our lineup" title="Four products. Parakh is live." tone="white">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {lineup.map((l) => (
             <div key={l.name} className="card flex flex-col !p-7">
-              <span className={`self-start rounded-full px-3 py-1 text-xs font-bold ${l.status === 'Experimental' ? 'bg-accent text-white' : 'border border-line text-muted'}`}>{l.status}</span>
+              <span className={`self-start rounded-full px-3 py-1 text-xs font-bold ${l.status === 'Experimental' || l.status === 'Live' ? 'bg-accent text-white' : 'border border-line text-muted'}`}>{l.status}</span>
               <h3 className="mt-4 text-2xl">{l.name}</h3>
               <p className="mt-1 font-semibold text-accent">{l.tag}</p>
               <p className="mt-4 leading-relaxed text-muted">{l.text}</p>
