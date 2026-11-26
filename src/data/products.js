@@ -1,38 +1,4 @@
-/* Product lineup cards shown at the top of /products. Parakh is live; the rest are not launched. */
-export const lineup = [
-  {
-    name: 'Parakh',
-    status: 'Live',
-    tag: 'Run proctored online exams and issue verifiable certificates.',
-    text: 'Trainers plan a paper, add questions by hand, paste or with AI, and run a proctored exam that grades itself. Students join with an exam code and get a certificate with a serial number and QR code anyone can check online.',
-    points: ['Single, multiple-choice and written questions', 'Tab-switch strikes you control', 'Trainers earn a share of every student fee'],
-    href: '#parakh',
-  },
-  {
-    name: 'Friday',
-    status: 'Coming soon',
-    tag: 'A focused assistant for a fixed set of tasks.',
-    text: 'Friday handles a predefined list of tasks, and for each one it follows a better, purpose-built way of doing it. It can also control your phone with short, one-time commands like scroll, tap here or go back. The only thing it cannot do is long-running tasks, such as sending a message on WhatsApp.',
-    points: ['Predefined tasks only, each with a tuned method', 'Phone control with short one-time commands: scroll, tap here, go back', 'No long-running tasks like messaging on WhatsApp'],
-  },
-  {
-    name: 'ULTRON',
-    status: 'Experimental',
-    tag: 'A voice assistant that works your phone for you.',
-    text: 'Talk to your Android phone in 13 languages. ULTRON answers by voice and uses 80+ phone and cloud tools to finish the task. It is still experimental and not yet stable.',
-    points: ['13 languages, live voice', '19 connectors and 80+ tools', 'Android 8+'],
-    href: '#ultron',
-  },
-  {
-    name: 'Nandi',
-    status: 'Coming soon',
-    tag: 'An on-device RAG assistant that costs very little.',
-    text: 'Upload as many documents as you like, with no limit, and Nandi answers only from what you gave it. It runs on your device and is priced to be very cheap.',
-    points: ['Unlimited document uploads', 'Answers based on your documents', 'Runs on the device, very low cost'],
-  },
-];
-
-/* Products with their own section on /products. Add another object and it appears there. */
+/* Every product has its own section on /products, in this order. Add another object and it appears there. */
 export const products = [
   {
     slug: 'parakh',
@@ -51,6 +17,20 @@ export const products = [
       'Pay per exam, no subscription. Trainers earn a share of student fees',
     ],
     notes: ['Live now. Prices are shown on the Parakh website.'],
+  },
+  {
+    slug: 'friday',
+    name: 'Friday',
+    tag: 'A focused assistant for a fixed set of tasks.',
+    summary:
+      'Friday handles a predefined list of tasks, and for each one it follows a better, purpose-built way of doing it. It can also control your phone with short, one-time commands like scroll, tap here or go back. The only thing it cannot do is long-running tasks, such as sending a message on WhatsApp.',
+    platform: 'Coming soon',
+    features: [
+      'Predefined tasks only, each with a tuned method',
+      'Phone control with short one-time commands: scroll, tap here, go back',
+      'No long-running tasks like messaging on WhatsApp',
+    ],
+    notes: ['Not launched yet.'],
   },
   {
     slug: 'ultron',
@@ -81,5 +61,19 @@ export const products = [
       'ULTRON is experimental and not yet stable. It is not on sale.',
       'ULTRON uses your own Gemini API key, so Google sets its limits and any charges.',
     ],
+  },
+  {
+    slug: 'nandi',
+    name: 'Nandi',
+    tag: 'An on-device RAG assistant that costs very little.',
+    summary:
+      'Upload as many documents as you like, with no limit, and Nandi answers only from what you gave it. It runs on your device and is priced to be very cheap.',
+    platform: 'Coming soon',
+    features: [
+      'Unlimited document uploads',
+      'Answers based on your documents',
+      'Runs on the device, very low cost',
+    ],
+    notes: ['Not launched yet.'],
   },
 ];

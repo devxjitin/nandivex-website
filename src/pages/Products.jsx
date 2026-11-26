@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { products, lineup } from '../data/products.js';
+import { products } from '../data/products.js';
 import { team } from '../data/team.js';
 import { List, PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
@@ -50,22 +50,6 @@ export default function Products() {
       <PageHeader eyebrow="Products" title="Software we are building.">
         Tools we build and run ourselves. Parakh is live. The others are not launched yet, and ULTRON is still experimental.
       </PageHeader>
-      <Section eyebrow="Our lineup" title="Four products. Parakh is live." tone="white">
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {lineup.map((l) => (
-            <div key={l.name} className="card flex flex-col !p-7">
-              <span className={`self-start rounded-full px-3 py-1 text-xs font-bold ${l.status === 'Experimental' || l.status === 'Live' ? 'bg-accent text-white' : 'border border-line text-muted'}`}>{l.status}</span>
-              <h3 className="mt-4 text-2xl">{l.name}</h3>
-              <p className="mt-1 font-semibold text-accent">{l.tag}</p>
-              <p className="mt-4 leading-relaxed text-muted">{l.text}</p>
-              <ul className="mt-5 space-y-1.5 text-sm text-muted">
-                {l.points.map((x) => <li key={x}>· {x}</li>)}
-              </ul>
-              {l.href && <a href={l.href} className="btn-line mt-6 self-start">See details <Icon name="arrow" className="h-4 w-4" /></a>}
-            </div>
-          ))}
-        </div>
-      </Section>
       {products.map((p, i) => <Product key={p.slug} p={p} tone={i % 2 ? 'white' : 'soft'} />)}
     </>
   );
