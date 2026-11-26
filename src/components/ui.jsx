@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import Icon from './Icons.jsx';
 
 export function useMeta(title, description) {
+  // While prerendering there is no document: remember the page's title and description so the build can write them into the HTML.
+  if (typeof document === 'undefined') globalThis.__pageMeta = { title, description };
   useEffect(() => {
     document.title = title ? `${title} | NandiVex Technologies` : 'NandiVex Technologies | Custom Software, Apps & AI';
     if (description) {
