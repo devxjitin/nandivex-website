@@ -7,7 +7,7 @@ export default function Work() {
   return (
     <>
       <PageHeader eyebrow="Work" title="Built and delivered for our clients.">
-        Projects we have designed, built and handed over to a client. Our team's own projects are on their profiles under About.
+        Projects we have designed, built and handed over to a client. Our team&apos;s own projects are on their profiles under About.
       </PageHeader>
       <Section>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

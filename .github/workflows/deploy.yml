@@ -24,6 +24,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run lint
       - run: npm run build
       # GitHub Pages has no SPA rewrites: serve index.html for unknown paths
       - run: cp dist/index.html dist/404.html

@@ -75,7 +75,7 @@ function useTheme() {
     const next = !root.classList.contains('dark');
     const apply = () => {
       root.classList.toggle('dark', next);
-      try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch (err) { /* private mode */ }
+      try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch { /* private mode */ }
       document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#0D0917' : '#FFFFFF');
       flushSync(() => setDark(next));
       window.dispatchEvent(new Event('themechange'));
