@@ -61,7 +61,7 @@ function ServicesMenu({ item, link }) {
 
 /** Light / dark theme, kept in localStorage; the first visit follows the system setting (see the script in index.html). */
 function useTheme() {
-  const read = () => document.documentElement.classList.contains('dark');
+  const read = () => typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   const [dark, setDark] = useState(read);
   useEffect(() => {
     const sync = () => setDark(read());
