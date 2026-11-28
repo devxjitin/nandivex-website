@@ -4,6 +4,8 @@ import { site } from '../data/site.js';
 import services from '../data/services.json';
 import Icon from '../components/Icons.jsx';
 
+const PORTAL_CONTACT_URL = `${import.meta.env.VITE_CAREERS_API || 'https://api.nandivex.in'}/public/contact`;
+
 const field = 'w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10';
 
 /* One form for everything. Field types: text, email, tel, select, textarea. */
@@ -51,6 +53,7 @@ export function ContactSection() {
   // idle | sending | sent | error
   const [state, setState] = useState('idle');
   const [problem, setProblem] = useState('');
+  const [emailed, setEmailed] = useState(true);
 
   async function submit(e) {
     e.preventDefault();
@@ -61,12 +64,24 @@ export function ContactSection() {
     for (const k of Object.keys(body)) if (body[k] === '') delete body[k];
     setState('sending');
     setProblem('');
+    // A copy goes to the NandiVex portal so the team sees it under Website > Contact. This is best effort:
+    // the email service below stays the main route, and a failure here never blocks the visitor.
+    const saved = fetch(PORTAL_CONTACT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then((r) => r.ok).catch(() => false);
     try {
       const res = await fetch(site.contactApi, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-      });
+      }).catch(() => null);
+      if (!res) {
+        if (await saved) { formEl.reset(); setEmailed(false); setState('sent'); return; }
+        setState('error');
+        return;
+      }
       if (res.status === 400) {
         const data = await res.json().catch(() => ({}));
         const first = Array.isArray(data.message) ? data.message[0] : data.message;
@@ -80,8 +95,9 @@ export function ContactSection() {
         return;
       }
       const data = res.ok ? await res.json().catch(() => ({})) : {};
-      if (data.sent) {
+      if (data.sent || (await saved)) {
         formEl.reset();
+        setEmailed(Boolean(data.sent));
         setState('sent');
       } else {
         setState('error');
@@ -124,7 +140,7 @@ export function ContactSection() {
           </button>
           {state === 'sent' && (
             <p role="status" className="mt-4 text-sm font-semibold text-ink">
-              Thank you. Your message is with us, and we have emailed you a confirmation. We reply within two working days.
+              {emailed ? 'Thank you. Your message is with us, and we have emailed you a confirmation. We reply within two working days.' : 'Thank you. Your message is with us. We reply within two working days.'}
             </p>
           )}
           {state === 'error' && (
