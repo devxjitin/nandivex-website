@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { jobPostingsJson, useCareers } from '../lib/careers.js';
+import { CAREERS_URL, jobPostingsJson, useCareers } from '../lib/careers.js';
 import { site } from '../data/site.js';
 import { PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
@@ -7,23 +7,34 @@ import Icon from '../components/Icons.jsx';
 const field = 'w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent';
 
 function NotifyForm({ roles }) {
-  const [sent, setSent] = useState(false);
+  const [state, setState] = useState({ status: 'idle', message: '' }); // idle | sending | sent | error
   const areas = [...new Set(roles.map((u) => u.title))];
   if (!areas.length) areas.push('Any role');
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const body = [
-      `Name: ${f.get('name')}`,
-      `Email: ${f.get('email')}`,
-      `Interested in: ${f.get('kind')} - ${f.get('area')}`,
-      `Links (GitHub / portfolio / CV): ${f.get('links') || '-'}`,
-      '',
-      'Please notify me when this opens.',
-    ].join('\n');
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent('Hiring updates: ' + f.get('kind'))}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const form = e.currentTarget;
+    const f = new FormData(form);
+    setState({ status: 'sending', message: '' });
+    try {
+      const res = await fetch(`${CAREERS_URL}/interest`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: f.get('name'), email: f.get('email'), kind: f.get('kind'), area: f.get('area'),
+          links: f.get('links') || '', website: f.get('website') || '',
+        }),
+      });
+      if (res.ok) {
+        form.reset();
+        setState({ status: 'sent', message: '' });
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      setState({ status: 'error', message: data.error || 'We could not save that. Please try again.' });
+    } catch {
+      setState({ status: 'error', message: 'We could not reach the server. Check your connection and try again.' });
+    }
   }
 
   return (
@@ -31,11 +42,11 @@ function NotifyForm({ roles }) {
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
           <span className="label">Name *</span>
-          <input name="name" required autoComplete="name" className={`${field} mt-2`} />
+          <input name="name" required minLength={2} maxLength={80} autoComplete="name" className={`${field} mt-2`} />
         </label>
         <label className="block">
           <span className="label">Email *</span>
-          <input name="email" type="email" required autoComplete="email" className={`${field} mt-2`} />
+          <input name="email" type="email" required maxLength={120} autoComplete="email" className={`${field} mt-2`} />
         </label>
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
@@ -55,13 +66,22 @@ function NotifyForm({ roles }) {
       </div>
       <label className="block">
         <span className="label">GitHub, portfolio or CV link</span>
-        <input name="links" className={`${field} mt-2`} placeholder="Optional" />
+        <input name="links" maxLength={300} className={`${field} mt-2`} placeholder="Optional" />
       </label>
-      <button type="submit" className="btn-solid">Notify me when it opens</button>
-      {sent && (
+      {/* Hidden from people; bots fill it in and are ignored. */}
+      <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+      <button type="submit" disabled={state.status === 'sending'} className="btn-solid">
+        {state.status === 'sending' ? 'Sending…' : 'Notify me when it opens'}
+      </button>
+      {state.status === 'sent' && (
         <p role="status" className="text-sm text-muted">
-          Your email app should open with the message filled in. If it did not, write to{' '}
-          <a className="text-accent underline" href={`mailto:${site.email}`}>{site.email}</a>.
+          You are on the list. We will email you when a matching role opens.
+        </p>
+      )}
+      {state.status === 'error' && (
+        <p role="alert" className="text-sm text-red-600">
+          {state.message} You can also write to{' '}
+          <a className="underline" href={`mailto:${site.email}`}>{site.email}</a>.
         </p>
       )}
     </form>
