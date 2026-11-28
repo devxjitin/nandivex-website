@@ -149,25 +149,7 @@ export default function Careers() {
             ))}
           </div>
         </Section>
-      ) : (
-        <section className="bg-paper">
-          <div className="wrap py-12">
-            <div className="flex flex-col gap-6 rounded-3xl border border-accent/20 bg-gradient-to-br from-tint to-surface p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
-              <div className="flex gap-5">
-                <span className="relative mt-1 flex h-4 w-4 flex-none">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/50" />
-                  <span className="relative inline-flex h-4 w-4 rounded-full bg-accent" />
-                </span>
-                <div>
-                  <h2 className="text-2xl sm:text-3xl">{careers.statusTitle}</h2>
-                  <p className="mt-2 max-w-xl leading-relaxed text-muted">{careers.statusText}</p>
-                </div>
-              </div>
-              <a href="#notify" className="btn-solid flex-none">Join the list <Icon name="arrow" className="h-4 w-4" /></a>
-            </div>
-          </div>
-        </section>
-      )}
+      ) : null}
 
       {careersList.length > 0 && (
         <Section eyebrow="Careers" title="Roles we expect to open." tone="soft">
