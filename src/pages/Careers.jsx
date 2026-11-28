@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import careers from '../data/careers.json';
+import { jobPostingsJson, useCareers } from '../lib/careers.js';
 import { site } from '../data/site.js';
 import { PageHeader, Section, useMeta } from '../components/ui.jsx';
 import Icon from '../components/Icons.jsx';
 
 const field = 'w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent';
 
-function NotifyForm() {
+function NotifyForm({ roles }) {
   const [sent, setSent] = useState(false);
-  const areas = [...new Set(careers.upcoming.map((u) => u.title))];
+  const areas = [...new Set(roles.map((u) => u.title))];
+  if (!areas.length) areas.push('Any role');
 
   function submit(e) {
     e.preventDefault();
@@ -83,15 +84,22 @@ function RoleCard({ r }) {
 }
 
 export default function Careers() {
-  useMeta('Careers & Internships', 'Careers and internships at NandiVex Technologies. No roles are open yet; join the list to hear first.');
+  const careers = useCareers();
   const { openRoles, upcoming, culture, process } = careers;
+  useMeta('Careers & Internships', openRoles.length
+    ? 'Open roles and internships at NandiVex Technologies. See what we are hiring for and apply by email.'
+    : 'Careers and internships at NandiVex Technologies. No roles are open yet; join the list to hear first.');
+  const jsonLd = jobPostingsJson(openRoles);
   const careersList = upcoming.filter((u) => u.kind === 'Career');
   const interns = upcoming.filter((u) => u.kind === 'Internship');
 
   return (
     <>
+      {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />}
       <PageHeader eyebrow="Careers & Internships" title="Build things that run in production.">
-        We are an engineering team that ships. Careers and internships open soon, so join the list and be first to know.
+        {openRoles.length
+          ? 'We are an engineering team that ships. See where we are hiring now, or join the list for the roles that open next.'
+          : 'We are an engineering team that ships. Careers and internships open soon, so join the list and be first to know.'}
       </PageHeader>
 
       {openRoles.length > 0 ? (
@@ -141,17 +149,21 @@ export default function Careers() {
         </section>
       )}
 
-      <Section eyebrow="Careers" title="Roles we expect to open." tone="soft">
-        <ul className="grid gap-5 md:grid-cols-2">{careersList.map((r) => <RoleCard key={r.title} r={r} />)}</ul>
-      </Section>
+      {careersList.length > 0 && (
+        <Section eyebrow="Careers" title="Roles we expect to open." tone="soft">
+          <ul className="grid gap-5 md:grid-cols-2">{careersList.map((r) => <RoleCard key={r.title} r={r} />)}</ul>
+        </Section>
+      )}
 
-      <Section eyebrow="Internships" title="Internships we expect to open.">
-        <ul className="grid gap-5 md:grid-cols-2">{interns.map((r) => <RoleCard key={r.title} r={r} />)}</ul>
-      </Section>
+      {interns.length > 0 && (
+        <Section eyebrow="Internships" title="Internships we expect to open.">
+          <ul className="grid gap-5 md:grid-cols-2">{interns.map((r) => <RoleCard key={r.title} r={r} />)}</ul>
+        </Section>
+      )}
 
       <Section id="notify" eyebrow="Stay updated" title="Be the first to know when we open." tone="soft">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:items-start">
-          <NotifyForm />
+          <NotifyForm roles={[...openRoles, ...upcoming]} />
           <div className="space-y-5 text-sm leading-relaxed text-muted">
             <p>Tell us what you want to work on and we will email you when a matching role or internship opens.</p>
             <p>

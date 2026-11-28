@@ -16,6 +16,9 @@ services:
     environment:
       # File change events do not cross from Windows into the container, so watch by polling.
       CHOKIDAR_USEPOLLING: "true"
+      # The Careers page reads the portal API. Locally that is the portal stack (nandivex-platform docker) on :4010;
+      # remove this line to read the live https://api.nandivex.in instead.
+      VITE_CAREERS_API: "http://localhost:4010"
     ports:
       - "5173:5173"
     volumes:
