@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Rebuild every hour so the prerendered Careers page (what search engines read) follows what is
+  # published in the portal. Visitors already see the latest as soon as they open the page.
+  schedule:
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
