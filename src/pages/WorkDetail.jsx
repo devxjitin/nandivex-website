@@ -16,19 +16,19 @@ export default function WorkDetail() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-night text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-soft via-paper to-tint">
         <div className="wrap relative py-14 sm:py-20">
-          <Link to="/work" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-cyan">
+          <Link to="/work" className="mb-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
             <Icon name="arrow" className="h-4 w-4 rotate-180" /> All work
           </Link>
-          <p className="label !text-cyan">{w.tag}</p>
+          <p className="label">{w.tag}</p>
           <h1 className="mt-4 max-w-4xl text-4xl leading-[1.08] sm:text-6xl">{w.title}</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">{w.summary}</p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{w.summary}</p>
           {w.clientLogo && (
-            <a href={w.clientUrl} target="_blank" rel="noopener noreferrer" className="group mt-8 inline-flex items-center gap-4 rounded-xl bg-white/10 p-2 pr-5 ring-1 ring-white/20 transition-colors hover:bg-white/20">
-              <img src={w.clientLogo} alt={w.client} className="h-12 w-auto rounded-lg bg-[#16181d]" />
+            <a href={w.clientUrl} target="_blank" rel="noopener noreferrer" className="group mt-8 inline-flex items-center gap-4 rounded-xl bg-white p-2 pr-5 shadow-card ring-1 ring-line transition-colors hover:ring-accent">
+              <img decoding="async" src={w.clientLogo} alt={w.client} className="h-12 w-auto rounded-lg bg-[#16181d]" />
               <span className="text-sm font-semibold">Visit site</span>
-              <Icon name="arrow" className="h-4 w-4 -rotate-45 text-cyan transition-transform group-hover:translate-x-0.5" />
+              <Icon name="arrow" className="h-4 w-4 -rotate-45 text-accent transition-transform group-hover:translate-x-0.5" />
             </a>
           )}
         </div>

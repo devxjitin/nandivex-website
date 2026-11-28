@@ -93,7 +93,7 @@ function RoleCard({ r }) {
   return (
     <li className="card flex flex-col">
       <div className="flex items-center justify-between gap-3">
-        <span className={`rounded-full px-3 py-1 text-xs font-bold ${intern ? 'bg-sun/20 text-[#8a5a00] dark:text-sun' : 'bg-tint text-accent-dark'}`}>{r.kind}</span>
+        <span className={`rounded-full px-3 py-1 text-xs font-bold ${intern ? 'bg-sun/20 text-[#8a5a00]' : 'bg-tint text-accent-dark'}`}>{r.kind}</span>
         <span className="text-xs font-semibold text-muted">Opening soon</span>
       </div>
       <h3 className="mt-4 text-xl">{r.title}</h3>
