@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { flushSync } from 'react-dom';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { nav, site } from '../data/site.js';
 import services from '../data/services.json';
@@ -59,63 +58,6 @@ function ServicesMenu({ item, link }) {
   );
 }
 
-/** Light / dark theme, kept in localStorage; the first visit follows the system setting (see the script in index.html). */
-function useTheme() {
-  const read = () => typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
-  const [dark, setDark] = useState(read);
-  useEffect(() => {
-    const sync = () => setDark(read());
-    window.addEventListener('themechange', sync);
-    return () => window.removeEventListener('themechange', sync);
-  }, []);
-  // The whole page is cross-faded through a circle that grows from the button (View Transitions API).
-  // Browsers without it fall back to a plain colour fade (.theme-fade in index.css).
-  const toggle = (e) => {
-    const root = document.documentElement;
-    const next = !root.classList.contains('dark');
-    const apply = () => {
-      root.classList.toggle('dark', next);
-      try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch { /* private mode */ }
-      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next ? '#0D0917' : '#FFFFFF');
-      flushSync(() => setDark(next));
-      window.dispatchEvent(new Event('themechange'));
-    };
-    const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (document.startViewTransition && !still) {
-      const r = e?.currentTarget?.getBoundingClientRect();
-      const x = r ? r.left + r.width / 2 : window.innerWidth;
-      const y = r ? r.top + r.height / 2 : 0;
-      root.style.setProperty('--tx', `${x}px`);
-      root.style.setProperty('--ty', `${y}px`);
-      root.style.setProperty('--tr', `${Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))}px`);
-      document.startViewTransition(apply);
-      return;
-    }
-    root.classList.add('theme-fade');
-    apply();
-    setTimeout(() => root.classList.remove('theme-fade'), 600);
-  };
-  return [dark, toggle];
-}
-
-/** Round button with a sun (day) and a moon (night) that swap with a turn. */
-function ThemeToggle({ className = '' }) {
-  const [dark, toggle] = useTheme();
-  return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
-      aria-pressed={dark}
-      title={dark ? 'Day mode' : 'Night mode'}
-      className={`relative flex h-10 w-10 flex-none items-center justify-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-accent hover:text-accent ${className}`}
-    >
-      <Icon name="sun" className={`theme-icon absolute h-5 w-5 ${dark ? 'rotate-90 scale-50 opacity-0' : 'rotate-0 scale-100 opacity-100'}`} />
-      <Icon name="moon" className={`theme-icon absolute h-5 w-5 ${dark ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-50 opacity-0'}`} />
-    </button>
-  );
-}
-
 function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -132,7 +74,7 @@ function Header() {
     `relative py-1 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-accent after:transition-transform after:duration-300 ${isActive ? 'text-accent after:scale-x-100' : 'text-ink/75 after:scale-x-0 hover:text-ink hover:after:scale-x-100'}`;
 
   return (
-    <header className={`sticky top-0 z-40 border-b backdrop-blur-md transition-all duration-300 ${scrolled ? 'border-line bg-paper/90 shadow-card' : 'border-transparent bg-paper/70'}`}>
+    <header className={`sticky top-0 z-40 border-b transition-all duration-300 ${scrolled ? 'border-line bg-paper/95 shadow-card' : 'border-transparent bg-paper/95'}`}>
       <div className={`wrap flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-14' : 'h-[68px]'}`}>
         <Logo />
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
@@ -143,7 +85,6 @@ function Header() {
             <Link to="/#contact" className="btn-line !py-2">Contact</Link>
             <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-solid !py-2"><Icon name="whatsapp" className="h-4 w-4" /> Quick Connect</a>
           </div>
-          <ThemeToggle />
         </nav>
         <div className="flex items-center gap-2 lg:hidden">
           <button
@@ -157,7 +98,6 @@ function Header() {
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
             </svg>
           </button>
-          <ThemeToggle />
         </div>
       </div>
       <nav id="mobile-nav" aria-label="Mobile" aria-hidden={!open} className={`menu-panel border-t border-line bg-paper lg:hidden ${open ? 'open' : 'border-transparent'}`}>
@@ -188,7 +128,7 @@ function Header() {
 function FooterList({ title, children }) {
   return (
     <div>
-      <p className="font-display text-xl font-bold text-white">{title}</p>
+      <p className="font-display text-xl font-bold text-ink">{title}</p>
       <ul className="mt-6 space-y-3.5">{children}</ul>
     </div>
   );
@@ -197,8 +137,8 @@ function FooterList({ title, children }) {
 function FooterLink({ to, children }) {
   return (
     <li>
-      <Link to={to} className="group flex items-center gap-2 text-[15px] text-white/80 transition-colors hover:text-white">
-        <Icon name="chevron" className="h-3.5 w-3.5 flex-none text-cyan transition-transform group-hover:translate-x-0.5" />
+      <Link to={to} className="group flex items-center gap-2 text-[15px] text-muted transition-colors hover:text-accent">
+        <Icon name="chevron" className="h-3.5 w-3.5 flex-none text-accent transition-transform group-hover:translate-x-0.5" />
         {children}
       </Link>
     </li>
@@ -207,8 +147,8 @@ function FooterLink({ to, children }) {
 
 function ContactRow({ icon, children }) {
   return (
-    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-white/80">
-      <Icon name={icon} className="mt-0.5 h-5 w-5 flex-none text-cyan" />
+    <li className="flex items-start gap-3 text-[15px] leading-relaxed text-muted">
+      <Icon name={icon} className="mt-0.5 h-5 w-5 flex-none text-accent" />
       <span>{children}</span>
     </li>
   );
@@ -217,18 +157,18 @@ function ContactRow({ icon, children }) {
 function Footer() {
   const quick = [['/', 'About Us'], ['/work', 'Work'], ['/products', 'Products'], ['/careers', 'Careers'], ['/#contact', 'Contact'], ['/privacy-policy', 'Privacy Policy'], ['/terms-and-conditions', 'Terms & Conditions']];
   return (
-    <footer className="bg-[#09050F] text-white">
+    <footer className="border-t border-line bg-soft text-ink">
       <div className="wrap grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.2fr_1.2fr]">
         <div>
-          <Logo dark />
-          <p className="mt-6 max-w-xs leading-relaxed text-white/70">
+          <Logo />
+          <p className="mt-6 max-w-xs leading-relaxed text-muted">
             {site.name} designs, builds and supports AI assistants, websites, web platforms, and Android and Windows apps for businesses.
           </p>
           {clients.length > 0 && (
-            <p className="mt-6 text-sm text-white/60">
+            <p className="mt-6 text-sm text-muted">
               Trusted by{' '}
               {clients.map((c, i) => (
-                <span key={c.name}>{i > 0 && ', '}<a href={c.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-white/90 hover:text-white">{c.name}</a></span>
+                <span key={c.name}>{i > 0 && ', '}<a href={c.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink hover:text-accent">{c.name}</a></span>
               ))}
             </p>
           )}
@@ -243,15 +183,15 @@ function Footer() {
           <ContactRow icon="pin">{site.location}</ContactRow>
           <ContactRow icon="whatsapp">
             WhatsApp:<br />
-            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-white">Chat with us</a>
+            <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="hover:text-accent">Chat with us</a>
           </ContactRow>
           <ContactRow icon="mail">
-            Mail: <a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a>
+            Mail: <a href={`mailto:${site.email}`} className="hover:text-accent">{site.email}</a>
           </ContactRow>
         </FooterList>
       </div>
-      <div className="border-t border-white/10">
-        <div className="wrap py-6 text-center text-sm text-white/50">
+      <div className="border-t border-line">
+        <div className="wrap py-6 text-center text-sm text-muted">
           © {new Date().getFullYear()} {site.name}. All rights reserved.
         </div>
       </div>

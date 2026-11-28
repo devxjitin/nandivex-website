@@ -54,6 +54,8 @@ export function useAutoReveal(key) {
           if (e.isIntersecting) {
             el.style.transitionDelay = `${el.dataset.delay || 0}ms`;
             el.classList.add('in');
+            // One-shot: once shown it stays shown, so scrolling back never re-runs the animation.
+            io.unobserve(el);
           } else {
             el.style.transitionDelay = '0ms';
             el.dataset.dir = e.boundingClientRect.top < 0 ? 'up' : 'down';
@@ -71,18 +73,19 @@ export function useAutoReveal(key) {
       io.observe(el);
     });
     // Hidden items keep their entry side current, so fast jumps still enter from the right direction.
-    let raf = 0;
+    // Debounced: runs once scrolling pauses instead of reading layout on every scroll frame.
+    let timer = 0;
     const syncDirs = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
         targets.forEach(([el]) => {
           if (!el.classList.contains('in')) el.dataset.dir = el.getBoundingClientRect().top < 0 ? 'up' : 'down';
         });
-      });
+      }, 150);
     };
     window.addEventListener('scroll', syncDirs, { passive: true });
     return () => {
-      cancelAnimationFrame(raf);
+      clearTimeout(timer);
       window.removeEventListener('scroll', syncDirs);
       io.disconnect();
       splits.forEach((el) => el.classList.remove('in'));

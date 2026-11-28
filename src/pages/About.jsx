@@ -73,15 +73,14 @@ export default function About() {
       </Section>
 
       <Section eyebrow="Principles" title="Built to last, and to grow with you.">
-        <ol className="border-b-2 border-ink/10">
+        <ol className="grid gap-3">
           {principles.map(([t, d], i) => (
-            <li key={t} className="group relative overflow-hidden border-t-2 border-ink/10">
-              <span aria-hidden="true" className="absolute inset-0 origin-bottom scale-y-0 bg-accent transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-y-100" />
-              <div className="relative grid items-center gap-x-8 gap-y-2 px-2 py-7 transition-[padding] duration-500 group-hover:px-6 sm:py-9 md:grid-cols-[4.5rem_minmax(0,1fr)_minmax(0,1.1fr)_2rem]">
-                <span className="font-mono text-sm font-semibold text-accent transition-colors duration-300 group-hover:text-white/70">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="font-display text-2xl font-extrabold tracking-tight transition-colors duration-300 group-hover:text-white sm:text-3xl">{t}</h3>
-                <p className="leading-relaxed text-muted transition-colors duration-300 group-hover:text-white/85">{d}</p>
-                <Icon name="arrow" className="hidden h-6 w-6 -translate-x-3 text-white opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 md:block" />
+            <li key={t} className="group relative overflow-hidden rounded-2xl border border-line bg-surface/60 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-surface hover:shadow-lift">
+              <span aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[radial-gradient(closest-side,rgb(var(--c-accent)/0.18),transparent)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="relative grid items-center gap-x-6 gap-y-2 px-5 py-6 sm:px-7 sm:py-7 md:grid-cols-[3rem_minmax(0,1fr)_minmax(0,1.2fr)]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 font-mono text-sm font-bold text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="font-display text-xl font-extrabold tracking-tight transition-transform duration-300 group-hover:translate-x-1 sm:text-2xl">{t}</h3>
+                <p className="leading-relaxed text-muted">{d}</p>
               </div>
             </li>
           ))}
@@ -97,7 +96,7 @@ export default function About() {
                   const ic = techIcons[t];
                   return (
                     <li key={t} className="chip flex flex-none items-center gap-2.5 whitespace-nowrap !px-5 !py-3 !text-base !font-mono">
-                      {ic?.src && <img src={ic.src} alt="" width="28" height="28" loading="lazy" className="h-7 w-7 flex-none" />}
+                      {ic?.src && <img decoding="async" src={ic.src} alt="" width="28" height="28" loading="lazy" className="h-7 w-7 flex-none" />}
                       {ic?.icon && <Icon name={ic.icon} className="h-7 w-7 flex-none text-accent" />}
                       {t}
                     </li>

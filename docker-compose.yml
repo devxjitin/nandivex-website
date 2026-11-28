@@ -1,8 +1,8 @@
 # Run the website locally on Docker.
 #
-#   docker compose up              dev server with hot reload   http://localhost:5173
+#   docker compose up              dev server with hot reload   http://localhost:5173 (also :8081)
 #   docker compose --profile prod up --build web
-#                                  production build behind nginx http://localhost:8081
+#                                  production build behind nginx http://localhost:8082
 #                                  (what GitHub Pages will serve: prerendered pages, 404.html)
 #   docker compose down            stop
 #
@@ -21,6 +21,7 @@ services:
       VITE_CAREERS_API: "http://localhost:4010"
     ports:
       - "5173:5173"
+      - "8081:5173" # same dev server on 8081, so the old bookmark is live too
     volumes:
       - .:/app
       - website_node_modules:/app/node_modules
@@ -32,7 +33,7 @@ services:
     image: nandivex-website:local
     container_name: nandivex-website
     ports:
-      - "8081:80"
+      - "8082:80"
 
 volumes:
   website_node_modules:

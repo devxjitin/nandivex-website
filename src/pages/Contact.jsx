@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { site } from '../data/site.js';
 import services from '../data/services.json';
@@ -6,7 +6,7 @@ import Icon from '../components/Icons.jsx';
 
 const PORTAL_CONTACT_URL = `${import.meta.env.VITE_CAREERS_API || 'https://api.nandivex.in'}/public/contact`;
 
-const field = 'w-full rounded-xl border border-line bg-surface px-4 py-3 text-[15px] outline-none transition-colors focus:border-accent focus:ring-4 focus:ring-accent/10';
+const field = 'w-full rounded-2xl border border-transparent bg-ink/[0.05] px-4 py-3.5 text-[15px] text-ink shadow-[inset_0_0_0_1px_rgb(var(--c-line))] outline-none transition-all duration-200 placeholder:text-ink/40 hover:bg-ink/[0.07] focus:border-accent focus:bg-surface focus:shadow-none focus:ring-4 focus:ring-accent/15';
 
 /* One form for everything. Field types: text, email, tel, select, textarea. */
 const form = {
@@ -24,22 +24,80 @@ const form = {
   ],
 };
 
+/** Custom dropdown: the native popup cannot be styled. Keeps a hidden input so FormData still works. */
+function Select({ id, name, options }) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(options[0]);
+  const [active, setActive] = useState(0);
+  const box = useRef(null);
+  const hidden = useRef(null);
+
+  useEffect(() => {
+    const onDown = (e) => { if (box.current && !box.current.contains(e.target)) setOpen(false); };
+    const formEl = hidden.current?.form;
+    const onReset = () => { setValue(options[0]); setOpen(false); };
+    document.addEventListener('mousedown', onDown);
+    formEl?.addEventListener('reset', onReset);
+    return () => { document.removeEventListener('mousedown', onDown); formEl?.removeEventListener('reset', onReset); };
+  }, [options]);
+
+  function choose(o) { setValue(o); setOpen(false); }
+  function onKey(e) {
+    if (e.key === 'Escape') { setOpen(false); return; }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!open) { setActive(options.indexOf(value)); setOpen(true); return; }
+      setActive((i) => (e.key === 'ArrowDown' ? Math.min(i + 1, options.length - 1) : Math.max(i - 1, 0)));
+    } else if ((e.key === 'Enter' || e.key === ' ') && open) {
+      e.preventDefault();
+      choose(options[active]);
+    }
+  }
+
+  return (
+    <div ref={box} className="relative">
+      <input ref={hidden} type="hidden" name={name} value={value} />
+      <button
+        type="button" id={id} role="combobox" aria-haspopup="listbox" aria-expanded={open} aria-controls={`${id}-list`}
+        onClick={() => { setActive(options.indexOf(value)); setOpen((o) => !o); }} onKeyDown={onKey}
+        className={`${field} flex cursor-pointer items-center justify-between gap-3 text-left ${open ? '!border-accent !bg-surface !shadow-none ring-4 ring-accent/15' : ''}`}
+      >
+        <span className="truncate">{value}</span>
+        <svg aria-hidden="true" viewBox="0 0 20 20" className={`h-4 w-4 flex-none text-ink/50 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m5 8 5 5 5-5" /></svg>
+      </button>
+      {open && (
+        <ul id={`${id}-list`} role="listbox" className="absolute left-0 right-0 z-30 mt-2 max-h-64 overflow-auto rounded-2xl border border-line bg-surface p-1.5 shadow-lift">
+          {options.map((o, i) => (
+            <li
+              key={o} role="option" aria-selected={o === value}
+              onMouseEnter={() => setActive(i)} onMouseDown={(e) => { e.preventDefault(); choose(o); }}
+              className={`flex cursor-pointer items-center justify-between rounded-xl px-3.5 py-2.5 text-[15px] ${i === active ? 'bg-accent/10 text-ink' : 'text-ink/80'} ${o === value ? 'font-semibold' : ''}`}
+            >
+              {o}
+              {o === value && <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4 flex-none text-accent" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="m4.5 10.5 3.5 3.5 7.5-8" /></svg>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function Field({ f }) {
   const id = `f-${f.name}`;
   const wrap = f.wide ? 'sm:col-span-2' : '';
+  const Wrapper = f.type === 'select' ? 'div' : 'label';
   return (
-    <label htmlFor={id} className={`block ${wrap}`}>
-      <span className="label">{f.label}{f.required && ' *'}</span>
+    <Wrapper htmlFor={f.type === 'select' ? undefined : id} className={`block ${wrap}`}>
+      <span className="mb-2 block text-[13px] font-semibold text-ink/70">{f.label}{f.required && <span className="text-accent"> *</span>}</span>
       {f.type === 'select' ? (
-        <select id={id} name={f.name} defaultValue={f.options[0]} className={`${field} mt-2`}>
-          {f.options.map((o) => <option key={o}>{o}</option>)}
-        </select>
+        <Select id={id} name={f.name} options={f.options} />
       ) : f.type === 'textarea' ? (
-        <textarea id={id} name={f.name} required={f.required} rows={6} placeholder={f.placeholder} className={`${field} mt-2`} />
+        <textarea id={id} name={f.name} required={f.required} rows={5} placeholder={f.placeholder} className={`${field} resize-y`} />
       ) : (
-        <input id={id} name={f.name} type={f.type || 'text'} required={f.required} autoComplete={f.auto} placeholder={f.placeholder} className={`${field} mt-2`} />
+        <input id={id} name={f.name} type={f.type || 'text'} required={f.required} autoComplete={f.auto} placeholder={f.placeholder} className={field} />
       )}
-    </label>
+    </Wrapper>
   );
 }
 
@@ -109,26 +167,27 @@ export function ContactSection() {
 
   const offers = ['AI voice and chat agents', 'Custom websites and web platforms', 'Android and Windows apps', 'Cyber security and audits'];
   return (
-    <section id="contact" className="relative overflow-hidden bg-night text-white">
-      <div className="wrap relative grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
-        <div>
-          <p className="label !text-cyan">Connect</p>
-          <h2 className="mt-4 text-4xl leading-[1.1] text-white sm:text-5xl">Let us talk. Tell us what you want built.</h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
+    <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-soft via-paper to-tint">
+      <div className="wrap relative grid gap-12 py-14 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:pt-4">
+          <p className="label">Connect</p>
+          <h2 className="mt-4 text-4xl leading-[1.1] sm:text-5xl">Let us talk. Tell us what you want built.</h2>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             Share a few details and an engineer, not a salesperson, reads your message. We reply with questions or a call slot within two working days.
           </p>
           <ul className="mt-8 space-y-3">
             {offers.map((o) => (
-              <li key={o} className="flex items-center gap-3 text-white/90">
-                <span className="h-2 w-2 flex-none rounded-full bg-cyan" />{o}
+              <li key={o} className="flex items-center gap-3 text-ink">
+                <span className="h-2 w-2 flex-none rounded-full bg-accent" />{o}
               </li>
             ))}
           </ul>
         </div>
 
-        <form onSubmit={submit} className="rounded-3xl bg-surface p-6 text-ink shadow-lift sm:p-9">
-          <h3 className="border-b border-line pb-6 text-2xl">Please fill in the information below</h3>
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+        <form onSubmit={submit} className="relative rounded-3xl border border-line bg-surface p-6 text-ink shadow-lift sm:p-9">
+          <h3 className="text-2xl">Please fill in the information below</h3>
+          <p className="mt-1.5 text-sm text-ink/60">Fields marked * are required.</p>
+          <div className="mt-7 grid gap-x-4 gap-y-5 sm:grid-cols-2">
             {form.fields.map((f) => <Field key={f.name} f={f} />)}
           </div>
           {/* Honeypot: hidden from people, filled in by bots. */}

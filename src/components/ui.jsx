@@ -34,14 +34,14 @@ export function SplitHeading({ as: Tag = 'h2', className = '', children }) {
 
 export function PageHeader({ eyebrow, title, children, visual }) {
   return (
-    <section data-hero className="relative overflow-hidden bg-night text-white">
+    <section data-hero className="relative overflow-hidden bg-gradient-to-br from-soft via-paper to-tint">
       <div className="glow absolute -left-40 top-0 h-[420px] w-[420px] opacity-60" aria-hidden="true" />
       <div className="glow absolute -right-32 bottom-0 h-[440px] w-[440px] opacity-50" aria-hidden="true" />
       <div className={`wrap relative py-16 sm:py-24 ${visual ? 'grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]' : ''}`}>
         <div>
-          {eyebrow && <p data-reveal="right" className="label mb-5 !text-cyan">{eyebrow}</p>}
+          {eyebrow && <p data-reveal="right" className="label mb-5">{eyebrow}</p>}
           <SplitHeading as="h1" className="max-w-4xl text-4xl leading-[1.08] sm:text-6xl">{title}</SplitHeading>
-          {children && <div className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">{children}</div>}
+          {children && <div className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{children}</div>}
         </div>
         {visual}
       </div>
@@ -51,14 +51,14 @@ export function PageHeader({ eyebrow, title, children, visual }) {
 
 export function Section({ id, eyebrow, title, children, className = '', tone = 'white' }) {
   const dark = tone === 'dark';
-  const bg = dark ? 'bg-night text-white' : tone === 'soft' ? 'bg-soft' : 'bg-paper';
+  const bg = dark ? 'bg-gradient-to-br from-soft via-paper to-tint' : tone === 'soft' ? 'bg-soft' : 'bg-paper';
   return (
     <section id={id} className={`relative overflow-hidden ${bg} ${className}`}>
       {dark && <div className="glow absolute -left-32 top-0 h-[360px] w-[360px] opacity-40" aria-hidden="true" />}
       <div className="wrap relative py-16 sm:py-24">
         {(eyebrow || title) && (
           <div data-noreveal className="mb-12 max-w-2xl">
-            {eyebrow && <p data-reveal="right" className={`label mb-3 ${dark ? '!text-cyan' : ''}`}>{eyebrow}</p>}
+            {eyebrow && <p data-reveal="right" className={`label mb-3 `}>{eyebrow}</p>}
             {title && <SplitHeading className="text-3xl sm:text-4xl">{title}</SplitHeading>}
           </div>
         )}

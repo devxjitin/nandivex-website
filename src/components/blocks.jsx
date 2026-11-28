@@ -22,10 +22,10 @@ export function VoiceWave({ bars = 28, className = '' }) {
 
 /** Team photo, or initials on a gradient when a member has no photo yet. */
 export function Avatar({ m, className = '', textClass = 'text-5xl' }) {
-  if (m.photo) return <img src={m.photo} alt={m.name} loading="lazy" className={`object-top ${className}`} />;
+  if (m.photo) return <img decoding="async" src={m.photo} alt={m.name} loading="lazy" className={`object-top ${className}`} />;
   const initials = m.name.split(' ').map((w) => w[0]).slice(0, 2).join('');
   return (
-    <div role="img" aria-label={m.name} className={`flex items-center justify-center bg-gradient-to-br from-night to-accent font-display font-extrabold text-white ${textClass} ${className}`}>
+    <div role="img" aria-label={m.name} className={`flex items-center justify-center bg-gradient-to-br from-accent-dark to-accent font-display font-extrabold text-white ${textClass} ${className}`}>
       {initials}
     </div>
   );
@@ -76,16 +76,16 @@ export function StatRow({ stats }) {
 /** Large "Trusted by" section: heading, then only the client logos. clients come from data/clients.js. */
 export function ClientsSection({ clients }) {
   return (
-    <section className="relative overflow-hidden bg-night text-white">
+    <section className="relative overflow-hidden bg-soft">
       <div className="glow absolute -left-32 top-0 h-[360px] w-[360px] opacity-50" aria-hidden="true" />
       <div className="wrap relative py-16 text-center sm:py-24">
-        <p className="label mb-3 !text-cyan">Our clients</p>
+        <p className="label mb-3">Our clients</p>
         <h2 className="text-3xl sm:text-4xl">Trusted by</h2>
         <ul className="mt-12 flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
           {clients.map((c) => (
             <li key={c.name}>
               <Link to={c.work ? `/work/${c.work}` : '/work'} title={c.name} aria-label={c.name} className="group block">
-                <img src={c.logo} alt={c.name} width="971" height="257" className="h-20 w-auto rounded-2xl bg-[#16181d] shadow-lift ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105 sm:h-28" />
+                <img decoding="async" src={c.logo} alt={c.name} width="971" height="257" className="h-20 w-auto rounded-2xl bg-[#16181d] shadow-lift ring-1 ring-line transition-transform duration-300 group-hover:scale-105 sm:h-28" />
               </Link>
             </li>
           ))}
@@ -94,6 +94,89 @@ export function ClientsSection({ clients }) {
     </section>
   );
 }
+
+/* Pure-CSS illustrations for the service cards, same look as HeroVisual. Keyed by service slug. */
+const glass = 'absolute rounded-xl border border-line bg-white shadow-card';
+const pill = 'absolute flex items-center gap-1.5 rounded-xl border border-line bg-white px-2.5 py-1.5 text-[11px] font-semibold text-ink shadow-card';
+const bar = (w, c = 'bg-ink/10') => <span className={`block h-1.5 rounded-full ${w} ${c}`} />;
+const art = {
+  'ai-agents': () => (
+    <>
+      <div className={`${glass} left-[8%] top-[14%] w-[46%] p-3`}>{bar('w-3/4', 'bg-ink/20')}<div className="mt-2">{bar('w-1/2')}</div></div>
+      <div className="absolute right-[8%] top-[34%] w-[52%] rounded-xl bg-gradient-to-br from-accent to-cyan p-3 opacity-95 shadow-card">
+        {bar('w-full', 'bg-white/70')}<div className="mt-2">{bar('w-2/3', 'bg-white/50')}</div>
+      </div>
+      <div className="absolute bottom-[12%] left-[8%] flex h-9 w-[60%] items-center gap-[3px] rounded-xl border border-line bg-white px-3">
+        {[40, 70, 50, 90, 60, 100, 55, 80, 45, 70, 35, 60, 85, 50, 30].map((h, i) => (
+          <span key={i} className="w-[3px] flex-1 rounded-full bg-accent" style={{ height: `${h}%`, opacity: 0.5 + (i % 3) * 0.2 }} />
+        ))}
+      </div>
+      <span className={`${pill} right-[8%] bottom-[14%] animate-[floaty_5s_ease-in-out_infinite]`}><Icon name="ai-agents" className="h-4 w-4 text-accent" /> Voice</span>
+    </>
+  ),
+  'web-software': () => (
+    <>
+      <div className={`${glass} inset-x-[10%] bottom-0 top-[14%] overflow-hidden rounded-b-none`}>
+        <div className="flex items-center gap-1.5 border-b border-line px-3 py-2">
+          <span className="h-2 w-2 rounded-full bg-ink/20" /><span className="h-2 w-2 rounded-full bg-ink/10" /><span className="h-2 w-2 rounded-full bg-ink/[0.06]" />
+          <span className="ml-2 h-1.5 w-20 rounded-full bg-ink/10" />
+        </div>
+        <div className="p-3">
+          <div className="h-9 rounded-lg bg-gradient-to-r from-accent to-cyan opacity-90" />
+          <div className="mt-2.5 grid grid-cols-3 gap-2">{[0, 1, 2].map((n) => <span key={n} className="h-10 rounded-lg bg-ink/[0.06]" />)}</div>
+        </div>
+      </div>
+      <span className={`${pill} right-[5%] top-[6%] animate-[floaty_5s_ease-in-out_infinite]`}><Icon name="web-software" className="h-4 w-4 text-accent" /> Web</span>
+    </>
+  ),
+  'android-apps': () => (
+    <>
+      <div className="absolute left-1/2 top-[10%] h-[100%] w-[26%] min-w-[96px] -translate-x-1/2">
+        <div className="relative h-full overflow-hidden rounded-t-[1.5rem] border-[5px] border-b-0 border-ink bg-gradient-to-b from-white to-soft ring-1 ring-line">
+          <span className="absolute left-1/2 top-1 h-2 w-8 -translate-x-1/2 rounded-full bg-ink" />
+          <div className="grid grid-cols-3 gap-2 px-3 pt-7">
+            {['from-accent to-cyan', 'bg-ink/10', 'bg-ink/10', 'bg-ink/10', 'from-accent to-cyan', 'bg-ink/10'].map((c, n) => (
+              <span key={n} className={`aspect-square rounded-lg ${c.startsWith('from') ? `bg-gradient-to-br ${c}` : c}`} />
+            ))}
+          </div>
+        </div>
+      </div>
+      <span className={`${pill} left-[8%] top-[22%] animate-[floaty_5s_ease-in-out_infinite]`}><Icon name="android-apps" className="h-4 w-4 text-accent" /> Android</span>
+      <span className={`${pill} right-[8%] bottom-[22%] animate-[floaty_6s_ease-in-out_.8s_infinite]`}><Icon name="check" className="h-4 w-4 text-accent" /> Kotlin</span>
+    </>
+  ),
+  'desktop-apps': () => (
+    <>
+      <div className={`${glass} left-[7%] top-[12%] w-[66%] overflow-hidden`}>
+        <div className="flex items-center gap-1.5 border-b border-line px-3 py-2">
+          <span className="h-2 w-2 rounded-full bg-ink/20" /><span className="h-2 w-2 rounded-full bg-ink/10" /><span className="h-2 w-2 rounded-full bg-ink/[0.06]" />
+        </div>
+        <div className="grid grid-cols-[auto_1fr] gap-3 p-3">
+          <div className="space-y-2">{[0, 1, 2].map((n) => <span key={n} className={`block h-1.5 rounded-full ${n === 0 ? 'w-7 bg-accent' : 'w-6 bg-ink/10'}`} />)}</div>
+          <div className="space-y-2">{[90, 70, 80, 55].map((w, n) => <span key={n} className="block h-2 rounded bg-ink/10" style={{ width: `${w}%` }} />)}</div>
+        </div>
+      </div>
+      <div className="absolute bottom-[10%] right-[7%] flex items-center gap-1.5">
+        {['bg-ink/10', 'bg-gradient-to-br from-accent to-cyan', 'bg-ink/10'].map((c, n) => (
+          <span key={n} className="flex items-center gap-1.5"><span className={`h-8 w-8 rounded-lg border border-line ${c}`} />{n < 2 && <span className="h-px w-3 bg-accent/40" />}</span>
+        ))}
+      </div>
+      <span className={`${pill} bottom-[10%] left-[7%] animate-[floaty_5s_ease-in-out_infinite]`}><Icon name="desktop-apps" className="h-4 w-4 text-accent" /> Auto</span>
+    </>
+  ),
+  cybersecurity: () => (
+    <>
+      {[44, 72, 100].map((d) => (
+        <span key={d} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/20" style={{ width: `${d * 1.6}px`, height: `${d * 1.6}px` }} />
+      ))}
+      <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-white bg-gradient-to-br from-accent to-cyan shadow-card">
+        <Icon name="cybersecurity" className="h-8 w-8 text-white" />
+      </div>
+      <span className={`${pill} left-[10%] top-[18%] animate-[floaty_5s_ease-in-out_infinite]`}><Icon name="check" className="h-4 w-4 text-accent" /> Audited</span>
+      <span className={`${pill} right-[10%] bottom-[18%] animate-[floaty_6s_ease-in-out_.8s_infinite]`}><Icon name="check" className="h-4 w-4 text-accent" /> Encrypted</span>
+    </>
+  ),
+};
 
 export function ServiceCard({ s, big = false }) {
   if (big) {
@@ -128,17 +211,14 @@ export function ServiceCard({ s, big = false }) {
   return (
     <Link to={`/services/${s.slug}`} className="group block h-full">
       <div className="svc-card card relative flex h-full flex-col overflow-hidden !p-0">
-        {s.image && (
-          <div className="relative aspect-[16/9] overflow-hidden bg-night">
-            <img src={s.image} alt="" loading="lazy" width="1000" height="625" className="svc-img h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-night/40 via-transparent to-transparent" aria-hidden="true" />
+        {art[s.slug] && (
+          <div className="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-soft to-tint" aria-hidden="true">
+            <div className="absolute inset-x-10 top-1/2 h-32 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(var(--c-accent)/0.35),transparent)]" />
+            <div className="svc-img absolute inset-0">{art[s.slug]()}</div>
           </div>
         )}
         <div className="flex flex-1 flex-col px-7 pb-7">
-          <span className={`svc-icon relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl bg-accent text-white ring-4 ring-white ${s.image ? '-mt-6' : 'mt-7'}`}>
-            <Icon name={s.slug} className="h-6 w-6" />
-          </span>
-          <h3 className="mt-5 text-xl transition-colors duration-300 group-hover:text-accent sm:text-2xl">{s.title}</h3>
+          <h3 className="mt-6 text-xl transition-colors duration-300 group-hover:text-accent sm:text-2xl">{s.title}</h3>
           <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{s.description}</p>
           <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
             Learn more <Icon name="arrow" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />
@@ -155,7 +235,7 @@ export function WorkCard({ w }) {
   const shot = w.images[0]?.[0];
   return (
     <Link to={`/work/${w.slug}`} className="card-hover group flex h-full flex-col overflow-hidden !p-0">
-      <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-night to-[#2A1B47]">
+      <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-gradient-to-br from-soft to-tint">
         {w.images.length >= 3 ? (
           <div className="absolute inset-x-0 bottom-0 top-10 flex items-end justify-center gap-3" aria-hidden="true">
             {[1, 0, 2].map((i, n) => (
@@ -164,18 +244,18 @@ export function WorkCard({ w }) {
                 src={w.images[i][0]}
                 alt=""
                 loading="lazy"
-                className={`aspect-[9/19.5] rounded-2xl border border-white/15 object-cover shadow-lift transition-transform duration-500 ${n === 1 ? 'h-[92%] group-hover:-translate-y-2' : 'h-[78%] translate-y-6 opacity-90 group-hover:translate-y-3'}`}
+                className={`aspect-[9/19.5] rounded-2xl border border-line object-cover shadow-lift transition-transform duration-500 ${n === 1 ? 'h-[92%] group-hover:-translate-y-2' : 'h-[78%] translate-y-6 opacity-90 group-hover:translate-y-3'}`}
               />
             ))}
           </div>
         ) : w.clientLogo ? (
-          <img src={w.clientLogo} alt={w.client} className="relative h-14 w-auto rounded-lg bg-[#16181d] shadow-lift ring-1 ring-white/20 transition-transform duration-500 group-hover:scale-110" />
+          <img decoding="async" src={w.clientLogo} alt={w.client} className="relative h-14 w-auto rounded-lg bg-[#16181d] shadow-lift ring-1 ring-line transition-transform duration-500 group-hover:scale-110" />
         ) : shot ? (
-          <img src={shot} alt="" loading="lazy" className="relative h-[115%] translate-y-6 rounded-2xl object-contain transition-transform duration-500 group-hover:translate-y-2" />
+          <img decoding="async" src={shot} alt="" loading="lazy" className="relative h-[115%] translate-y-6 rounded-2xl object-contain transition-transform duration-500 group-hover:translate-y-2" />
         ) : (
-          <Icon name={w.services[0] || 'build'} className="relative h-14 w-14 text-cyan transition-transform duration-500 group-hover:scale-110" />
+          <Icon name={w.services[0] || 'build'} className="relative h-14 w-14 text-accent transition-transform duration-500 group-hover:scale-110" />
         )}
-        <span className="absolute left-4 top-4 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white backdrop-blur">{typeLabel[w.type]}</span>
+        <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-semibold text-accent shadow-card">{typeLabel[w.type]}</span>
       </div>
       <div className="flex flex-1 flex-col p-6">
         <p className="label">{w.tag}</p>
@@ -211,30 +291,30 @@ export function FAQ({ items }) {
 /** Illustration for the landing hero: a web dashboard, a phone app and floating service chips. Pure CSS, no image files. */
 export function HeroVisual() {
   const bars = [38, 62, 48, 80, 58, 92, 70];
-  const chip = 'absolute flex items-center gap-2 rounded-2xl border border-white/15 bg-night/80 px-3.5 py-2 text-xs font-semibold text-white shadow-card backdrop-blur';
+  const chip = 'absolute flex items-center gap-2 rounded-2xl border border-line bg-white px-3.5 py-2 text-xs font-semibold text-ink shadow-card';
   return (
     <div className="relative mx-auto h-[340px] w-full max-w-[480px] sm:h-[420px]" aria-hidden="true">
-      <div className="absolute inset-x-8 top-1/2 h-48 -translate-y-1/2 rounded-full bg-accent/30 blur-3xl" />
+      <div className="absolute inset-x-8 top-1/2 h-48 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(var(--c-accent)/0.16),transparent)]" />
 
       {/* Web dashboard */}
-      <div className="absolute left-0 top-8 w-[78%] overflow-hidden rounded-2xl border border-white/15 bg-white/[0.07] shadow-lift backdrop-blur">
-        <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/30" /><span className="h-2.5 w-2.5 rounded-full bg-white/20" /><span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <span className="ml-3 h-2 w-28 rounded-full bg-white/15" />
+      <div className="absolute left-0 top-8 w-[78%] overflow-hidden rounded-2xl border border-line bg-white shadow-card">
+        <div className="flex items-center gap-1.5 border-b border-line px-4 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-ink/20" /><span className="h-2.5 w-2.5 rounded-full bg-ink/10" /><span className="h-2.5 w-2.5 rounded-full bg-ink/[0.06]" />
+          <span className="ml-3 h-2 w-28 rounded-full bg-ink/10" />
         </div>
         <div className="grid grid-cols-[auto_1fr] gap-4 p-4">
           <div className="space-y-2.5 pt-1">
-            {[0, 1, 2, 3].map((n) => <span key={n} className={`block h-2 rounded-full ${n === 0 ? 'w-10 bg-cyan' : 'w-8 bg-white/20'}`} />)}
+            {[0, 1, 2, 3].map((n) => <span key={n} className={`block h-2 rounded-full ${n === 0 ? 'w-10 bg-accent' : 'w-8 bg-ink/10'}`} />)}
           </div>
           <div>
-            <span className="block h-2.5 w-24 rounded-full bg-white/30" />
+            <span className="block h-2.5 w-24 rounded-full bg-ink/20" />
             <div className="mt-4 flex h-24 items-end gap-2 sm:h-28">
               {bars.map((h, i) => (
                 <span key={i} className="flex-1 rounded-t-md bg-gradient-to-t from-accent to-cyan" style={{ height: `${h}%`, opacity: 0.55 + (i % 3) * 0.2 }} />
               ))}
             </div>
             <div className="mt-4 grid grid-cols-3 gap-2">
-              {[0, 1, 2].map((n) => <span key={n} className="h-8 rounded-lg bg-white/10" />)}
+              {[0, 1, 2].map((n) => <span key={n} className="h-8 rounded-lg bg-ink/[0.06]" />)}
             </div>
           </div>
         </div>
@@ -242,15 +322,15 @@ export function HeroVisual() {
 
       {/* Phone app */}
       <div className="absolute bottom-0 right-1 w-[34%] min-w-[118px] animate-[floaty_6s_ease-in-out_infinite]">
-        <div className="relative aspect-[9/17] overflow-hidden rounded-[1.7rem] border-[6px] border-[#0C0718] bg-gradient-to-b from-[#2A1B47] to-night shadow-lift ring-1 ring-white/20">
-          <span className="absolute left-1/2 top-1.5 h-2.5 w-10 -translate-x-1/2 rounded-full bg-[#0C0718]" />
+        <div className="relative aspect-[9/17] overflow-hidden rounded-[1.7rem] border-[6px] border-ink bg-gradient-to-b from-white to-soft shadow-card ring-1 ring-line">
+          <span className="absolute left-1/2 top-1.5 h-2.5 w-10 -translate-x-1/2 rounded-full bg-ink" />
           <div className="space-y-2.5 px-3 pt-8">
-            <span className="block h-2.5 w-12 rounded-full bg-white/40" />
+            <span className="block h-2.5 w-12 rounded-full bg-ink/25" />
             <span className="block h-16 rounded-xl bg-gradient-to-br from-accent to-cyan opacity-90" />
             {[0, 1, 2].map((n) => (
               <div key={n} className="flex items-center gap-2">
-                <span className="h-6 w-6 flex-none rounded-lg bg-white/15" />
-                <span className="h-2 flex-1 rounded-full bg-white/15" />
+                <span className="h-6 w-6 flex-none rounded-lg bg-ink/10" />
+                <span className="h-2 flex-1 rounded-full bg-ink/10" />
               </div>
             ))}
           </div>
@@ -258,9 +338,9 @@ export function HeroVisual() {
       </div>
 
       {/* Floating service chips */}
-      <span className={`${chip} -top-1 right-6 animate-[floaty_5s_ease-in-out_infinite]`}><Icon name="web-software" className="h-4 w-4 text-cyan" /> Web</span>
-      <span className={`${chip} left-3 bottom-12 animate-[floaty_6s_ease-in-out_.8s_infinite]`}><Icon name="ai-agents" className="h-4 w-4 text-cyan" /> AI</span>
-      <span className={`${chip} bottom-28 right-[40%] animate-[floaty_5.5s_ease-in-out_1.4s_infinite]`}><Icon name="cybersecurity" className="h-4 w-4 text-cyan" /> Secure</span>
+      <span className={`${chip} -top-1 right-6 animate-[floaty_5s_ease-in-out_infinite]`}><Icon name="web-software" className="h-4 w-4 text-accent" /> Web</span>
+      <span className={`${chip} left-3 bottom-12 animate-[floaty_6s_ease-in-out_.8s_infinite]`}><Icon name="ai-agents" className="h-4 w-4 text-accent" /> AI</span>
+      <span className={`${chip} bottom-28 right-[40%] animate-[floaty_5.5s_ease-in-out_1.4s_infinite]`}><Icon name="cybersecurity" className="h-4 w-4 text-accent" /> Secure</span>
     </div>
   );
 }
